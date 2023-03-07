@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/07 16:34:49 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/07 18:01:59 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,29 @@
 
 int	chck_pipe(char *s)
 {
-	if (s[0] == '|' || s[ft_strlen(s) - 1] == '|')
-		return (error('|', "syntax error near unexpected token"));
+	char	c;
+
+	if (s[0] == '|' || s[ft_strlen(s) - 1] == '|' || s[ft_strlen(s) - 1] == '>'
+		|| s[ft_strlen(s) - 1] == '<')
+	{
+		(s[0] == '|') && (c = '|');
+		(s[ft_strlen(s) - 1] == '|') && (c = '|');
+		(s[ft_strlen(s) - 1] == '<') && (c = '<');
+		(s[ft_strlen(s) - 1] == '>') && (c = '>');
+		exit(error(c, "syntax error near unexpected token"));
+	}
 	return (1);
 }
 
-static void	rm_quote_uti(char *s, int i)
+static void	rm_quote_uti(char *s, int *i)
 {
-	if (s[i] == '|')
-		s[i] = 2;
-	else if (s[i] == '>')
-		s[i] = 3;
-	else if (s[i] == '<')
-		s[i] = 4;
+	if (s[*i] == '|')
+		s[*i] = 2;
+	else if (s[*i] == '>')
+		s[*i] = 3;
+	else if (s[*i] == '<')
+		s[*i] = 4;
+	i += 1;
 }
 
 void	rm_quote(char *s, int i, char c)
@@ -38,10 +48,7 @@ void	rm_quote(char *s, int i, char c)
 			c = s[i];
 			s[i] = 1;
 			while (s[i] != c && s[i])
-			{
-				rm_quote_uti(s, i);
-				i++;
-			}
+				rm_quote_uti(s, &i);
 			if (!s[i])
 				exit(error(c, "don't forget to close quote after opening it"));
 			s[i] = 1;
@@ -58,7 +65,7 @@ int	ft_strlen_spc(char *s, char c)
 
 	i = 0;
 	count = 0;
-	while (s[i])
+	while (chck_pipe(s) && s[i])
 	{
 		j = 0;
 		(s[i] == c) && (count += 2);
@@ -131,7 +138,7 @@ void	fill_info(char *s, t_list **cmd)
 		i++;
 	}
 }
-// hello
+
 int	main(int ac, char **av, char **ev)
 {
 	char	*s;
