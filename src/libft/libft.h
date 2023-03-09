@@ -6,7 +6,11 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 01:12:09 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/09 15:53:40 by ajari            ###   ########.fr       */
+=======
+/*   Updated: 2023/03/09 09:16:01 by ajari            ###   ########.fr       */
+>>>>>>> f08438e9438cfa91af561f5d6554fd8a81e3c729
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +71,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 // 	struct s_list	*next;
 // }					t_list;
 
+<<<<<<< HEAD
 // typedef struct s_list
 // {
 // 	char			**cmd;
@@ -81,6 +86,19 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 // 	const char *err; //  standard error 2
 // 	struct s_list	*next;
 // }					t_list;
+=======
+typedef struct s_list
+{
+	char			**cmdsp;
+	char			*cmd;
+	int				*in_f;
+	int				*out_f;
+	int				h_re;
+	int				is_d;
+	int				stat;
+	struct s_list	*next;
+}					t_list;
+>>>>>>> f08438e9438cfa91af561f5d6554fd8a81e3c729
 
 t_list	*ft_lstnew(char *cmd, char **ev, t_env *env);
 void	ft_lstadd_front(t_list **lst, t_list *new);
