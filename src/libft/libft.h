@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 01:12:09 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/07 16:06:05 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/09 09:16:01 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ typedef struct s_list
 {
 	char			**cmdsp;
 	char			*cmd;
-	char			*in_f;
-	char			*out_f;
+	int				*in_f;
+	int				*out_f;
 	int				h_re;
 	int				is_d;
 	int				stat;
