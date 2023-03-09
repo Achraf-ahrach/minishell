@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_2.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 16:38:37 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/09 11:54:08 by ajari            ###   ########.fr       */
+/*   Created: 2023/03/09 15:48:11 by ajari             #+#    #+#             */
+/*   Updated: 2023/03/09 18:56:07 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	print(char c, int color, char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
-	(void)c;
-	if (color == 31)
-		printf(RED);
-	else if (color == 32)
-		printf(GREEN);
-	else if (color == 33)
-		printf(WELLOW);
-	else if (color == 34)
-		printf(BLUE);
-	else
-		printf(AS_DEFAULT);
-	printf("%s%c\n", str, c);
+	int i;
+
+	i = 0;
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (0);
 }

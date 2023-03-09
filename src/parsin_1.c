@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/07 18:01:59 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/09 18:59:41 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,25 @@ int	chck_pipe(char *s)
 	return (1);
 }
 
-static void	rm_quote_uti(char *s, int *i)
+static void	rm_quote_uti(char *s, int *i, char c, int this)
 {
-	if (s[*i] == '|')
-		s[*i] = 2;
-	else if (s[*i] == '>')
-		s[*i] = 3;
-	else if (s[*i] == '<')
-		s[*i] = 4;
-	i += 1;
+	while (this == -1 && s[*i + 1] != c && s[*i])
+	{
+		if (s[*i + 1] == '|')
+			s[*i] = 1;
+		else if (s[*i + 1] == '>')
+			s[*i] = 2;
+		else if (s[*i + 1] == '<')
+			s[*i] = 3;
+		else
+			s[*i] = s[*i + 1];
+		*i += 1;
+	}
+	while (this != -1 && s[this])
+	{
+		s[this] = s[this + 2];
+		this ++;
+	}
 }
 
 void	rm_quote(char *s, int i, char c)
@@ -47,13 +57,13 @@ void	rm_quote(char *s, int i, char c)
 		{
 			c = s[i];
 			s[i] = 1;
-			while (s[i] != c && s[i])
-				rm_quote_uti(s, &i);
+			rm_quote_uti(s, &i, c, -1);
 			if (!s[i])
 				exit(error(c, "don't forget to close quote after opening it"));
-			s[i] = 1;
+			rm_quote_uti(s, &i, c, i);
 		}
-		i++;
+		else
+			i++;
 	}
 }
 
@@ -76,7 +86,7 @@ int	ft_strlen_spc(char *s, char c)
 			count++;
 		}
 		if (j > 2)
-			print('\0', 31, "Error in < or > ");
+			print(c, 31, "Error in ");
 		if (!s[i])
 			break ;
 		count++;
@@ -125,39 +135,63 @@ char	*add_spc(char *s, int i, int j, char c)
 	return (dup);
 }
 
-void	fill_info(char *s, t_list **cmd)
+void	fill_cmds(char *s, char **ev, t_env *env)
 {
 	char	**c;
 	int		i;
 
-	c = ft_split(s, '|');
+	c = ft_split(add_spc(s, 0, 0, '<'), '|');
 	i = 0;
 	while (c && c[i])
 	{
-		ft_lstadd_back(cmd, ft_lstnew(c[i]));
-		i++;
+		ft_lstadd_back(&list, ft_lstnew(c[i], ev, env));
+		free(c[i++]);
 	}
+	free(c);
 }
 
 int	main(int ac, char **av, char **ev)
 {
+	int		i;
 	char	*s;
-	char	**m;
+	t_list	*t;
+	t_env	*env;
 	char	*cmd;
+	t_env	*j;
 
 	(void)s;
 	(void)ac;
 	(void)av;
 	(void)ev;
 	(void)cmd;
-	while (1)
+	(void)t;
+	i = 0;
+	list = 0;
+	env = 0;
+	env = getlstenv(ev);
+	j = env;
+	while (j)
 	{
-		s = readline("\033[0;32mMINISHELL#(*_*)|\033[36;01m❯❯❯❯\033[0m");
-		rm_quote(s, 0, 0);
-		print('\0', 34, s);
-		m = ft_split(add_spc(s, 0, 0, '<'), '|');
-		for (int i = 0; m[i]; i++)
-			print('\0', 33, m[i]);
+		printf("%s=%s\n", j->key, j->value);
+		j = j->next;
 	}
-	system("leaks minishell");
+	// while (1)
+	// {
+	// 	s = readline("\033[0;32mMINISHELL#(*_*)|\033[36;01m❯❯❯❯\033[0m");
+	// 	if (!s)
+	// 		continue ;
+	// 	rm_quote(s, 0, 0);
+	// 	printf("first one \n");
+	// 	print('\0', 34, s);
+	// 	fill_cmds(s, ev, );
+	// 	t = list;
+	// 	while (t)
+	// 	{
+	// 		printf("cmd:%s \n", list->cmd);
+	// 		t = t->next;
+	// 	}
+	// 	// for (int i = 0; m[i]; i++)
+	// 	// 	print('\0', 33, m[i]);
+	// }
+	//system("leaks minishell");
 }
