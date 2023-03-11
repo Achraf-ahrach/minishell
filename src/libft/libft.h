@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:55:47 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/11 10:17:38 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/11 10:26:16 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,33 +54,6 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_strcmp(char *s1, char *s2);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
-
-// typedef struct s_list
-// {
-// 	char			**cmdsp;
-// 	char			*cmd;
-// 	char			*in_f;
-// 	char			*out_f;
-// 	int				h_re;
-// 	int				is_d;
-// 	int				stat;
-// 	struct s_list	*next;
-// }					t_list;
-
-// typedef struct s_list
-// {
-// 	char			**cmd;
-// 	//char			*cmd;
-// 	char			**envir;
-// 	int				infile;
-// 	int				outfile;
-// 	char			*limiter;
-// 	//int				is_d;
-// 	int				stat;
-// 	t_env			*env;
-// 	const char *err; //  standard error 2
-// 	struct s_list	*next;
-// }					t_list;
 
 t_list	*ft_lstnew(char *cmd, char **ev);
 void	ft_lstadd_front(t_list **lst, t_list *new);
