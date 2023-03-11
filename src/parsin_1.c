@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/09 18:59:41 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/11 09:52:27 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	rm_quote_uti(char *s, int *i, char c, int this)
 	}
 }
 
-void	rm_quote(char *s, int i, char c)
+int	rm_quote(char *s, int i, char c)
 {
 	while (s[i])
 	{
@@ -59,12 +59,13 @@ void	rm_quote(char *s, int i, char c)
 			s[i] = 1;
 			rm_quote_uti(s, &i, c, -1);
 			if (!s[i])
-				exit(error(c, "don't forget to close quote after opening it"));
+				return (error(c, "unclose quote"));
 			rm_quote_uti(s, &i, c, i);
 		}
 		else
 			i++;
 	}
+	return (1);
 }
 
 int	ft_strlen_spc(char *s, char c)
@@ -135,7 +136,7 @@ char	*add_spc(char *s, int i, int j, char c)
 	return (dup);
 }
 
-void	fill_cmds(char *s, char **ev, t_env *env)
+void	fill_cmds(char *s, char **ev)
 {
 	char	**c;
 	int		i;
@@ -144,7 +145,7 @@ void	fill_cmds(char *s, char **ev, t_env *env)
 	i = 0;
 	while (c && c[i])
 	{
-		ft_lstadd_back(&list, ft_lstnew(c[i], ev, env));
+		ft_lstadd_back(&list, ft_lstnew(c[i], ev));
 		free(c[i++]);
 	}
 	free(c);
@@ -165,33 +166,27 @@ int	main(int ac, char **av, char **ev)
 	(void)ev;
 	(void)cmd;
 	(void)t;
+	(void)j;
 	i = 0;
 	list = 0;
 	env = 0;
-	env = getlstenv(ev);
-	j = env;
-	while (j)
+	while (1)
 	{
-		printf("%s=%s\n", j->key, j->value);
-		j = j->next;
+		s = readline("\033[0;32mMINISHELL#(*_*)|\033[36;01m❯❯❯❯\033[0m");
+		if (!s)
+			continue ;
+		rm_quote(s, 0, 0);
+		printf("first one \n");
+		print('\0', 34, s);
+		fill_cmds(s, ev);
+		t = list;
+		while (t)
+		{
+			printf("cmd:%s \n", list->cmd);
+			t = t->next;
+		}
+		// for (int i = 0; m[i]; i++)
+		// 	print('\0', 33, m[i]);
 	}
-	// while (1)
-	// {
-	// 	s = readline("\033[0;32mMINISHELL#(*_*)|\033[36;01m❯❯❯❯\033[0m");
-	// 	if (!s)
-	// 		continue ;
-	// 	rm_quote(s, 0, 0);
-	// 	printf("first one \n");
-	// 	print('\0', 34, s);
-	// 	fill_cmds(s, ev, );
-	// 	t = list;
-	// 	while (t)
-	// 	{
-	// 		printf("cmd:%s \n", list->cmd);
-	// 		t = t->next;
-	// 	}
-	// 	// for (int i = 0; m[i]; i++)
-	// 	// 	print('\0', 33, m[i]);
-	// }
 	//system("leaks minishell");
 }
