@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:21:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/11 09:50:09 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/11 10:09:52 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-t_list				*list;
+t_list				*data;
 
 t_list				*ft_lstnew(char *cmd, char **ev);
 void				ft_lstadd_front(t_list **lst, t_list *new);

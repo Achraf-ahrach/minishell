@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/11 09:52:27 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/11 10:13:48 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,11 @@ void	fill_cmds(char *s, char **ev)
 	i = 0;
 	while (c && c[i])
 	{
-		ft_lstadd_back(&list, ft_lstnew(c[i], ev));
+		ft_lstadd_back(&data, ft_lstnew(c[i], ev));
 		free(c[i++]);
 	}
-	free(c);
+	if (c)
+		free(c);
 }
 
 int	main(int ac, char **av, char **ev)
@@ -168,7 +169,7 @@ int	main(int ac, char **av, char **ev)
 	(void)t;
 	(void)j;
 	i = 0;
-	list = 0;
+	data = 0;
 	env = 0;
 	while (1)
 	{
@@ -179,10 +180,11 @@ int	main(int ac, char **av, char **ev)
 		printf("first one \n");
 		print('\0', 34, s);
 		fill_cmds(s, ev);
-		t = list;
+		t = data;
+		printf("%p\n", data);
 		while (t)
 		{
-			printf("cmd:%s \n", list->cmd);
+			printf("cmd:%s\n", t->cmd);
 			t = t->next;
 		}
 		// for (int i = 0; m[i]; i++)
