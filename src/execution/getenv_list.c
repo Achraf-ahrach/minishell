@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/11 10:13:45 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/12 10:04:57 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ static t_env	*env_new(char *s1, char *s2)
 	if (!new)
 		return (NULL);
 	new->key = s1;
+	new->index = 0;
+	new->equals = 0;
 	new->value = s2;
 	new->next = NULL;
 	return (new);
 }
 
-static void	envadd_back(t_env **lst, t_env *new)
+void	envadd_back(t_env **lst, t_env *new)
 {
 	t_env	*t;
 
@@ -54,7 +56,7 @@ static void	swap(t_env *t, t_env *t1)
 	t1->value = tmp;
 }
 
-static void	sort_env(t_env **env)
+void	sort_env(t_env **env)
 {
 	t_env	*t;
 	t_env	*t1;
@@ -77,7 +79,6 @@ static void	sort_env(t_env **env)
 
 t_env	*getlstenv(char **ev)
 {
-	(void)ev;
 	t_env *env;
 	char **e;
 	int i;
@@ -94,19 +95,19 @@ t_env	*getlstenv(char **ev)
 		free(e);
 		i++;
 	}
-	sort_env(&env);
+	//sort_env(&env);
 	return (env);
 }
 
-int main(int ac, char **av, char **env)
-{
-	int i = ac;
-	(void)av;
-	t_env	*p;
-	p = getlstenv(env);
-	while (p)
-	{
-		printf("declare -x %s=\"%s\"\n", p->key, p->value);
-		p = p->next;
-	}
-}
+// int main(int ac, char **av, char **env)
+// {
+// 	int i = ac;
+// 	(void)av;
+// 	t_env	*p;
+// 	p = getlstenv(env);
+// 	while (p)
+// 	{
+// 		printf("declare -x %s=\"%s\"\n", p->key, p->value);
+// 		p = p->next;
+// 	}
+// }

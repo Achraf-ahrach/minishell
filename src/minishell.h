@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:21:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/11 10:09:52 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/12 12:54:59 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ char				*ft_strnstr(const char *haystack, const char *needle,
 typedef struct t_env
 {
 	char			*key;
+	int				equals;
 	char			*value;
+	int				index;
 	struct t_env	*next;
 }					t_env;
 
@@ -57,14 +59,20 @@ typedef struct s_list
 	int				infile;
 	int				outfile;
 	char			*limiter;
-	//int				is_d;
 	int				stat;
 	t_env			*env;
-	const char *err; //  standard error 2
+	const char		*err;
 	struct s_list	*next;
 }					t_list;
 
 t_list				*data;
+
+/////////////// execution //////////////////
+
+void	sort_env(t_env **env);
+void	envadd_back(t_env **lst, t_env *new);
+
+/////////////////////////////////////////////
 
 t_list				*ft_lstnew(char *cmd, char **ev);
 void				ft_lstadd_front(t_list **lst, t_list *new);

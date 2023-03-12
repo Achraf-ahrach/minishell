@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/11 09:52:41 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/12 12:50:14 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,39 +246,122 @@ void	cd(char **cmd)
 	}
 }
 
-void	ft_add_list()
-{
+// void	add_envir(t_list *list, char *key);
+// {
+// 	int		len_y;
+// 	int		len_x;
+// 	int		i;
+// 	char	**env;
 	
-}
-void	export_add(t_env *env, char *cmd, char *str)
+// 	len_y = 0;
+// 	len_x = 0;
+// 	i = 0;
+// 	env = list->envir;
+// 	while (env[len_y])
+// 		len_y++;
+// 	list->envir = malloc((len_y + 2) * sizeof(char *));
+// 	//list->envir[len_y + 2] = NULL;
+// 	while (env[i])
+// 	{
+// 		list->envir[i] = malloc(ft_strlen(env[i] + 1));
+// 		ft_str
+// 	}
+// }
+
+void	export_add(t_list *list, char *cmd, char *str)
 {
 	if (!ft_strcmp(str, "present"))
 	{
-		while (env)
+		while (list->env)
 		{
-			if (!ft_strcmp(env->key, cmd))
+			if (!ft_strcmp(list->env->key, cmd))
 			{
-				env->value = cmd;
+				list->env->value = cmd;
 				return ;
 			}
-			env = env->next;
+			list->env = list->env->next;
 		}
 	}
 	else if (!ft_strcmp(str, "present"))
+	{
+		envadd_back(&list->env, cmd);
+	}
+}
+
+char	*come_max(t_env *env)
+{
+	char	*max;
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp)
+	{
+		if (tmp->index == 0)
+			max = tmp->key;
+		tmp = tmp->next;
+	}
+	while (env)
+	{
+		if (ft_strcmp(max, env->key) < 0)
+		{
+			if (env->index == 0)
+				max = env->key;
+		}
+		env = env->next;
+	}
+}
+
+void	sort_export(t_list *env)
+{
+	int		size;
+	char	*max;
+	t_env	*tmp;
+	int		i;
+	
+	size = ft_lstlast(env);
+	while (size > 0)
+	{
+		i = 0;
+		tmp = env;
+		max = come_max(env);
+		while (i = 0)
+		{
+			if (ft_strcmp(max, tmp->key) == 0)
+			{
+				tmp->index = size;
+				size--;
+				i = 1;
+			}
+			tmp = tmp->next;
+		}
+	}
 }
 
 void	export(t_list *list)
 {
-	int	i;
-	t_env *tmp;
+	int		i;
+	int		j;
+	int 	size;
+	t_env	*tmp;
 
 	i = 1;
 	if (!list->cmdsp[i])
 	{
-		while (list->env)
+		sort_export(&list->env);
+		size = ft_lstsize(list->env);
+		while (size > 0)
 		{
-			printf("declare -x %s=\"%s\"\n", list->env->key, list->env->value);
-			list->env = list->env->next;
+			tmp = list->env;
+			while (tmp)
+			{
+				if (tmp->index == size)
+				{
+					printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
+					size--;
+					break ;
+				}
+				tmp = tmp->next;
+			}
 		}
 	}
 	else
@@ -286,14 +369,18 @@ void	export(t_list *list)
 		tmp = list->env;
 		while (list->cmdsp[i])
 		{
+			j = 0;
 			while (tmp)
 			{
 				if (!ft_strcmp(tmp->key, list->cmd[i]))
+				{
 					export_add(tmp, list->cmdsp[i], "present");
-				else if (!ft_strcmp(tmp->key, list->cmd[i]))
-					export_add(tmp, list->cmdsp[i], "absent");
+					j = 1;
+				}
 				tmp = tmp->next;
 			}
+			if (j == 0)
+				export_add(tmp, list->cmdsp[i], "absent");
 			i++;
 		}
 	}
@@ -301,13 +388,13 @@ void	export(t_list *list)
 
 void	builtins(t_list *list)
 {
-	if (!ft_strcmp(list->cmd[0], "echo"))
+	if (!ft_strcmp(list->cmdsp[0], "echo"))
 		echo(list->cmd);
-	else if (!ft_strcmp(list->cmd[0], "pwd"))
+	else if (!ft_strcmp(list->cmdsp[0], "pwd"))
 		pwd(0);
-	else if (!ft_strcmp(list->cmd[0], "cd"))
-		cd(list->cmd);
-	else if (!ft_strcmp(list->cmd[0], "export"))
+	else if (!ft_strcmp(list->cmdsp[0], "cd"))
+		cd(&list->cmd);
+	else if (!ft_strcmp(list->cmdsp[i], "export"))
 		export(list);
 }
 
@@ -316,6 +403,7 @@ void	execution(t_list *list)
 	int	i;
 
 	i = 0;
+	list->env = getlstenv(list->envir);
 	while (list)
 	{
 		builtins(list);
@@ -324,10 +412,10 @@ void	execution(t_list *list)
 	}
 }
 
-int main()
-{
-	t_list	*list;
+// int main()
+// {
+// 	t_list	*list;
 
-	list = malloc(2 * sizeof(t_list));
-	execution(list);
-}
+// 	list = malloc(2 * sizeof(t_list));
+// 	execution(list);
+// }
