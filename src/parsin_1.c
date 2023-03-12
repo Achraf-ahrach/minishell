@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/11 10:13:48 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/12 13:07:02 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	chck_pipe(char *s)
 	return (1);
 }
 
+
+
 static void	rm_quote_uti(char *s, int *i, char c, int this)
 {
 	while (this == -1 && s[*i + 1] != c && s[*i])
@@ -48,8 +50,7 @@ static void	rm_quote_uti(char *s, int *i, char c, int this)
 		this ++;
 	}
 }
-
-int	rm_quote(char *s, int i, char c)
+int	rm_quote(char **ev, char *s, int i, char c)
 {
 	while (s[i])
 	{
@@ -59,27 +60,29 @@ int	rm_quote(char *s, int i, char c)
 			s[i] = 1;
 			rm_quote_uti(s, &i, c, -1);
 			if (!s[i])
+			{
+				free(s);
 				return (error(c, "unclose quote"));
+			}
 			rm_quote_uti(s, &i, c, i);
 		}
 		else
 			i++;
 	}
+	fill_cmds(s, ev);
+	free(s);
 	return (1);
 }
 
-int	ft_strlen_spc(char *s, char c)
+static int	ft_strlen_spc(char *s, char c, int i, int j)
 {
-	int	j;
-	int	i;
 	int	count;
 
-	i = 0;
 	count = 0;
 	while (chck_pipe(s) && s[i])
 	{
 		j = 0;
-		(s[i] == c) && (count += 2);
+		(s[i] == c && i && s[i - 1] != ' ') && (count += 1);
 		while (s[i] == c)
 		{
 			i++;
@@ -88,6 +91,7 @@ int	ft_strlen_spc(char *s, char c)
 		}
 		if (j > 2)
 			print(c, 31, "Error in ");
+		(i && s[i - 1] == c && s[i] != ' ') && (count += 1);
 		if (!s[i])
 			break ;
 		count++;
@@ -101,22 +105,28 @@ static void	util_addspc(char *s, char *dup, int *i, int *j)
 	char	c;
 
 	c = s[*i];
-	dup[*i + *j] = ' ';
-	*j += 1;
+	if (*i && s[*i - 1] != ' ')
+	{
+		dup[*i + *j] = ' ';
+		*j += 1;
+	}
 	while (s[*i] == c)
 	{
 		dup[*i + *j] = s[*i];
 		*i += 1;
 	}
-	dup[*i + *j] = ' ';
-	*j += 1;
+	if (s[*i] != ' ')
+	{
+		dup[*i + *j] = ' ';
+		*j += 1;
+	}
 }
 
 char	*add_spc(char *s, int i, int j, char c)
 {
 	char	*dup;
 
-	dup = malloc(sizeof(char) * ft_strlen_spc(s, c) + 1);
+	dup = malloc(sizeof(char) * ft_strlen_spc(s, c, 0, 0) + 1);
 	if (!dup)
 		return (dup);
 	while (s[i])
