@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:21:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/12 12:54:59 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/13 12:27:04 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,11 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 
-enum				TOKEN
-{
-	HEREDOC,
-	INFILE,
-	OUTFILE,
-	COMMAND,
-	ARG,
-};
-
+//////////// parsing ////////////////////
 void				print(char c, int color, char *str);
 int					error(char c, char *str_er);
 t_env				*getlstenv(char **ev);
+void	fill_cmds(char *s, char **ev);
 
+/////////////////////////////////////////////
 #endif

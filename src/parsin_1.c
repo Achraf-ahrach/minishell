@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/12 13:07:02 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/12 14:01:37 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,12 +154,9 @@ void	fill_cmds(char *s, char **ev)
 	c = ft_split(add_spc(s, 0, 0, '<'), '|');
 	i = 0;
 	while (c && c[i])
-	{
-		ft_lstadd_back(&data, ft_lstnew(c[i], ev));
-		free(c[i++]);
-	}
-	if (c)
-		free(c);
+		ft_lstadd_back(&data, ft_lstnew(c[i++], ev));
+	if (c[i])
+		free(c[i]);
 }
 
 int	main(int ac, char **av, char **ev)
@@ -186,12 +183,8 @@ int	main(int ac, char **av, char **ev)
 		s = readline("\033[0;32mMINISHELL#(*_*)|\033[36;01m❯❯❯❯\033[0m");
 		if (!s)
 			continue ;
-		rm_quote(s, 0, 0);
-		printf("first one \n");
-		print('\0', 34, s);
-		fill_cmds(s, ev);
+		rm_quote( ev,s, 0, 0);
 		t = data;
-		printf("%p\n", data);
 		while (t)
 		{
 			printf("cmd:%s\n", t->cmd);
