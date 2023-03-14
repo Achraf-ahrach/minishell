@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsin_0util.c                                     :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/04 09:45:09 by ajari            ###   ########.fr       */
+/*   Created: 2023/03/13 19:24:51 by ajari             #+#    #+#             */
+/*   Updated: 2023/03/14 13:01:02 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	error(char c, char *str_er)
+void	ft_strcpy(char *dest, char *src)
 {
-	print(c, 31, str_er);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (src && src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
 }

@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   parsing_0util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 15:48:11 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/14 13:00:49 by ajari            ###   ########.fr       */
+/*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
+/*   Updated: 2023/03/14 13:03:51 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	error(char c, char *str_er)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] || s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
+	print(c, 31, str_er);
 	return (0);
 }

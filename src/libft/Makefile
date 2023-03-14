@@ -3,6 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 SRC = ft_atoi.c\
 	ft_itoa.c\
+	ft_strcpy.c\
 	ft_bzero.c\
 	ft_split.c\
 	ft_memset.c\

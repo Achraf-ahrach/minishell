@@ -6,11 +6,11 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/14 13:01:19 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/14 11:46:43 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 static t_env	*env_new(char *s1, char *s2)
 {
@@ -44,54 +44,30 @@ void	envadd_back(t_env **lst, t_env *new)
 	}
 }
 
-static void	swap(t_env *t, t_env *t1)
+int	len_equal(char *s)
 {
-	char	*tmp;
+	int	i;
 
-	tmp = t->key;
-	t->key = t1->key;
-	t1->key = tmp;
-	tmp = t->value;
-	t->value = t1->value;
-	t1->value = tmp;
-}
-
-void	sort_env(t_env **env)
-{
-	t_env	*t;
-	t_env	*t1;
-
-	t = *env;
-	while (env && t)
-	{
-		t1 = t;
-		while (t1->next)
-		{
-			if (ft_strcmp(t->key, t1->next->key) > 0)
-			{
-				swap(t, t1->next);
-			}
-			t1 = t1->next;
-		}
-		t = t->next;
-	}
+	i = 0;
+	while (s[i] != '=')
+		i++;
+	return (i);
 }
 
 t_env	*getlstenv(char **ev)
 {
 	t_env	*env;
-	char	**e;
+	char	*k;
+	char	*v;
 	int		i;
 
 	env = 0;
 	i = 0;
-	e = 0;
 	while (ev && ev[i])
 	{
-		e = ft_split(ev[i], '=');
-		envadd_back(&env, env_new(e[0], e[1]));
-		free(e[2]);
-		free(e);
+		k = ft_substr(ev[i], 0, len_equal(ev[i]));
+		v = ft_substr(ev[i], len_equal(ev[i]) + 1, ft_strlen(ev[i]));
+		envadd_back(&env, env_new(k, v));
 		i++;
 	}
 	return (env);
