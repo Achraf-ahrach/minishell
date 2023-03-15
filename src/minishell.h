@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:21:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/12 12:54:59 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/15 16:24:37 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@
 # define WELLOW "\033[0;33m"
 # define AS_DEFAULT "\033[0m"
 
+int					ft_isalpha(int c);
+int					ft_isdigit(int c);
+void				ft_putstr_fd(char *s, int fd);
 size_t				ft_strlen(const char *s);
 char				*ft_strdup(const char *s1);
 void				ft_bzero(void *s, size_t n);
+char				*ft_strrchr(const char *s, int c);
 char				**ft_split(char const *s, char c);
 void				*ft_calloc(size_t count, size_t size);
 char				*ft_strjoin(char const *s1, char const *s2);
@@ -51,6 +55,12 @@ typedef struct t_env
 	struct t_env	*next;
 }					t_env;
 
+typedef struct s_var
+{
+	int				exit_status;
+	int				sig;
+}	t_var;
+
 typedef struct s_list
 {
 	char			**cmdsp;
@@ -61,6 +71,7 @@ typedef struct s_list
 	char			*limiter;
 	int				stat;
 	t_env			*env;
+	t_var			*var;
 	const char		*err;
 	struct s_list	*next;
 }					t_list;
@@ -69,8 +80,18 @@ t_list				*data;
 
 /////////////// execution //////////////////
 
+//void	export_add(char *key, char *str);
+t_env	*getlstenv(char **ev);
+
 void	sort_env(t_env **env);
 void	envadd_back(t_env **lst, t_env *new);
+t_env	*env_new(char *s1, char *s2);
+char	*pwd(int x);
+void	echo(char **cmd);
+void	export();
+void	cd();
+void	unset(t_list *list);
+void	env(t_env *env);
 
 /////////////////////////////////////////////
 

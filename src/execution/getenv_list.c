@@ -6,13 +6,13 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/12 10:04:57 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/13 19:16:50 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static t_env	*env_new(char *s1, char *s2)
+t_env	*env_new(char *s1, char *s2)
 {
 	t_env	*new;
 
@@ -20,7 +20,6 @@ static t_env	*env_new(char *s1, char *s2)
 	if (!new)
 		return (NULL);
 	new->key = s1;
-	new->index = 0;
 	new->equals = 0;
 	new->value = s2;
 	new->next = NULL;
@@ -44,70 +43,26 @@ void	envadd_back(t_env **lst, t_env *new)
 	}
 }
 
-static void	swap(t_env *t, t_env *t1)
-{
-	char	*tmp;
-
-	tmp = t->key;
-	t->key = t1->key;
-	t1->key = tmp;
-	tmp = t->value;
-	t->value = t1->value;
-	t1->value = tmp;
-}
-
-void	sort_env(t_env **env)
-{
-	t_env	*t;
-	t_env	*t1;
-
-	t = *env;
-	while (env && t)
-	{
-		t1 = t;
-		while (t1->next)
-		{
-			if (ft_strcmp(t->key, t1->next->key) > 0)
-			{
-				swap(t, t1->next);
-			}
-			t1 = t1->next;
-		}
-		t = t->next;
-	}
-}
-
 t_env	*getlstenv(char **ev)
 {
 	t_env *env;
+	t_env *new;
 	char **e;
 	int i;
 
 	env = 0;
 	i = 0;
 	e = 0;
-
 	while (ev && ev[i])
 	{
 		e = ft_split(ev[i], '=');
-		envadd_back(&env, env_new(e[0], e[1]));
+		new = env_new(e[0], e[1]);
+		if (new)
+			new->equals = 1;
+		envadd_back(&env, new);
 		free(e[2]);
 		free(e);
 		i++;
 	}
-	//sort_env(&env);
 	return (env);
 }
-
-// int main(int ac, char **av, char **env)
-// {
-// 	int i = ac;
-// 	(void)av;
-// 	t_env	*p;
-// 	p = getlstenv(env);
-// 	while (p)
-// 	{
-// 		printf("declare -x %s=\"%s\"\n", p->key, p->value);
-// 		p = p->next;
-// 	}
-// }

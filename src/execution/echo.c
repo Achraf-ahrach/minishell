@@ -1,27 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 15:48:11 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/14 15:19:58 by aahrach          ###   ########.fr       */
+/*   Created: 2023/03/12 16:04:06 by aahrach           #+#    #+#             */
+/*   Updated: 2023/03/13 16:33:22 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	check_n(char *str)
 {
 	int i;
 
 	i = 0;
-	while (s1[i] || s2[i])
+	if (!str)
+		return (1);
+	if (str[i] == '-' && str[1] && str[1] == 'n')
+		i++;
+	else
+		return (0);
+	while (str[i])
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		if (str[i] != 'n')
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
+}
+
+void	echo(char **cmd)
+{
+	int i;
+	int line;
+
+	i = 1;
+	line = 0;
+	if (check_n(cmd[i]))
+	{
+		i++;
+		line = 1;
+	}
+	while (cmd[i])
+	{
+		printf("%s", cmd[i]);
+		i++;
+		if (cmd[i])
+			printf(" ");
+	}
+	if (!line)
+		printf("\n");
 }

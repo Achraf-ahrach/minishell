@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 15:48:11 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/14 15:19:58 by aahrach          ###   ########.fr       */
+/*   Created: 2023/03/13 15:14:08 by aahrach           #+#    #+#             */
+/*   Updated: 2023/03/15 16:11:12 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	env(t_env *env)
 {
-	int i;
-
-	i = 0;
-	while (s1[i] || s2[i])
+	while (env)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		if (env->equals == 1)
+			printf("%s=%s\n", env->key, env->value);
+		env = env->next;
 	}
-	return (0);
 }

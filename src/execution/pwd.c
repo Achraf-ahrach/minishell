@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 15:48:11 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/14 15:19:58 by aahrach          ###   ########.fr       */
+/*   Created: 2023/03/12 16:06:01 by aahrach           #+#    #+#             */
+/*   Updated: 2023/03/14 15:37:25 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-int	ft_strcmp(char *s1, char *s2)
+char	*pwd(int x)
 {
-	int i;
+	char	buffer[PATH_MAX];
 
-	i = 0;
-	while (s1[i] || s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (0);
+    if (getcwd(buffer, sizeof(buffer)))
+        printf("%s\n", buffer);
+    else
+        perror("Error");
+    return (0);
 }

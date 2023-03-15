@@ -31,11 +31,8 @@ void	export_add(t_list *list, char *key, char *str)
 	}
 	else if (!ft_strcmp(str, "present"))
 	{
-		e = ft_split(ev[i], '=');
+		e = ft_split(str, '=');
 		envadd_back(&list->env, env_new(e[0], e[1]));
-		new = malloc(sizeof(t_env));
-		new->key = key;
-		envadd_back(&list->env, key);
 	}
 }
 
@@ -60,6 +57,7 @@ char	*come_max(t_env *env)
 		}
 		env = env->next;
 	}
+	return (max);
 }
 
 
@@ -68,27 +66,26 @@ void	sort_export(t_env *env)
 	int		size;
 	char	*max;
 	t_env	*tmp;
-	int		i;
-	
-	size = ft_lstsize_env(env)
-	while (size > 0)
+	int		j;
+
+	j = 1;
+	size = ft_lstsize_env(env);
+	while (j <= size)
 	{
-		i = 0;
 		tmp = env;
 		max = come_max(env);
-		while (i == 0)
+		while (1)
 		{
 			if (ft_strcmp(max, tmp->key) == 0)
 			{
-				tmp->index = size;
-				size--;
-				i = 1;
+				tmp->index = j;
+				j++;
+				break ;
 			}
 			tmp = tmp->next;
 		}
 	}
 }
-
 
 void	export(t_list *list)
 {
@@ -148,7 +145,7 @@ void	builtins(t_list *list)
 	// 	pwd(0);
 	// else if (!ft_strcmp(list->cmd[0], "cd"))
 	// 	cd(list->cmd);
-	if (!ft_strcmp(&list->cmd[0], "export"))
+	if (!ft_strcmp(list->cmdsp[0], "export"))
 		export(list);
 }
 
@@ -164,15 +161,15 @@ static void	execution(t_list *list)
 	// }
 }
 
-int main(int ac, char **av, char **env)
-{
-	t_list	*list;
+// int main(int ac, char **av, char **env)
+// {
+// 	t_list	*list;
 
-	list = malloc(sizeof(t_list));
-	list->envir = env;
-	list->cmdsp =  malloc(sizeof(char *) * 3);
-	list->cmdsp[0] = av[1];
-	list->cmdsp[1] = av[2];
-	list->cmdsp[1] = NULL;
-	execution(list);
-}
+// 	list = malloc(sizeof(t_list));
+// 	list->envir = env;
+// 	list->cmdsp =  malloc(sizeof(char *) * 3);
+// 	list->cmdsp[0] = av[1];
+// 	list->cmdsp[1] = av[2];
+// 	list->cmdsp[2] = NULL;
+// 	execution(list);
+// }
