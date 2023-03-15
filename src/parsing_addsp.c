@@ -6,27 +6,11 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:59:02 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/14 13:08:47 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/15 07:25:08 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	chck_pipe(char *s)
-{
-	char	c;
-
-	if (s[0] == '|' || s[ft_strlen(s) - 1] == '|' || s[ft_strlen(s) - 1] == '>'
-		|| s[ft_strlen(s) - 1] == '<')
-	{
-		(s[0] == '|') && (c = '|');
-		(s[ft_strlen(s) - 1] == '|') && (c = '|');
-		(s[ft_strlen(s) - 1] == '<') && (c = '<');
-		(s[ft_strlen(s) - 1] == '>') && (c = '>');
-		exit(error(c, "syntax error near unexpected token"));
-	}
-	return (1);
-}
 
 static int	ft_strlen_spc(char *s, char c, int i, int j)
 {

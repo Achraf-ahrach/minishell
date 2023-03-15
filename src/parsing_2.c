@@ -6,24 +6,10 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:38:37 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/13 15:16:05 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/15 07:24:53 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print(char c, int color, char *str)
-{
-	(void)c;
-	if (color == 31)
-		printf(RED);
-	else if (color == 32)
-		printf(GREEN);
-	else if (color == 33)
-		printf(WELLOW);
-	else if (color == 34)
-		printf(BLUE);
-	else
-		printf(AS_DEFAULT);
-	printf("%s%c\n", str, c);
-}
+
