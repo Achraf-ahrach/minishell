@@ -6,26 +6,29 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:21:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/14 13:02:03 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/15 16:51:07 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <fcntl.h>
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/errno.h>
 # include <unistd.h>
 # define RED "\033[0;31m"
 # define BLUE "\033[36;01m"
 # define GREEN "\033[0;32m"
 # define WELLOW "\033[0;33m"
 # define AS_DEFAULT "\033[0m"
-
+////////////////// libft /////////////////
+int					ft_isspace(char c);
 char				*ft_itoa(int n);
 size_t				ft_strlen(const char *s);
 char				*ft_strdup(const char *s1);
@@ -42,7 +45,7 @@ size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strnstr(const char *haystack, const char *needle,
 						size_t len);
-
+//////////////////////////////////////////
 typedef struct t_env
 {
 	char			*key;
@@ -56,7 +59,6 @@ typedef struct s_list
 {
 	char			**cmdsp;
 	char			*cmd;
-	char			**envir;
 	int				infile;
 	int				outfile;
 	char			*limiter;
@@ -99,5 +101,6 @@ t_env				*getlstenv(char **ev);
 int					len_name(char *s);
 char				*add_spc(char *s, int i, int j, char c);
 int					rm_quote(t_env *env, char *s, int i, char c);
+int					check_in(char *s);
 /////////////////////////////////////////////
 #endif

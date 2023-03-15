@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 07:25:01 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/15 10:35:47 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@ int	error(char c, char *str_er)
 {
 	print(c, 31, str_er);
 	return (0);
+}
+
+int	open_fd(char **error, char *name, int mode)
+{
+	int	fd;
+
+	fd = open(name, mode, 777);
+	if (fd == -1)
+		*error = strerror(errno);
+	return(fd);
 }
 
 void	print(char c, int color, char *str)

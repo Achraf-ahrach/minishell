@@ -6,13 +6,13 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 08:54:34 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/15 17:33:12 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_quote(char *s)
+static int	check_quote(char *s)
 {
 	int		i;
 	char	c;
@@ -30,23 +30,46 @@ int	check_quote(char *s)
 			return (error(c, "do not forget to close quotes"));
 		i++;
 	}
+	return (1);
 }
 
-int	chck_pipe(char *s)
+static int	check_file(char *s)
 {
-	int		len;
-	int		i;
-	char	c;
+	int	i;
 
-	len = ft_strlen(s) - 1;
-	while ()
-		if (s[0] == '|' || s[len] == '|' || s[len] == '>' || s[len] == '<')
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '<' && s[i + 1] == '<')
 		{
-			(s[0] == '|') && (c = '|');
-			(s[ft_strlen(s) - 1] == '|') && (c = '|');
-			(s[ft_strlen(s) - 1] == '<') && (c = '<');
-			(s[ft_strlen(s) - 1] == '>') && (c = '>');
-			exit(error(c, "syntax error near unexpected token"));
+			while (ft_isspace(s[++i]))
+				;
+			if (s[i] == '<' && s[i] == '>')
+				return (error(c, ""))
 		}
-	return (1);
+		i++;
+	}
+}
+
+int	check_in(char *s)
+{
+	int len;
+	int i;
+	char c;
+
+	i = 0;
+	len = ft_strlen(s) - 1;
+	while (ft_isspace(s[len]))
+		len--;
+	while (ft_isspace(s[i]))
+		i++;
+	if (s[i] == '|' || s[len] == '|' || s[len] == '>' || s[len] == '<')
+	{
+		(s[i] == '|') && (c = '|');
+		(s[len] == '|') && (c = '|');
+		(s[len] == '<') && (c = '<');
+		(s[len] == '>') && (c = '>');
+		return (error(c, "syntax error near unexpected token"));
+	}
+	return (check_quote(s));
 }

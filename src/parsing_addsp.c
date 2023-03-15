@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:59:02 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 07:25:08 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/15 10:48:26 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_strlen_spc(char *s, char c, int i, int j)
 	int	count;
 
 	count = 0;
-	while (chck_pipe(s) && s[i])
+	while (s[i])
 	{
 		j = 0;
 		(s[i] == c && i && s[i - 1] != ' ') && (count += 1);

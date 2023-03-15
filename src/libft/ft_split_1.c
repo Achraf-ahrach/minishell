@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:37:12 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 08:42:26 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/15 17:10:30 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,4 @@ char	**ft_split1(char const *s, char c)
 		}
 	}
 	return (result);
-}
-
-int	main(void)
-{
-	char	**s;
-
-	s = ft_split1("hello\" \"|\"cat -e|grep abdo |wc -l", '|');
-	for (int i = 0; s[i]; i++)
-		printf("%s \n", s[i]);
 }

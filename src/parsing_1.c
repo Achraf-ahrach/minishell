@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/14 13:08:39 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/15 10:51:02 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,9 @@ void	fill_cmds(char *s, t_env *env)
 		free(c[i]);
 }
 
-// void	util_expend(char *s, int *i, char c)
-// {
-
-// }
-
 int	main(int ac, char **av, char **ev)
 {
 	char	*s;
-	char	*m;
 	t_env	*env;
 	t_env	*j;
 
@@ -46,11 +40,10 @@ int	main(int ac, char **av, char **ev)
 	while (1)
 	{
 		s = readline("\033[0;32mMINISHELL#(*_*)|\033[36;01m❯❯❯❯\033[0m");
-		if (!s)
+		if (!s || !check_in(s))
 			continue ;
-		m = expend(env, s, 0);
-		print(0, 33, m);
+		//m = expend(env, s, 0);
+		print(0, 33, s);
 		free(s);
-		free(m);
 	}
 }
