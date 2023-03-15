@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 15:21:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 16:24:37 by aahrach          ###   ########.fr       */
+/*   Created: 2023/03/15 17:38:12 by aahrach           #+#    #+#             */
+/*   Updated: 2023/03/15 17:38:12 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,11 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 
-enum				TOKEN
-{
-	HEREDOC,
-	INFILE,
-	OUTFILE,
-	COMMAND,
-	ARG,
-};
-
+//////////// parsing ////////////////////
 void				print(char c, int color, char *str);
 int					error(char c, char *str_er);
 t_env				*getlstenv(char **ev);
+void	fill_cmds(char *s, char **ev);
 
+/////////////////////////////////////////////
 #endif
