@@ -6,13 +6,17 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/14 13:01:19 by ajari            ###   ########.fr       */
+=======
+/*   Updated: 2023/03/13 19:16:50 by aahrach          ###   ########.fr       */
+>>>>>>> c3b4a55ad32a12b7574ae4813349ecf4fd42ab6e
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static t_env	*env_new(char *s1, char *s2)
+t_env	*env_new(char *s1, char *s2)
 {
 	t_env	*new;
 
@@ -20,7 +24,6 @@ static t_env	*env_new(char *s1, char *s2)
 	if (!new)
 		return (NULL);
 	new->key = s1;
-	new->index = 0;
 	new->equals = 0;
 	new->value = s2;
 	new->next = NULL;
@@ -44,44 +47,18 @@ void	envadd_back(t_env **lst, t_env *new)
 	}
 }
 
-static void	swap(t_env *t, t_env *t1)
-{
-	char	*tmp;
-
-	tmp = t->key;
-	t->key = t1->key;
-	t1->key = tmp;
-	tmp = t->value;
-	t->value = t1->value;
-	t1->value = tmp;
-}
-
-void	sort_env(t_env **env)
-{
-	t_env	*t;
-	t_env	*t1;
-
-	t = *env;
-	while (env && t)
-	{
-		t1 = t;
-		while (t1->next)
-		{
-			if (ft_strcmp(t->key, t1->next->key) > 0)
-			{
-				swap(t, t1->next);
-			}
-			t1 = t1->next;
-		}
-		t = t->next;
-	}
-}
-
 t_env	*getlstenv(char **ev)
 {
+<<<<<<< HEAD
 	t_env	*env;
 	char	**e;
 	int		i;
+=======
+	t_env *env;
+	t_env *new;
+	char **e;
+	int i;
+>>>>>>> c3b4a55ad32a12b7574ae4813349ecf4fd42ab6e
 
 	env = 0;
 	i = 0;
@@ -89,13 +66,17 @@ t_env	*getlstenv(char **ev)
 	while (ev && ev[i])
 	{
 		e = ft_split(ev[i], '=');
-		envadd_back(&env, env_new(e[0], e[1]));
+		new = env_new(e[0], e[1]);
+		if (new)
+			new->equals = 1;
+		envadd_back(&env, new);
 		free(e[2]);
 		free(e);
 		i++;
 	}
 	return (env);
 }
+<<<<<<< HEAD
 
 // int main(int ac, char **av, char **env)
 // {
@@ -109,3 +90,5 @@ t_env	*getlstenv(char **ev)
 // 		p = p->next;
 // 	}
 // }
+=======
+>>>>>>> c3b4a55ad32a12b7574ae4813349ecf4fd42ab6e

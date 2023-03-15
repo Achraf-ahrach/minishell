@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 20:59:59 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/14 16:24:12 by aahrach          ###   ########.fr       */
+/*   Created: 2023/03/13 15:14:08 by aahrach           #+#    #+#             */
+/*   Updated: 2023/03/15 16:11:12 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	env(t_env *env)
 {
-	int		i;
-	char	*tem;
-
-	tem = 0;
-	i = 0;
-	while (s[i])
+	while (env)
 	{
-		if (*(char *)(s + i) == (char)c)
-			tem = ((char *)s + i);
-		i++;
+		if (env->equals == 1)
+			printf("%s=%s\n", env->key, env->value);
+		env = env->next;
 	}
-	if ((char)c == 0)
-		return ((char *)s + i);
-	return (tem);
 }
