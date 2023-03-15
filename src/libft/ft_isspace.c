@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 16:29:27 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 08:38:21 by ajari            ###   ########.fr       */
+/*   Created: 2023/03/15 08:55:05 by ajari             #+#    #+#             */
+/*   Updated: 2023/03/15 08:58:19 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	ft_isspace(char c)
 {
-	size_t	i;
-	char	*sub;
-
-	i = 0;
-	sub = NULL;
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) - start < len)
-		len = ft_strlen(s) - start;
-	sub = malloc(len + 1);
-	if (sub)
-	{
-		while (i < len && s[start + i])
-		{
-			sub[i] = s[start + i];
-			i++;
-		}
-		sub[i] = '\0';
-	}
-	return (sub);
+	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
+		|| c == ' ')
+		return (1);
+	return (0);
 }
