@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 16:57:34 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 17:31:09 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,6 @@ void	add_arg(char *s, int *i, char ***cmd)
 	}
 }
 
-void	oneby_one(char *s, char ***cmd)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		add_arg(s, &i, cmd->cmd);
-		openfile()
-	}
-}
 void	iterate_cmds(t_list *lst)
 {
 	char **cmd;
@@ -52,7 +41,6 @@ void	iterate_cmds(t_list *lst)
 	while (lst)
 	{
 		cmd = NULL;
-		oneby_one(lst, &cmd);
 		lst->cmdsp = cmd;
 		lst = lst->next;
 	}
