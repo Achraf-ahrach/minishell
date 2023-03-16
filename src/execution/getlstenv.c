@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getenv_list.c                                      :+:      :+:    :+:   */
+/*   getlstenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:46:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/15 17:47:13 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/16 11:49:37 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ void	envadd_back(t_env **lst, t_env *new)
 			t = t->next;
 		t->next = new;
 	}
+}
+
+int	len_equal(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '=')
+		i++;
+	return (i);
 }
 
 t_env	*getlstenv(char **ev)

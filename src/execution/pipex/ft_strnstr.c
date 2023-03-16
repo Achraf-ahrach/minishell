@@ -1,28 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 15:48:11 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 11:20:14 by aahrach          ###   ########.fr       */
+/*   Created: 2023/01/01 15:01:11 by aahrach           #+#    #+#             */
+/*   Updated: 2023/01/04 16:27:38 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pipex.h"
 
-#include "libft.h"
+int	ft_strnstr(char **haystack, char *needle, int len)
+{
+	int	i;
+	int	j;
 
-int	ft_strcmp(char *s1, char *s2)
+	i = 0;
+	while (haystack[i])
+	{
+		j = 0;
+		if (haystack[i][j] == needle[j])
+		{
+			while (haystack[i][j] == needle[j])
+				j++;
+			if (j == len)
+				return (i);
+		}
+		i++;
+	}
+	return (-1);
+}
+
+void	ft_free(char **p)
 {
 	int	i;
 
 	i = 0;
-	while (s1[i] || s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (0);
+	if (!p)
+		return ;
+	while (p[i] != NULL)
+		free(p[i++]);
+	free(p[i]);
+	free(p);
 }

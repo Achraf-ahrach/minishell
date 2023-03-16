@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   fd_open_WR.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 15:48:11 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 11:20:14 by aahrach          ###   ########.fr       */
+/*   Created: 2023/01/04 15:54:10 by aahrach           #+#    #+#             */
+/*   Updated: 2023/01/04 16:23:25 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pipex_bonus.h"
 
-#include "libft.h"
-
-int	ft_strcmp(char *s1, char *s2)
+int	fd_open_wr(char **av)
 {
-	int	i;
+	char	*str;
+	char	*s;
+	int		fd;
+	int		j;
 
-	i = 0;
-	while (s1[i] || s2[i])
+	j = 1;
+	fd = open(av[1], O_CREAT | O_RDWR | O_TRUNC, 0777);
+	while (j != 0)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		str = get_next_line(0);
+		s = ft_join(av[2]);
+		j = ft_memcmp(str, s);
+		if (j == 1)
+			write(fd, str, ft_strlen(str));
+		free(str);
+		free(s);
 	}
-	return (0);
+	close(fd);
+	fd = open(av[1], O_RDWR);
+	return (fd);
 }
