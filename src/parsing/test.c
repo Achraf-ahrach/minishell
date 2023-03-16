@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 15:04:48 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 12:01:45 by ajari            ###   ########.fr       */
+/*   Created: 2023/03/16 13:02:12 by ajari             #+#    #+#             */
+/*   Updated: 2023/03/16 13:05:15 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include <unistd.h>
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	main(void)
 {
-	t_list	*t;
-
-	if (new &&lst)
-	{
-		if (*lst)
-		{
-			t = *lst;
-			while (t->next != NULL)
-				t = t->next;
-			t->next = new;
-		}
-		else
-			*lst = new;
-	}
+	if (!access("test.c", F_OK))
+		printf("exist\n");
 }

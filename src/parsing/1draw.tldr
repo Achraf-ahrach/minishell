@@ -1,0 +1,104 @@
+{
+  "document": {
+    "id": "doc",
+    "name": "New Document",
+    "version": 15.5,
+    "pages": {
+      "page": {
+        "id": "page",
+        "name": "Page 1",
+        "childIndex": 1,
+        "shapes": {
+          "4c1cac1e-a42f-4421-3c35-ded926e99597": {
+            "id": "4c1cac1e-a42f-4421-3c35-ded926e99597",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 1,
+            "point": [
+              626.76,
+              179.92
+            ],
+            "size": [
+              466.05,
+              317.57
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "edf8c5c9-e5f5-45f2-2d8f-900ae0bc9114": {
+            "id": "edf8c5c9-e5f5-45f2-2d8f-900ae0bc9114",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 2,
+            "point": [
+              728.72,
+              131.72
+            ],
+            "rotation": 0,
+            "text": "list to check in syntax>> ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "78e0bb08-2ba2-4132-29dd-61b5f7eab783": {
+            "id": "78e0bb08-2ba2-4132-29dd-61b5f7eab783",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 3,
+            "point": [
+              658.14,
+              199.29
+            ],
+            "rotation": 0,
+            "text": "-open close quote.                      \n-is there file after redirections\n  -is there dilemiters after herdoc\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          }
+        },
+        "bindings": {}
+      }
+    },
+    "pageStates": {
+      "page": {
+        "id": "page",
+        "selectedIds": [],
+        "camera": {
+          "point": [
+            0,
+            0
+          ],
+          "zoom": 1
+        }
+      }
+    },
+    "assets": {}
+  },
+  "assets": {}
+}

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:55:47 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 10:20:46 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 12:58:16 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 char	*ft_strchr(const char *s, int c);
 char	**ft_split(char const *s, char c);
+char	**ft_split1(char const *s, char c);
 char	*ft_strrchr(const char *s, int c);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);

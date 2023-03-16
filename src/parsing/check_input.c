@@ -6,10 +6,11 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 17:33:12 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 12:50:33 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "minishell.h"
 
 static int	check_quote(char *s)
@@ -23,7 +24,7 @@ static int	check_quote(char *s)
 		if (s[i] == '\'' || s[i] == '"')
 		{
 			c = s[i++];
-			while (s[i] != c)
+			while (s[i] != c && s[i])
 				i++;
 		}
 		if (!s[i])
@@ -33,29 +34,33 @@ static int	check_quote(char *s)
 	return (1);
 }
 
-static int	check_file(char *s)
+static int	check_file(char *s, char c)
 {
 	int	i;
 
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '<' && s[i + 1] == '<')
+		if (s[i] == '<' || s[i] == '>')
 		{
+			c = s[i++];
+			(s[i] == c) && (i++);
 			while (ft_isspace(s[++i]))
 				;
-			if (s[i] == '<' && s[i] == '>')
-				return (error(c, ""))
+			if (s[i] == '<' || s[i] == '>')
+				return (error(0, "syntax error near unexpected token `<<'"));
 		}
-		i++;
+		else
+			i++;
 	}
+	return (1);
 }
 
 int	check_in(char *s)
 {
-	int len;
-	int i;
-	char c;
+	int		len;
+	int		i;
+	char	c;
 
 	i = 0;
 	len = ft_strlen(s) - 1;
@@ -71,5 +76,5 @@ int	check_in(char *s)
 		(s[len] == '>') && (c = '>');
 		return (error(c, "syntax error near unexpected token"));
 	}
-	return (check_quote(s));
+	return (check_quote(s) * check_file(s, 0));
 }

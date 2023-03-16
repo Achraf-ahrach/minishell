@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 15:04:48 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 12:01:45 by ajari            ###   ########.fr       */
+/*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
+/*   Updated: 2023/03/16 13:17:45 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft/libft.h"
+#include "minishell.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	iterate_cmds(t_list *lst)
 {
-	t_list	*t;
-
-	if (new &&lst)
+	while(lst)
 	{
-		if (*lst)
-		{
-			t = *lst;
-			while (t->next != NULL)
-				t = t->next;
-			t->next = new;
-		}
-		else
-			*lst = new;
+		if(lst->cmd[0] != '<' && lst->cmd[0] != '>')
+		lst = lst->next;
 	}
 }
