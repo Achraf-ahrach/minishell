@@ -6,12 +6,51 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 12:49:50 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 13:27:58 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "minishell.h"
+
+void	add_str(char ***s, char *str)
+{
+	char	**m;
+	int		i;
+
+	i = 0;
+	while (*s[i])
+		i++;
+	m = malloc(sizeof(char *) * (i + 2));
+	i = 0;
+	while (*s[i])
+	{
+		m[i] = *s[i];
+		i++;
+	}
+	m[i++] = str;
+	m[i] = NULL;
+	*s = m;
+}
+
+void	add_char(char **s, char c)
+{
+	char	*add;
+	int		len;
+
+	len = ft_strlen(*s);
+	add = malloc(len + 2);
+	if (!add)
+		exit(error(0, "error allocation"));
+	if (*s)
+	{
+		ft_strcpy(add, *s);
+		free(*s);
+	}
+	add[len] = c;
+	add[len + 1] = 0;
+	*s = add;
+}
 
 int	error(char c, char *str_er)
 {

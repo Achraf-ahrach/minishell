@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:54:05 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 12:48:42 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 13:39:34 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
-
 //////////// parsing ////////////////////
 void				add_char(char **s, char c);
+void				add_str(char ***s, char *str);
 void				print(char c, int color, char *str);
 int					error(char c, char *str_er);
 t_env				*getlstenv(char **ev);
