@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:26:26 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/13 22:19:31 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/16 08:04:47 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ static int	ft_start(const char *s1, const char *set)
 				break ;
 			j++;
 		}
-		if (set && set[j] == 0)
-		{
-			i--;
+		if (!set[j])
 			break ;
-		}
 		i++;
 	}
 	return (i);
@@ -66,34 +63,33 @@ static int	ft_end(const char *s1, const char *set, size_t len_s1)
 		if (set[j] == 0)
 			break ;
 	}
-	return (len_s1);
+	return (len_s1 + 1);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	int		size;
 	int		start;
 	int		end;
 	char	*p;
+	int		i;
 
 	if (!s1)
 		return (NULL);
 	start = ft_start(s1, set);
 	end = ft_end(s1, set, ft_strlen_m1(s1));
-	size = end - start + 1;
 	if (end <= start)
 		return (ft_strdup(""));
-	p = malloc(size);
+	p = malloc(end - start + 1);
 	if (!p)
 		return (NULL);
 	i = 0;
-	start++;
-	while (i < size - 1 && s1)
+	while (i  + start < end && s1[start + i])
 	{
 		p[i] = s1[start + i];
 		i++;
 	}
+	if(s1)
+		free((void*)s1);
 	p[i] = 0;
 	return (p);
 }

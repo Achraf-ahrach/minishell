@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 10:51:02 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 08:28:31 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ void	fill_cmds(char *s, t_env *env)
 {
 	char	**c;
 	int		i;
-
-	c = ft_split(add_spc(s, 0, 0, '<'), '|');
+	char *ss;
+	ss = add_spc(s, 0, 0, '<');
+	c = ft_split(ss/*add_spc(s, 0, 0, '<')*/, '|');
 	i = 0;
 	while (c && c[i])
-		ft_lstadd_back(&g_v, ft_lstnew(c[i++], env));
-	if (c[i])
-		free(c[i]);
+		ft_lstadd_back(&g_v, ft_lstnew(ft_strtrim(c[i++]," \t\n"), env));
+	free(c[i]);
+	free(c);
 }
 
 int	main(int ac, char **av, char **ev)
@@ -42,8 +43,9 @@ int	main(int ac, char **av, char **ev)
 		s = readline("\033[0;32mMINISHELL#(*_*)|\033[36;01m❯❯❯❯\033[0m");
 		if (!s || !check_in(s))
 			continue ;
+		fill_cmds(s, env);
 		//m = expend(env, s, 0);
-		print(0, 33, s);
-		free(s);
+		// print(0, 33, s);
+		// free(s);
 	}
 }

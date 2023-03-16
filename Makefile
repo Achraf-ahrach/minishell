@@ -1,7 +1,7 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-SRC = src
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+SRC = src/parsing
 OBJ = obj
 LIBFT = src/libft/libft.a
 LIB = -lreadline
@@ -21,7 +21,7 @@ $(OBJ):
 	mkdir $@
 
 $(LIBFT):
-	make all bonus clean -C ./src/libft
+	make all clean -C ./src/libft
 
 fcleanlib:
 	make fclean -C./src/libft

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 09:55:51 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/13 19:16:23 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/15 19:10:07 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	utillst(t_list *new, char *cmd, t_env *ev)
 {
-	new->envir = NULL;
 	new->cmd = cmd;
 	new->limiter = NULL;
 	new->infile = -2;
