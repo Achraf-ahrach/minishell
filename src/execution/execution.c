@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/15 16:38:52 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/16 10:33:12 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,20 @@ void	builtins()
 void	execution()
 {
 	t_list *list;
-	
-	int	i;
+	int		i;
 
 	i = 0;
 	data->env = getlstenv(data->envir);
-	builtins();
 	list = data;
 	while (list)
 	{
 		if (list->infile)
-			dup2();
+			dup2(0, list->infile);
+		if (list->outfile)
+			dup2(1, list->outfile);
+		builtins();
+		
 	}
-		// if (list[i].h_doc = 1)
-		// 	her_doc(list);
-	// }
 }
 
 int main(int main, char **av, char **env)
