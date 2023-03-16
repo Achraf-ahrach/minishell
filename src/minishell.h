@@ -5,13 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
 /*   Created: 2023/03/15 18:02:56 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/16 17:10:36 by aahrach          ###   ########.fr       */
-=======
-/*   Created: 2023/03/15 17:38:12 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/15 19:07:10 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 17:18:37 by ajari            ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
@@ -55,7 +53,7 @@ int					ft_strncmp(const char *s1, const char *s2, unsigned int n);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strnstr(const char *haystack, const char *needle,
+char				*ft_strnstr(const char *haystack, const char *needle,
 						size_t len);
 //////////////////////////////////////////
 typedef struct t_env
