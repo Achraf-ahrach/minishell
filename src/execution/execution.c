@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/15 16:38:52 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/16 12:07:39 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,37 +27,36 @@ void	builtins()
 	else if (!ft_strcmp(data->cmdsp[0], "env"))
 		env(data->env);
 	else if (!ft_strcmp(data->cmdsp[0], "exit"))
-		exit(0);
+		ft_exit();
 }
 
-void	execution()
+void	execution(char **env)
 {
 	t_list *list;
-	
-	int	i;
+	int		i;
 
 	i = 0;
-	data->env = getlstenv(data->envir);
-	builtins();
+	data->env = getlstenv(env);
 	list = data;
-	while (list)
-	{
-		if (list->infile)
-			dup2();
-	}
-		// if (list[i].h_doc = 1)
-		// 	her_doc(list);
+	builtins();
+	// while (list)
+	// {
+	// 	// builtin
+	// 	if (list->infile)
+	// 		dup2(0, list->infile);
+	// 	if (list->outfile)
+	// 		dup2(1, list->outfile);
+	// 	builtins();
 	// }
 }
 
 int main(int main, char **av, char **env)
 {
-	data = malloc(sizeof(t_list));
-	data->envir = env;
+	data = malloc(sizeof(t_list *));
 	data->cmdsp = malloc(4 * sizeof(char *));
 	data->cmdsp[0] = av[1];
 	data->cmdsp[1] = av[2];
 	data->cmdsp[2] = av[3];
 	data->cmdsp[3] = NULL;
-	execution();
+	execution(env);
 }

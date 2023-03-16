@@ -1,16 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getenv_list.c                                      :+:      :+:    :+:   */
+/*   getlstenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/14 13:01:19 by ajari            ###   ########.fr       */
-=======
-/*   Updated: 2023/03/13 19:16:50 by aahrach          ###   ########.fr       */
->>>>>>> c3b4a55ad32a12b7574ae4813349ecf4fd42ab6e
+/*   Created: 2023/03/15 17:46:19 by aahrach           #+#    #+#             */
+/*   Updated: 2023/03/16 11:49:37 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,48 +43,31 @@ void	envadd_back(t_env **lst, t_env *new)
 	}
 }
 
+int	len_equal(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '=')
+		i++;
+	return (i);
+}
+
 t_env	*getlstenv(char **ev)
 {
-<<<<<<< HEAD
 	t_env	*env;
-	char	**e;
+	char	*k;
+	char	*v;
 	int		i;
-=======
-	t_env *env;
-	t_env *new;
-	char **e;
-	int i;
->>>>>>> c3b4a55ad32a12b7574ae4813349ecf4fd42ab6e
 
 	env = 0;
 	i = 0;
-	e = 0;
 	while (ev && ev[i])
 	{
-		e = ft_split(ev[i], '=');
-		new = env_new(e[0], e[1]);
-		if (new)
-			new->equals = 1;
-		envadd_back(&env, new);
-		free(e[2]);
-		free(e);
+		k = ft_substr(ev[i], 0, len_equal(ev[i]));
+		v = ft_substr(ev[i], len_equal(ev[i]) + 1, ft_strlen(ev[i]));
+		envadd_back(&env, env_new(k, v));
 		i++;
 	}
 	return (env);
 }
-<<<<<<< HEAD
-
-// int main(int ac, char **av, char **env)
-// {
-// 	int i = ac;
-// 	(void)av;
-// 	t_env	*p;
-// 	p = getlstenv(env);
-// 	while (p)
-// 	{
-// 		printf("declare -x %s=\"%s\"\n", p->key, p->value);
-// 		p = p->next;
-// 	}
-// }
-=======
->>>>>>> c3b4a55ad32a12b7574ae4813349ecf4fd42ab6e
