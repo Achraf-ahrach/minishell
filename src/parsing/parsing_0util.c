@@ -6,10 +6,11 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 10:35:47 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 12:49:50 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "minishell.h"
 
 int	error(char c, char *str_er)
@@ -25,7 +26,7 @@ int	open_fd(char **error, char *name, int mode)
 	fd = open(name, mode, 777);
 	if (fd == -1)
 		*error = strerror(errno);
-	return(fd);
+	return (fd);
 }
 
 void	print(char c, int color, char *str)

@@ -6,10 +6,11 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/14 12:55:44 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 12:50:08 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "minishell.h"
 
 void	add_char(char **s, char c)

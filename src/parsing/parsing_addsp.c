@@ -6,10 +6,11 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:59:02 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 08:28:20 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 12:50:03 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "minishell.h"
 
 static int	ft_strlen_spc(char *s, char c, int i, int j)

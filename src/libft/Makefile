@@ -10,7 +10,7 @@ $(NAME) : $(OBJ)
 	@ar -r $(NAME) $?
 
 %.o:%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
 	@rm -rf *.o

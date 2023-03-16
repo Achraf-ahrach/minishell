@@ -6,23 +6,11 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 09:55:51 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/15 19:10:07 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 11:49:22 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	utillst(t_list *new, char *cmd, t_env *ev)
-{
-	new->cmd = cmd;
-	new->limiter = NULL;
-	new->infile = -2;
-	new->outfile = -2;
-	new->stat = 0;
-	new->env = ev;
-	new->err = NULL;
-	new->next = NULL;
-}
 
 t_list	*ft_lstnew(char *cmd, t_env *ev)
 {
@@ -31,6 +19,13 @@ t_list	*ft_lstnew(char *cmd, t_env *ev)
 	p = malloc(sizeof(t_list));
 	if (!p)
 		return (NULL);
-	utillst(p, cmd, ev);
+	p->cmd = cmd;
+	p->limiter = NULL;
+	p->infile = -2;
+	p->outfile = -2;
+	p->stat = 0;
+	p->env = ev;
+	p->err = NULL;
+	p->next = NULL;
 	return (p);
 }
