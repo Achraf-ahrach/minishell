@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:02:56 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/16 17:22:05 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/16 17:26:49 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_list
 	char			**cmd;
 	int				infile;
 	int				outfile;
-	char			*limiter;
+	char			*h_d;
 	int				stat;
 	t_env			*env;
 	t_var			*var;
