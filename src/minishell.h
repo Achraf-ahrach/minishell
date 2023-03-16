@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:38:12 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/15 19:07:10 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 17:09:39 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ typedef struct s_var
 {
 	int				exit_status;
 	int				sig;
-}	t_var;
+}					t_var;
 
 typedef struct s_list
 {
 	char			**cmdsp;
-	char			*cmd;
+	char			**cmd;
 	int				infile;
 	int				outfile;
 	char			*limiter;
@@ -80,33 +80,22 @@ t_list				*g_v;
 /////////////// execution //////////////////
 
 //void	export_add(char *key, char *str);
-t_env	*getlstenv(char **ev);
+t_env				*getlstenv(char **ev);
 
-void	sort_env(t_env **env);
-void	envadd_back(t_env **lst, t_env *new);
-t_env	*env_new(char *s1, char *s2);
-char	*pwd(int x);
-void	echo(char **cmd);
-void	export();
-void	cd();
-void	unset(t_list *list);
-void	env(t_env *env);
-
-/////////////////////////////////////////////
-
-t_list				*ft_lstnew(char *cmd, t_env *ev);
-void				ft_lstadd_front(t_list **lst, t_list *new);
-int					ft_lstsize(t_list *lst);
-t_list				*ft_lstlast(t_list *lst);
-void				ft_lstadd_back(t_list **lst, t_list *new);
-void				ft_lstdelone(t_list *lst, void (*del)(void *));
-void				ft_lstiter(t_list *lst, void (*f)(void *));
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-						void (*del)(void *));
-void				ft_lstclear(t_list **lst, void (*del)(void *));
+void				sort_env(t_env **env);
+void				envadd_back(t_env **lst, t_env *new);
+t_env				*env_new(char *s1, char *s2);
+char				*pwd(int x);
+void				echo(char **cmd);
+void				export(void);
+void				cd(void);
+void				unset(t_list *list);
+void				env(t_env *env);
 
 //////////// parsing ////////////////////
 void				add_char(char **s, char c);
+void				add_str(char ***s, char *str);
+void				iterate_cmds(t_list *lst);
 void				print(char c, int color, char *str);
 int					error(char c, char *str_er);
 t_env				*getlstenv(char **ev);

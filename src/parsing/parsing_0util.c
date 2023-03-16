@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 13:27:58 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 14:05:44 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,23 @@
 
 void	add_str(char ***s, char *str)
 {
-	char	**m;
 	int		i;
+	char	**m;
 
 	i = 0;
-	while (*s[i])
+	while (*s && (*s)[i])
 		i++;
 	m = malloc(sizeof(char *) * (i + 2));
 	i = 0;
-	while (*s[i])
+	while (*s && (*s)[i])
 	{
-		m[i] = *s[i];
+		m[i] = (*s)[i];
 		i++;
 	}
 	m[i++] = str;
 	m[i] = NULL;
+	if (*s)
+		free(*s);
 	*s = m;
 }
 
