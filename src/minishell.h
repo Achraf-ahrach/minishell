@@ -5,12 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 18:02:56 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/16 19:45:46 by aahrach          ###   ########.fr       */
+/*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
+/*   Updated: 2023/03/17 08:31:47 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -113,7 +112,7 @@ void				no_expend(char *s, char **dup, char c, int *i);
 void				search_replace(t_env *env, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
 int					len_name(char *s);
-char				*add_spc(char *s, int i, int j, char c);
+char				*add_spc(char *s, int i);
 int					rm_quote(t_env *env, char *s, int i, char c);
 int					check_in(char *s);
 /////////////////////////////////////////////
