@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 16:22:09 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 19:08:27 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int	outfd(char *name, int trunc, int *stat)
 
 char	*here_doc(char *limeter)
 {
-	int	expend;
+	int		expend;
 	char	*s;
 	char	*str;
 
 	str = NULL;
-	if(str[0] == '\'' || str[0] == '\"')
+	if (str[0] == '\'' || str[0] == '\"')
 		expend = 1;
 	else
 		expend = 0;
@@ -86,7 +86,7 @@ char	*here_doc(char *limeter)
 		s = readline("\033[36;01mhere_doc>");
 		if (!ft_strcmp(s, limeter))
 			return (str);
-		if(expend)
+		if (expend)
 			str = ft_strjoin(str, ft_strjoin(s, ft_strdup("\n")));
 	}
 }
@@ -98,16 +98,16 @@ void	one_cmd(t_list *lst)
 	i = 0;
 	while (lst->cmd[i])
 	{
-		if (!ft_strcmp(lst->cmd[i], "<"))
-			lst->infile = infd(lst->cmd[++i], &lst->stat);
-		else if (!ft_strcmp(lst->cmd[i], "<<"))
+		if (!ft_strcmp(rm_quote(lst->cmd[i], 0, 0), "<"))
+			lst->infile = infd(rm_quote(lst->cmd[++i], 0, 0), &lst->stat);
+		else if (!ft_strcmp(rm_quote(lst->cmd[i], 0, 0), "<<"))
 			lst->h_d = here_doc(lst->cmd[++i]);
-		else if (!ft_strcmp(lst->cmd[i], ">"))
-			lst->outfile = outfd(lst->cmd[++i], 0, &lst->stat);
-		else if (!ft_strcmp(lst->cmd[i], ">>"))
-			lst->outfile = outfd(lst->cmd[++i], 1, &lst->stat);
+		else if (!ft_strcmp(rm_quote(lst->cmd[i], 0, 0), ">"))
+			lst->outfile = outfd(rm_quote(lst->cmd[++i], 0, 0), 0, &lst->stat);
+		else if (!ft_strcmp(rm_quote(lst->cmd[i], 0, 0), ">>"))
+			lst->outfile = outfd(rm_quote(lst->cmd[++i], 0, 0), 1, &lst->stat);
 		else
-			add_str(&lst->cmdsp, lst->cmd[i++]);
+			add_str(&lst->cmdsp, rm_quote(lst->cmd[i++], 0, 0));
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:57:37 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 17:10:04 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 19:04:12 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	rm_quote_uti(char *s, int i)
 	}
 }
 
-void	rm_quote(char *s, int i, char c)
+char	*rm_quote(char *s, int i, char c)
 {
 	while (s[i])
 	{
@@ -40,6 +40,6 @@ void	rm_quote(char *s, int i, char c)
 		}
 		else
 			i++;
-		//free(s);
 	}
+	return (s);
 }

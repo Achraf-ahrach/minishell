@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 18:43:27 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 19:00:47 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,15 @@ static int	check_pipe(char *s)
 	{
 		if (s[i] == '|')
 		{
-			while (ft_isspace(s[i]))
-				i++;
+			while (ft_isspace(s[++i]))
+				;
 			if (s[i] == '|')
 				return (error('|', "Minishell: Error sequance of pipe"));
 		}
 		else
 			i++;
 	}
+	return (0);
 }
 int	check_in(char *s)
 {

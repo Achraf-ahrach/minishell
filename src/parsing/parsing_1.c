@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 17:10:16 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 18:57:20 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ int	main(int ac, char **av, char **ev)
 	{
 		g_v = 0;
 		s = readline("\033[0;32mMINISHELL#(*_*)|\033[36;01m❯❯❯❯\033[0m");
-		rm_quote(s, 0, 0);
-		printf("%s\n", s);
-		// if (!s || !check_in(s))
-		// 	continue ;
-		// fill_cmds(s, env);
-		// iterate_cmds(g_v);
+		// rm_quote(s, 0, 0);
+		// printf("%s\n", s);
+		if (!s || !check_in(s))
+			continue ;
+		fill_cmds(s, env);
+		iterate_cmds(g_v);
 		// while (g_v)
 		// {
 		// 	for (int i = 0; g_v->cmd[i]; i++)
