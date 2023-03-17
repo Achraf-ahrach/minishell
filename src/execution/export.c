@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/15 16:14:30 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/16 19:32:06 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ void	export_add(t_env *env, char *key, char *str)
 		{
 			new = env_new(e, ft_strrchr(key, '=') + 1);
 			new->equals = 1;
-			envadd_back(&data->env, new);
+			envadd_back(&g_v->env, new);
 			free(e);
 			return ;
 		}
 		new = env_new(key, NULL);
-		envadd_back(&data->env, new);
+		envadd_back(&g_v->env, new);
 	}
 	else
 	{
@@ -181,19 +181,19 @@ void	export_()
 	char	*l;
 
 	i = 1;
-	tmp = data->env;
-	while (data->cmdsp[i])
+	tmp = g_v->env;
+	while (g_v->cmdsp[i])
 	{
-		if (check_identifier(data->cmdsp[i]))
+		if (check_identifier(g_v->cmdsp[i]))
 		{
 			while (tmp)
 			{
-				p = cat_equals(data->cmdsp[i], 0);
+				p = cat_equals(g_v->cmdsp[i], 0);
 				if (p)
 				{
 					if (!ft_strcmp(tmp->key, p))
 					{
-						export_add(tmp, data->cmdsp[i], "present");
+						export_add(tmp, g_v->cmdsp[i], "present");
 						free(p);
 						return ;
 					}
@@ -201,7 +201,7 @@ void	export_()
 					s = ft_strjoin(tmp->key, l);
 					if (!ft_strcmp(tmp->key, s))
 					{
-						export_add(tmp, ft_strrchr(data->cmdsp[i], '=') + 1, "join");
+						export_add(tmp, ft_strrchr(g_v->cmdsp[i], '=') + 1, "join");
 						free(p);
 						free(s);
 					}
@@ -210,7 +210,7 @@ void	export_()
 				}
 				tmp = tmp->next;
 			}
-			export_add(tmp, data->cmdsp[i], "absent");
+			export_add(tmp, g_v->cmdsp[i], "absent");
 		}
 		i++;
 	}
@@ -223,13 +223,13 @@ void	export()
 	t_env	*tmp;
 
 	i = 1;
-	if (!data->cmdsp[i])
+	if (!g_v->cmdsp[i])
 	{
-		sort_export(data->env);
-		size = ft_lstsize_env(data->env);
+		sort_export(g_v->env);
+		size = ft_lstsize_env(g_v->env);
 		while (size > 0)
 		{
-			tmp = data->env;
+			tmp = g_v->env;
 			while (tmp)
 			{
 				if (tmp->index == size && tmp->equals == 1)

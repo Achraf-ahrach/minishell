@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:02:56 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/17 08:33:45 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 08:36:47 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@ typedef struct s_list
 t_list				*g_v;
 
 /////////////// execution //////////////////
-
-//void	export_add(char *key, char *str);
-t_env				*getlstenv(char **ev);
 
 void				sort_env(t_env **env);
 void				envadd_back(t_env **lst, t_env *new);
