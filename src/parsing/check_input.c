@@ -6,12 +6,12 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 12:50:33 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 08:29:03 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "minishell.h"
+#include "../minishell.h"
 
 static int	check_quote(char *s)
 {

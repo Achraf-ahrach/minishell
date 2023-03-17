@@ -6,12 +6,12 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 07:55:40 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 08:28:57 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "minishell.h"
+#include "../minishell.h"
 
 void	fill_cmds(char *s, t_env *env)
 {

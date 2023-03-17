@@ -6,12 +6,12 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:59:02 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 07:58:54 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 08:29:12 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "minishell.h"
+#include "../minishell.h"
 
 static void	addbetwen_quote(char **dup, char *s, int *i)
 {
