@@ -6,12 +6,12 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 14:05:44 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 08:45:16 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "minishell.h"
+#include "../minishell.h"
 
 void	add_str(char ***s, char *str)
 {

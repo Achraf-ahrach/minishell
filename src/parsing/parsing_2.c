@@ -6,11 +6,9 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:38:37 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 12:49:58 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 08:46:42 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "minishell.h"
-
-
+#include "../minishell.h"

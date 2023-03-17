@@ -6,12 +6,12 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 12:51:00 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 08:45:10 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "minishell.h"
+#include "../minishell.h"
 
 t_env	*env_new(char *s1, char *s2)
 {

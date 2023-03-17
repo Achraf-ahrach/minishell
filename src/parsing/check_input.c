@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 08:29:03 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 09:49:37 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	check_in(char *s)
 	char	c;
 
 	i = 0;
+	if (!s || !s[0])
+		return (0);
 	len = ft_strlen(s) - 1;
 	while (ft_isspace(s[len]))
 		len--;
