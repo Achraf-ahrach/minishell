@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:02:56 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/16 17:26:49 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/16 19:45:46 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 void				ft_putstr_fd(char *s, int fd);
 size_t				ft_strlen(const char *s);
+int					ft_lstsize(t_list *lst);
 char				*ft_strdup(const char *s1);
 void				ft_bzero(void *s, size_t n);
 char				*ft_strrchr(const char *s, int c);
@@ -88,9 +89,6 @@ typedef struct s_list
 t_list				*g_v;
 
 /////////////// execution //////////////////
-
-//void	export_add(char *key, char *str);
-t_env				*getlstenv(char **ev);
 
 void				sort_env(t_env **env);
 void				envadd_back(t_env **lst, t_env *new);

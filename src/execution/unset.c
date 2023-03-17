@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:44:38 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/13 16:57:00 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/16 19:32:55 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@ void	unset()
 	t_env	*delete;
 	
 	i = 0;
-	while (data->cmdsp[i])
+	while (g_v->cmdsp[i])
 	{
-		if (!ft_strcmp(data->env->key, data->cmdsp[i]))
+		if (!ft_strcmp(g_v->env->key, g_v->cmdsp[i]))
 		{
-			delete = data->env;
-			data->env = data->env->next;
+			delete = g_v->env;
+			g_v->env = g_v->env->next;
 			free(delete->key);
 			free(delete->value);
 			free(delete);
 		}
 		else
-			ft_delete_key(data->env, data->cmdsp[i]);
+			ft_delete_key(g_v->env, g_v->cmdsp[i]);
 		i++;
 	}
 }

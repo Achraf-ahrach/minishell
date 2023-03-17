@@ -6,11 +6,12 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/15 19:20:09 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/17 08:29:26 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../libft/libft.h"
 
 int	cut_pwd(char *pwd)
 {
@@ -32,8 +33,8 @@ void	cd()
 	int		len;
 	t_env	*env;
 
-	env = data->env;
-	if (!data->cmdsp[1])
+	env = g_v->env;
+	if (!g_v->cmdsp[1])
 	{
 		while (env)
 		{
@@ -45,7 +46,7 @@ void	cd()
 			env = env->next;
 		}
 	}
-	else if (!ft_strcmp(data->cmdsp[1], "-"))
+	else if (!ft_strcmp(g_v->cmdsp[1], "-"))
 	{
 		while (env)
 		{
@@ -61,6 +62,6 @@ void	cd()
 		}
 		printf("minishell: cd: OLDPWD not set");
 	}
-	else if (chdir(data->cmdsp[1]))
-		printf("minishell: %s: %s: No such file or directory\n", data->cmdsp[0], data->cmdsp[1]);
+	else if (chdir(g_v->cmdsp[1]))
+		printf("minishell: %s: %s: No such file or directory\n", g_v->cmdsp[0], g_v->cmdsp[1]);
 }
