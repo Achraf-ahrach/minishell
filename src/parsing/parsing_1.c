@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 10:05:41 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 11:47:25 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	main(int ac, char **av, char **ev)
 			continue ;
 		fill_cmds(s, env);
 		iterate_cmds(g_v);
-		while (g_v)
-		{
-			for (int i = 0; g_v->cmd[i]; i++)
-				printf(">%d:%s\n", i, g_v->cmd[i]);
-			g_v = g_v->next;
-		}
+		// while (g_v)
+		// {
+		// 	for (int i = 0; g_v->cmd[i]; i++)
+		// 		printf(">%d:%s\n", i, g_v->cmd[i]);
+		// 	g_v = g_v->next;
+		// }
 		//system("leaks minishell");
 		//m = expend(env, s, 0);
 		// print(0, 33, s);
