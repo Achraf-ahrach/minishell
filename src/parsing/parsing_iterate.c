@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 11:56:28 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 15:05:32 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,11 @@ char	*here_doc(char *limeter)
 	char	*s;
 	char	*str;
 
+	printf("lem = %s\n", limeter);
 	str = NULL;
 	while (1)
 	{
-		s = readline("here_doc>");
+		s = readline("\033[36;01mhere_doc>");
 		if (!ft_strcmp(s, limeter))
 			return (str);
 		str = ft_strjoin(str, ft_strjoin(s, "\n"));
