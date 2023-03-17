@@ -6,29 +6,36 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:37:12 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 12:59:37 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 20:43:39 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static void	squipe_quote(char const *s, size_t *i)
+{
+	char	c;
+
+	if (s[*i] == '\'' || s[*i] == '\"')
+	{
+		c = s[*i];
+		*i += 1;
+		while (s[*i] != c)
+			*i += 1;
+		*i += 1;
+	}
+}
+
 static size_t	count_c(char const *s, char c)
 {
 	size_t	i;
 	size_t	result;
-	char	v;
 
 	i = 0;
 	result = 0;
 	while (s && s[i])
 	{
-		if (s[i] == '"' || s[i] == '\'')
-		{
-			v = s[i];
-			i++;
-			while (s[i] != v)
-				i++;
-		}
+		squipe_quote(s, &i);
 		if ((i == 0 && s[i] != c) || (s[i] == c && s[i + 1] != c && s[i + 1]))
 			result++;
 		i++;
@@ -43,23 +50,23 @@ static char	**ft_free(char **result, int i)
 	free(result);
 	return (0);
 }
-void	util_split1(const char *s, char c, size_t *start, size_t *end)
-{
-	char	v;
 
+void	util_split1(char const *s, char c, size_t *start, size_t *end)
+{
 	*start = *end;
 	while (s[*start] == c && s[*start])
+	{
+		squipe_quote(s, start);
+		if (s[*start] != c && s[*start])
+			break ;
 		*start += 1;
+	}
 	*end = *start;
 	while (s[*end] != c && s[*end])
 	{
-		if (s[*end] == '\'' || s[*end] == '"')
-		{
-			v = s[*end];
-			*end += 1;
-			while (s[*end] != v)
-				*end += 1;
-		}
+		squipe_quote(s, end);
+		if (s[*end] == c && s[*end])
+			break ;
 		*end += 1;
 	}
 }

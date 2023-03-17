@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 17:31:09 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 18:52:29 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,14 @@ void	add_arg(char *s, int *i, char ***cmd)
 
 void	iterate_cmds(t_list *lst)
 {
-	char **cmd;
 	int i;
 
 	i = 0;
 
 	while (lst)
 	{
-		cmd = NULL;
-		lst->cmdsp = cmd;
+		// for (int i = 0; lst->cmd[i]; i++)
+		// 	printf("%d%s\n", i, lst->cmd[i]);
 		lst = lst->next;
 	}
 }

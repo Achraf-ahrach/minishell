@@ -6,12 +6,25 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:59:02 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 12:50:03 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/16 19:10:21 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "minishell.h"
+
+static void	squipe_quote(char *s, int *i)
+{
+	char	c;
+
+	if (s[*i] == '\'' || s[*i] == '\"')
+	{
+		c = s[*i];
+		*i += 1;
+		while (s[*i] != c)
+			*i += 1;
+	}
+}
 
 static int	ft_strlen_spc(char *s, char c, int i, int j)
 {
@@ -20,6 +33,7 @@ static int	ft_strlen_spc(char *s, char c, int i, int j)
 	count = 0;
 	while (s[i])
 	{
+		squipe_quote(s, &i);
 		j = 0;
 		(s[i] == c && i && s[i - 1] != ' ') && (count += 1);
 		while (s[i] == c)
@@ -70,6 +84,7 @@ char	*add_spc(char *s, int i, int j, char c)
 		return (dup);
 	while (s[i])
 	{
+		squipe_quote(s, &i);
 		if (s[i] == c)
 			util_addspc(s, dup, &i, &j);
 		else
