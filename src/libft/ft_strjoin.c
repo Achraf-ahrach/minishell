@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:30:07 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 15:07:47 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 15:15:39 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memset((void *)sub, '*', len);
 	if (s1)
 	{
-		ft_strlcpy(sub, s1, ft_strlen(s1) + 1);
+		ft_strlcpy(sub, s1, len + 1);
 		free((void *)s1);
 		s1 = 0;
 	}

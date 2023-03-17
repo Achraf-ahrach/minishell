@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 09:49:37 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 18:43:27 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,24 @@ static int	check_file(char *s, char c)
 	return (1);
 }
 
+static int	check_pipe(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '|')
+		{
+			while (ft_isspace(s[i]))
+				i++;
+			if (s[i] == '|')
+				return (error('|', "Minishell: Error sequance of pipe"));
+		}
+		else
+			i++;
+	}
+}
 int	check_in(char *s)
 {
 	int		len;
@@ -78,5 +96,5 @@ int	check_in(char *s)
 		(s[len] == '>') && (c = '>');
 		return (error(c, "syntax error near unexpected token"));
 	}
-	return (check_quote(s) * check_file(s, 0));
+	return (check_quote(s) * check_file(s, 0) * check_pipe(s));
 }
