@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/17 08:31:47 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/17 08:33:18 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,6 @@
 # define WELLOW "\033[0;33m"
 # define AS_DEFAULT "\033[0m"
 
-int					ft_isspace(char c);
-int					ft_atoi(const char *str);
-char				*ft_itoa(int n);
-size_t				ft_strlen(const char *s);
-char				*ft_strdup(const char *s1);
-void				ft_bzero(void *s, size_t n);
-int					ft_strcmp(char *s1, char *s2);
-void				ft_strcpy(char *dest, char *src);
-int					ft_isalpha(int c);
-int					ft_isdigit(int c);
-void				ft_putstr_fd(char *s, int fd);
-size_t				ft_strlen(const char *s);
-int					ft_lstsize(t_list *lst);
-char				*ft_strdup(const char *s1);
-void				ft_bzero(void *s, size_t n);
-char				*ft_strrchr(const char *s, int c);
-char				**ft_split(char const *s, char c);
-void				*ft_calloc(size_t count, size_t size);
-char				*ft_strjoin(char const *s1, char const *s2);
-char				*ft_strtrim(char const *s1, char const *set);
-int					ft_strncmp(const char *s1, const char *s2, unsigned int n);
-size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char				*ft_substr(char const *s, unsigned int start, size_t len);
-char				*ft_strnstr(const char *haystack, const char *needle,
-						size_t len);
 //////////////////////////////////////////
 typedef struct t_env
 {
