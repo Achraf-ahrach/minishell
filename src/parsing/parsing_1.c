@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 20:49:32 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 07:55:40 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	fill_cmds(char *s, t_env *env)
 	int		i;
 
 	printf("hello %s \n", s);
-	c = ft_split1(add_spc(s, 0, 0, '<'), '|');
+	c = ft_split1(add_spc(s, 0), '|');
 	i = 0;
 	while (c && c[i])
 	{

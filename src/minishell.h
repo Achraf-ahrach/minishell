@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:02:56 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/16 17:26:49 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/17 08:26:04 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,6 @@
 # define WELLOW "\033[0;33m"
 # define AS_DEFAULT "\033[0m"
 
-int					ft_isspace(char c);
-int					ft_atoi(const char *str);
-char				*ft_itoa(int n);
-size_t				ft_strlen(const char *s);
-char				*ft_strdup(const char *s1);
-void				ft_bzero(void *s, size_t n);
-int					ft_strcmp(char *s1, char *s2);
-void				ft_strcpy(char *dest, char *src);
-int					ft_isalpha(int c);
-int					ft_isdigit(int c);
-void				ft_putstr_fd(char *s, int fd);
-size_t				ft_strlen(const char *s);
-char				*ft_strdup(const char *s1);
-void				ft_bzero(void *s, size_t n);
-char				*ft_strrchr(const char *s, int c);
-char				**ft_split(char const *s, char c);
-void				*ft_calloc(size_t count, size_t size);
-char				*ft_strjoin(char const *s1, char const *s2);
-char				*ft_strtrim(char const *s1, char const *set);
-int					ft_strncmp(const char *s1, const char *s2, unsigned int n);
-size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char				*ft_substr(char const *s, unsigned int start, size_t len);
-char				*ft_strnstr(const char *haystack, const char *needle,
-						size_t len);
 //////////////////////////////////////////
 typedef struct t_env
 {
@@ -115,7 +90,7 @@ void				no_expend(char *s, char **dup, char c, int *i);
 void				search_replace(t_env *env, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
 int					len_name(char *s);
-char				*add_spc(char *s, int i, int j, char c);
+char				*add_spc(char *s, int i);
 int					rm_quote(t_env *env, char *s, int i, char c);
 int					check_in(char *s);
 /////////////////////////////////////////////

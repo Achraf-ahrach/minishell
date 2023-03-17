@@ -6,96 +6,63 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:59:02 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 19:10:21 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 07:58:54 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "minishell.h"
 
-static void	squipe_quote(char *s, int *i)
+static void	addbetwen_quote(char **dup, char *s, int *i)
 {
-	char	c;
+	char v;
 
-	if (s[*i] == '\'' || s[*i] == '\"')
+	v = s[*i];
+	while(1)
 	{
-		c = s[*i];
+		add_char(dup, s[*i]);
 		*i += 1;
-		while (s[*i] != c)
-			*i += 1;
+		if(s[*i] == v)
+			break;
 	}
+	add_char(dup, s[*i]);
+	*i += 1;
 }
 
-static int	ft_strlen_spc(char *s, char c, int i, int j)
-{
-	int	count;
-
-	count = 0;
-	while (s[i])
-	{
-		squipe_quote(s, &i);
-		j = 0;
-		(s[i] == c && i && s[i - 1] != ' ') && (count += 1);
-		while (s[i] == c)
-		{
-			i++;
-			j++;
-			count++;
-		}
-		if (j > 2)
-			print(c, 31, "Error in");
-		(s[i] != ' ') && (count += 1);
-		if (!s[i])
-			break ;
-		count++;
-		i++;
-	}
-	return (count);
-}
-
-static void	util_addspc(char *s, char *dup, int *i, int *j)
+static void	util_addsp(char **dup, char *s, int *i)
 {
 	char	c;
 
 	c = s[*i];
-	if (*i && s[*i - 1] != ' ')
+	add_char(dup, ' ');
+	if(*i && s[*i - 1] != ' ')
+		add_char(dup, c);
+	*i += 1;
+	if(s[*i] == c)
 	{
-		dup[*i + *j] = ' ';
-		*j += 1;
-	}
-	while (s[*i] == c)
-	{
-		dup[*i + *j] = s[*i];
+		add_char(dup, c);
 		*i += 1;
 	}
-	if (s[*i] != ' ')
-	{
-		dup[*i + *j] = ' ';
-		*j += 1;
-	}
+	if(s[*i] != ' ')
+		add_char(dup, ' ');
 }
 
-char	*add_spc(char *s, int i, int j, char c)
+char	*add_spc(char *s, int i)
 {
 	char	*dup;
 
-	dup = malloc(sizeof(char) * ft_strlen_spc(s, c, 0, 0) + 1);
-	if (!dup)
-		return (dup);
+	dup = NULL;
 	while (s[i])
 	{
-		squipe_quote(s, &i);
-		if (s[i] == c)
-			util_addspc(s, dup, &i, &j);
+		if (s[i] == '\'' || s[i] == '\"')
+			addbetwen_quote(&dup, s,&i);
+		else if(s[i] == '<' || s[i] == '>')
+			util_addsp(&dup,s, &i);
 		else
 		{
-			dup[i + j] = s[i];
+			add_char(&dup,s[i]);
 			i++;
 		}
 	}
-	dup[i + j] = 0;
-	free(s);
-	if (c == '<')
-		dup = add_spc(dup, 0, 0, '>');
 	return (dup);
 }
