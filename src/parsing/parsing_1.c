@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/23 09:55:05 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/23 10:40:13 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ int	main(int ac, char **av, char **ev)
 		while (g_v)
 		{
 			printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
-			for (int i = 0; g_v->cmd[i]; i++)
+			for (int i = 0; g_v->cmdsp[i]; i++)
 			{
 				if (!i)
 					printf("cmd:");
-				printf("%s ", g_v->cmd[i]);
+				printf("%s ", g_v->cmdsp[i]);
 			}
 			printf("\nstat:%d\ninfile:%d\n", g_v->stat, g_v->infile);
 			printf("outfile:%d\nh_doc:%s\n", g_v->outfile, g_v->h_d);

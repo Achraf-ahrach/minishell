@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/23 09:51:00 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/23 10:42:04 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ void	one_cmd(t_list *lst)
 		else if (!ft_strcmp(rm_quote(lst->cmd[i], 0, 0), ">>"))
 			lst->outfile = outfd(rm_quote(lst->cmd[++i], 0, 0), 1, &lst->stat);
 		else
-			add_str(&lst->cmdsp, rm_quote(lst->cmd[i++], 0, 0));
+			add_str(&lst->cmdsp, rm_quote(lst->cmd[i], 0, 0));
+		i++;
 	}
 }
 
