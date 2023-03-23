@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 19:08:27 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/23 09:51:00 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,21 @@ int	outfd(char *name, int trunc, int *stat)
 	return (fd);
 }
 
-char	*here_doc(char *limeter)
+char	*here_doc(char *lim)
 {
 	int		expend;
 	char	*s;
 	char	*str;
 
 	str = NULL;
-	if (str[0] == '\'' || str[0] == '\"')
+	if (lim && (lim[0] == '\'' || lim[0] == '\"'))
 		expend = 1;
 	else
 		expend = 0;
 	while (1)
 	{
 		s = readline("\033[36;01mhere_doc>");
-		if (!ft_strcmp(s, limeter))
+		if (!ft_strcmp(s, lim))
 			return (str);
 		if (expend)
 			str = ft_strjoin(str, ft_strjoin(s, ft_strdup("\n")));
@@ -120,7 +120,6 @@ void	iterate_cmds(t_list *lst)
 	while (lst)
 	{
 		one_cmd(lst);
-		printf("stat :%d\n", lst->stat);
 		lst = lst->next;
 	}
 }
