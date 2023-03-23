@@ -6,12 +6,16 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/18 21:06:25 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/03/17 08:45:10 by ajari            ###   ########.fr       */
+>>>>>>> 5f7ab26248fa6b442e2eb9cb89d2fd85c7098ff3
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "minishell.h"
+#include "../minishell.h"
 
 t_env	*env_new(char *s1, char *s2)
 {

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 09:55:51 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 17:31:21 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 11:49:30 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_list	*ft_lstnew(char **cmd, t_env *ev)
 	p->outfile = -1;
 	p->stat = 0;
 	p->env = ev;
+	p->cmdsp = NULL;
 	p->err = NULL;
 	p->next = NULL;
 	return (p);

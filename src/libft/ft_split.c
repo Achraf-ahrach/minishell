@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 16:08:02 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 08:25:36 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/17 09:43:41 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,34 @@ static char	**ft_free(char **result, int i)
 	return (0);
 }
 
-char	**ft_split(char *s, char c)
+void	utils(char c, char *s, size_t *start, size_t *end)
+{
+	*start = *end;
+	while (s[*start] == c && s[*start])
+		*start += 1;
+	*end = *start;
+	while (s[*end] != c && s[*end])
+		*end += 1;
+}
+
+void	str_chiffre(char *s, int i, char v, char *c)
+{
+	while (s[i])
+	{
+		if (s[i] == '\'' || s[i] == '\"')
+		{
+			v = s[i++];
+			while (s[i] != v)
+				i++;
+		}
+		else if (s[i] == *c)
+			s[i] = -1;
+		i++;
+	}
+	*c = -1;
+}
+
+char	**ft_split(char *s, char c, int chiffre)
 {
 	size_t	i;
 	char	**result;
@@ -44,23 +71,20 @@ char	**ft_split(char *s, char c)
 	size_t	end;
 
 	i = 0;
-	start = 0;
+	end = 0;
 	result = 0;
-	if (s)
+	if (!s)
+		return (NULL);
+	if (chiffre)
+		str_chiffre(s, 0, 0, &c);
+	result = ft_calloc(count_c(s, c) + 1, sizeof(char *));
+	while (result && i < count_c(s, c))
 	{
-		result = ft_calloc(count_c(s, c) + 1, sizeof(char *));
-		while (result && i < count_c(s, c))
-		{
-			while (s[start] == c && s[start])
-				start++;
-			end = start;
-			while (s[end] != c && s[end])
-				end++;
-			result[i++] = ft_substr(s, start, end - start);
-			if (!result[i - 1])
-				return (ft_free(result, i - 1));
-			start = end;
-		}
+		utils(c, s, &start, &end);
+		result[i++] = ft_substr(s, start, end - start);
+		if (!result[i - 1])
+			return (ft_free(result, i - 1));
 	}
+	free(s);
 	return (result);
 }

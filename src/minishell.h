@@ -6,10 +6,9 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/21 18:40:21 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/23 09:55:51 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -90,7 +89,7 @@ void				search_replace(t_env *env, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
 int					len_name(char *s);
 char				*add_spc(char *s, int i);
-int					rm_quote(t_env *env, char *s, int i, char c);
+char				*rm_quote(char *s, int i, char c);
 int					check_in(char *s);
 /////////////////////////////////////////////
 #endif
