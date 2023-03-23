@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/17 08:29:26 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/22 12:21:42 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ int	cut_pwd(char *pwd)
 	return (0);
 }
 
-void	cd()
+void	cd(int is_child)
 {
-	int		len;
 	t_env	*env;
 
 	env = g_v->env;
@@ -61,7 +60,12 @@ void	cd()
 			env = env->next;
 		}
 		printf("minishell: cd: OLDPWD not set");
+		exit_status(1);
 	}
 	else if (chdir(g_v->cmdsp[1]))
+	{
 		printf("minishell: %s: %s: No such file or directory\n", g_v->cmdsp[0], g_v->cmdsp[1]);
+		if (is_child)
+			exit_status(1);
+	}
 }

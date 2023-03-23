@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getenv_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 12:51:00 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/18 21:06:25 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,3 @@ t_env	*getlstenv(char **ev)
 	}
 	return (env);
 }
-
-// int main(int ac, char **av, char **env)
-// {
-// 	int i = ac;
-// 	(void)av;
-// 	t_env	*p;
-// 	p = getlstenv(env);
-// 	while (p)
-// 	{
-// 		printf("declare -x %s=\"%s\"\n", p->key, p->value);
-// 		p = p->next;
-// 	}
-// }

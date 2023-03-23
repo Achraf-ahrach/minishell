@@ -6,11 +6,12 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:14:08 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/15 16:11:12 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/21 17:41:33 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../libft/libft.h"
 
 void	env(t_env *env)
 {

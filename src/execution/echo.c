@@ -6,11 +6,12 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:04:06 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/13 16:33:22 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/17 08:34:46 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../libft/libft.h"
 
 int	check_n(char *str)
 {

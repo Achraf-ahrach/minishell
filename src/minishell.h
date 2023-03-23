@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/17 08:33:18 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/21 18:40:21 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 # include <fcntl.h>
 # include <limits.h>
+# include <sys/wait.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <sys/errno.h>
 # include <unistd.h>
 # define RED "\033[0;31m"
@@ -37,7 +37,7 @@ typedef struct t_env
 	char			*value;
 	int				index;
 	struct t_env	*next;
-}					t_env;
+}					t_env;       
 
 typedef struct s_var
 {
@@ -72,6 +72,9 @@ void				export(void);
 void				cd(void);
 void				unset(t_list *list);
 void				env(t_env *env);
+void				ft_exit();
+void				exit_status(int exit_status);
+void				ft_child(t_list *list, int *pp);
 
 //////////// parsing ////////////////////
 void				add_char(char **s, char c);

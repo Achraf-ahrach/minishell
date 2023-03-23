@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 08:30:47 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/16 10:41:58 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/17 19:36:51 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_child1(char **av, char **env, int *pi, int i)
 			cm = ft_split(av[2], ' ');
 			comand = ft_check(p, cm[0]);
 			if (comand != NULL)
-			{
+			{ 
 				fd = open(av[1], O_RDONLY);
 				dup2(fd, 0);
 				dup2(pi[1], 1);
@@ -111,13 +111,13 @@ int	main(int ac, char **av, char **env)
 	}
 	else
 	{
-		wait(NULL);
 		close(pi[1]);
 		if (fork() == 0)
 		{
 			i = ft_strnstr(env, "PATH=", 5);
 			ft_child2(av, env, pi, i);
 		}
+		wait(NULL);1
 		wait(NULL);
 	}
 }

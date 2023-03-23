@@ -6,11 +6,12 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:44:38 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/16 19:32:55 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/21 17:35:54 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../libft/libft.h"
 
 void	ft_delete_key(t_env *env, char *key)
 {
@@ -34,7 +35,6 @@ void	ft_delete_key(t_env *env, char *key)
 void	unset()
 {
 	int		i;
-	t_env	*env;
 	t_env	*delete;
 	
 	i = 0;
