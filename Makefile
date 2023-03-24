@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 SRC = src/parsing
 OBJ = obj
 LIBFT = src/libft/libft.a
@@ -11,7 +11,7 @@ OBJS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME):  $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(LIB) $(OBJS) $(LIBFT) -o $@
 
 $(OBJ)/%.o: $(SRC)/%.c $(OBJ)

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/23 10:53:18 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/24 14:37:23 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int					len_name(char *s);
 char				*add_spc(char *s, int i);
 char				*rm_quote(char *s, int i, char c);
 int					check_in(char *s);
+void				lstfree(t_list *list);
 /////////////////////////////////////////////
 #endif

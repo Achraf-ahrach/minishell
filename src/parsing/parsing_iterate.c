@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/23 14:49:29 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/24 09:54:55 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ char	*here_doc(char *lim)
 	{
 		s = readline("\033[36;01mhere_doc>");
 		if (!ft_strcmp(s, rm_quote(lim, 0, 0)))
+		{
+			free(lim);
 			return (str);
+		}
 		s = expend(g_v->env, s, 0, exp);
 		str = ft_strjoin(str, ft_strjoin(s, ft_strdup("\n")));
 	}

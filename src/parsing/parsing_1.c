@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/23 14:20:55 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/24 14:39:01 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 void	fill_cmds(char *s, t_env *env)
 {
+	t_var	*var;
 	char	**c;
 	int		i;
 
 	c = ft_split(add_spc(s, 0), '|', 1);
 	i = 0;
+	var = malloc(sizeof(t_var));
+	if (!var)
+		exit(error(0, "allocation error"));
 	while (c && c[i])
-		ft_lstadd_back(&g_v, ft_lstnew(ft_split(c[i++], ' ', 1), env));
-	free(c[i]);
+		ft_lstadd_back(&g_v, ft_lstnew(ft_split(c[i++], ' ', 1), env, var));
 	free(c);
 }
 
@@ -35,7 +38,6 @@ int	main(int ac, char **av, char **ev)
 	t_env	*j;
 	t_list	*tem;
 
-	//char	*s;
 	(void)ac;
 	(void)av;
 	(void)i;
@@ -53,6 +55,7 @@ int	main(int ac, char **av, char **ev)
 			continue ;
 		fill_cmds(s, env);
 		iterate_cmds(g_v);
+		tem = g_v;
 		while (g_v)
 		{
 			printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
@@ -66,9 +69,7 @@ int	main(int ac, char **av, char **ev)
 			printf("outfile:%d\nh_doc:%s\n", g_v->outfile, g_v->h_d);
 			g_v = g_v->next;
 		}
-		//system("leaks minishell");
-		//m = expend(env, s, 0);
-		// print(0, 33, s);
-		// free(s);
+		//lstfree(tem);
+		system("leaks minishell");
 	}
 }

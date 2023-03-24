@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:55:47 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 08:55:46 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/24 14:38:19 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_strcpy(char *dest, char *src);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 
-t_list	*ft_lstnew(char **cmd, t_env *ev);
+t_list	*ft_lstnew(char **cmd, t_env *ev, t_var *var);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
