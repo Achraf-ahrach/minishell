@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/23 10:42:04 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/23 14:49:29 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,22 @@ int	outfd(char *name, int trunc, int *stat)
 
 char	*here_doc(char *lim)
 {
-	int		expend;
-	char	*s;
+	int		exp;
 	char	*str;
+	char	*s;
 
 	str = NULL;
 	if (lim && (lim[0] == '\'' || lim[0] == '\"'))
-		expend = 1;
+		exp = 0;
 	else
-		expend = 0;
+		exp = 1;
 	while (1)
 	{
 		s = readline("\033[36;01mhere_doc>");
-		if (!ft_strcmp(s, lim))
+		if (!ft_strcmp(s, rm_quote(lim, 0, 0)))
 			return (str);
-		if (expend)
-			str = ft_strjoin(str, ft_strjoin(s, ft_strdup("\n")));
+		s = expend(g_v->env, s, 0, exp);
+		str = ft_strjoin(str, ft_strjoin(s, ft_strdup("\n")));
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/23 10:40:13 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/23 14:20:55 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int ac, char **av, char **ev)
 		while (g_v)
 		{
 			printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
-			for (int i = 0; g_v->cmdsp[i]; i++)
+			for (int i = 0; g_v->cmdsp && g_v->cmdsp[i]; i++)
 			{
 				if (!i)
 					printf("cmd:");

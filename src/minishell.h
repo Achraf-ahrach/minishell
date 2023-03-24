@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/23 09:55:51 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/23 10:53:18 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # include <fcntl.h>
 # include <limits.h>
-# include <sys/wait.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/errno.h>
+# include <sys/wait.h>
 # include <unistd.h>
 # define RED "\033[0;31m"
 # define BLUE "\033[36;01m"
@@ -36,7 +36,7 @@ typedef struct t_env
 	char			*value;
 	int				index;
 	struct t_env	*next;
-}					t_env;       
+}					t_env;
 
 typedef struct s_var
 {
@@ -71,7 +71,7 @@ void				export(void);
 void				cd(void);
 void				unset(t_list *list);
 void				env(t_env *env);
-void				ft_exit();
+void				ft_exit(void);
 void				exit_status(int exit_status);
 void				ft_child(t_list *list, int *pp);
 
@@ -83,7 +83,7 @@ void				print(char c, int color, char *str);
 int					error(char c, char *str_er);
 t_env				*getlstenv(char **ev);
 void				fill_cmds(char *s, t_env *ev);
-char				*expend(t_env *env, char *s, int i);
+char				*expend(t_env *env, char *s, int i, int exp);
 void				no_expend(char *s, char **dup, char c, int *i);
 void				search_replace(t_env *env, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
