@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   a_split.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 08:35:28 by aahrach           #+#    #+#             */
-/*   Updated: 2023/01/04 08:35:32 by aahrach          ###   ########.fr       */
+/*   Created: 2023/03/23 15:43:44 by aahrach           #+#    #+#             */
+/*   Updated: 2023/03/23 15:45:09 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../minishell.h"
+#include "../libft/libft.h"
 
-int	ft_checkd(char *s, char c)
+static int	ft_check(char const *s, char c)
 {
 	int	i;
 	int	j;
@@ -30,7 +31,7 @@ int	ft_checkd(char *s, char c)
 	return (j);
 }
 
-int	ft_hseb(char *s, char c)
+static int	ft_hseb(const char *s, char c)
 {
 	int	i;
 
@@ -40,7 +41,7 @@ int	ft_hseb(char *s, char c)
 	return (i);
 }
 
-void	*ft_free_all(char **p, int a)
+static void	*ft_free_all(char **p, int a)
 {
 	while (a >= 0)
 	{
@@ -51,7 +52,7 @@ void	*ft_free_all(char **p, int a)
 	return (NULL);
 }
 
-char	**ft_split(char *s, char c)
+char	**a_split(char const *s, char c)
 {
 	char	**p;
 	int		a;
@@ -60,7 +61,7 @@ char	**ft_split(char *s, char c)
 	a = 0;
 	if (!s)
 		return (NULL);
-	j = ft_checkd(s, c);
+	j = ft_check(s, c);
 	p = malloc((j + 1) * sizeof(char *));
 	if (!p)
 		return (NULL);

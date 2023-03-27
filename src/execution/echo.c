@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:04:06 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/17 08:34:46 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/26 13:37:16 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	echo(char **cmd)
 		if (cmd[i])
 			printf(" ");
 	}
+	exit_status(0, 0);
 	if (!line)
 		printf("\n");
 }

@@ -6,14 +6,14 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/21 18:47:07 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/26 13:46:38 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
 
-char	*ft_strjoin_a(char const *s1, char const *s2)
+char	*strjoin_a(char const *s1, char const *s2)
 {
 	char	*p;
 	int		k;
@@ -50,7 +50,7 @@ char	*get_env(t_env *env)
 
 	key = ft_strdup(env->key);
 	value = ft_strdup(env->value);
-	s = ft_strjoin_a(key, "=");
+	s = strjoin_a(key, "=");
 	p = ft_strjoin(s, value);
 	return (p);
 }
@@ -156,23 +156,23 @@ void	ft_child(t_list *list, int *pp)
 		{
 			ft_putstr_fd("minishell: command not found: ", 2);
 			ft_putstr_fd(list->cmdsp[0], 2);
-			exit_status (127);
+			exit_status (127, 1);
 		}
-		p = ft_split(path, ':');
+		p = a_split(path, ':');
 		comand = cmd_access(p, g_v->cmdsp[0]);
 		if (!comand)
 		{
 			ft_putstr_fd(list->cmdsp[0], 2);
 			ft_putstr_fd("minishell: command not found: ", 2);
-			exit_status (127);
+			exit_status (127, 1);
 		}
 		if (access(comand, X_OK))
 		{
 			perror("Error:");
-			exit_status (126);
+			exit_status (126, 1);
 		}
 		execve(comand, list->cmdsp, ft_env(g_v->env));
 		perror("Error: ");
-		exit_status (127);
+		exit_status (127, 1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/23 09:55:51 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/26 13:57:23 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct s_list
 {
 	char			**cmdsp;
 	char			**cmd;
-	int				infile;
-	int				outfile;
+	int				i_f;
+	int				o_f;
 	char			*h_d;
 	int				stat;
 	t_env			*env;
@@ -65,15 +65,18 @@ t_list				*g_v;
 void				sort_env(t_env **env);
 void				envadd_back(t_env **lst, t_env *new);
 t_env				*env_new(char *s1, char *s2);
-char				*pwd(int x);
+int					builtins(int is_child);
+void				pwd(int is_child);
 void				echo(char **cmd);
 void				export(void);
-void				cd(void);
+void				cd(int child);
 void				unset(t_list *list);
 void				env(t_env *env);
 void				ft_exit();
-void				exit_status(int exit_status);
+void				exit_status(int exit_status, int x);
 void				ft_child(t_list *list, int *pp);
+char				**a_split(char const *s, char c);
+char				*strjoin_a(char const *s1, char const *s2);
 
 //////////// parsing ////////////////////
 void				add_char(char **s, char c);

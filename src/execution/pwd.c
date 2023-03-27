@@ -6,14 +6,14 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:06:01 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/22 11:33:19 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/23 11:36:58 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
 
-char	*pwd(int is_child)
+void	pwd(int is_child)
 {
 	char	buffer[PATH_MAX];
 
@@ -25,5 +25,4 @@ char	*pwd(int is_child)
 		if (is_child)
 			exit_status(127);
 	}
-    return (0);
 }
