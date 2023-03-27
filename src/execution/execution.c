@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/27 16:01:23 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/27 18:08:48 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	execution()
 	int		pp[2];
 
 	list = g_v;
-	if (ft_lstsize(list) == 1)
-		builtins(0);
+	if (ft_lstsize(list) == 1 && builtins(0))
+		return;
 	else
 	{
 		while (list)
