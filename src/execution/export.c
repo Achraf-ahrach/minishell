@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/27 18:01:38 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/27 18:05:40 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,10 +190,10 @@ int	check_identifier(char *str)
 // 	while (env)
 // 	{
 // 		if (!ft_strcmp(str, env->key) && !env->value)
-// 			return (0);
+// 			return (1);
 // 		env = env->next;
 // 	}
-// 	return (1);
+// 	return (0);
 // }
 
 void	export_()
