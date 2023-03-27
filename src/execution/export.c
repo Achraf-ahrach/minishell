@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/27 18:05:40 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/27 18:07:14 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,19 +182,19 @@ int	check_identifier(char *str)
 	return (1);
 }
 
-// int	wach_kayn(char *str)
-// {
-// 	t_env env;
+int	wach_kayn(char *str)
+{
+	t_env *env;
 
-// 	env = g_v->env;
-// 	while (env)
-// 	{
-// 		if (!ft_strcmp(str, env->key) && !env->value)
-// 			return (1);
-// 		env = env->next;
-// 	}
-// 	return (0);
-// }
+	env = g_v->env;
+	while (env)
+	{
+		if (!ft_strcmp(str, env->key) && !env->value)
+			return (1);
+		env = env->next;
+	}
+	return (0);
+}
 
 void	export_()
 {
@@ -208,7 +208,7 @@ void	export_()
 	tmp = g_v->env;
 	while (g_v->cmdsp[i])
 	{
-		if (check_identifier(g_v->cmdsp[i]))
+		if (check_identifier(g_v->cmdsp[i])  && !wach_kayn(g_v->cmdsp[i]))
 		{
 			while (tmp)
 			{
