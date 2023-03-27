@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/26 13:57:23 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/03/27 12:57:53 by ajari            ###   ########.fr       */
+>>>>>>> 1fd05cdb514a5417abf4b1608a1ab17278d4255e
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +19,12 @@
 
 # include <fcntl.h>
 # include <limits.h>
-# include <sys/wait.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/errno.h>
+# include <sys/wait.h>
 # include <unistd.h>
 # define RED "\033[0;31m"
 # define BLUE "\033[36;01m"
@@ -36,7 +40,7 @@ typedef struct t_env
 	char			*value;
 	int				index;
 	struct t_env	*next;
-}					t_env;       
+}					t_env;
 
 typedef struct s_var
 {
@@ -72,8 +76,13 @@ void				export(void);
 void				cd(int child);
 void				unset(t_list *list);
 void				env(t_env *env);
+<<<<<<< HEAD
 void				ft_exit();
 void				exit_status(int exit_status, int x);
+=======
+void				ft_exit(void);
+void				exit_status(int exit_status);
+>>>>>>> 1fd05cdb514a5417abf4b1608a1ab17278d4255e
 void				ft_child(t_list *list, int *pp);
 char				**a_split(char const *s, char c);
 char				*strjoin_a(char const *s1, char const *s2);
@@ -85,8 +94,8 @@ void				iterate_cmds(t_list *lst);
 void				print(char c, int color, char *str);
 int					error(char c, char *str_er);
 t_env				*getlstenv(char **ev);
-void				fill_cmds(char *s, t_env *ev);
-char				*expend(t_env *env, char *s, int i);
+void				fill_cmds(char *s, t_env *ev, t_var *var);
+char				*expend(char *s, int i, int exp);
 void				no_expend(char *s, char **dup, char c, int *i);
 void				search_replace(t_env *env, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
@@ -94,5 +103,7 @@ int					len_name(char *s);
 char				*add_spc(char *s, int i);
 char				*rm_quote(char *s, int i, char c);
 int					check_in(char *s);
+void				lstfree(t_list *list);
+void				addmany_chars(char **dup, char *s, int fre);
 /////////////////////////////////////////////
 #endif

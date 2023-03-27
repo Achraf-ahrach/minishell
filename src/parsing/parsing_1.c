@@ -6,42 +6,45 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 18:57:20 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/27 13:04:24 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-void	fill_cmds(char *s, t_env *env)
+void	fill_cmds(char *s, t_env *env, t_var *var)
 {
 	char	**c;
 	int		i;
 
-	c = ft_split(add_spc(s, 0), '|', 1);
 	i = 0;
+	c = ft_split(add_spc(s, 0), '|', 1);
 	while (c && c[i])
-		ft_lstadd_back(&g_v, ft_lstnew(ft_split(c[i++], ' ', 1), env));
-	free(c[i]);
+		ft_lstadd_back(&g_v, ft_lstnew(ft_split(c[i++], ' ', 1), env, var));
 	free(c);
 }
 
 int	main(int ac, char **av, char **ev)
 {
 	char	*s;
+	char	ss[1000];
 	int		i;
 	char	**m;
 	t_env	*env;
 	t_env	*j;
 	t_list	*tem;
+	t_var	*var;
 
-	//char	*s;
 	(void)ac;
 	(void)av;
 	(void)i;
 	(void)tem;
 	env = 0;
 	env = getlstenv(ev);
+	var = malloc(sizeof(t_var));
+	if (!var)
+		return (error(0, "error en allocation"));
 	j = env;
 	m = NULL;
 	i = 0;
@@ -49,21 +52,27 @@ int	main(int ac, char **av, char **ev)
 	{
 		g_v = 0;
 		s = readline("\033[0;32mMINISHELL#(*_*)|\033[36;01m❯❯❯❯\033[0m");
-		// rm_quote(s, 0, 0);
-		// printf("%s\n", s);
 		if (!s || !check_in(s))
 			continue ;
-		fill_cmds(s, env);
+		fill_cmds(s, env, var);
 		iterate_cmds(g_v);
-		// while (g_v)
-		// {
-		// 	for (int i = 0; g_v->cmd[i]; i++)
-		// 		printf(">%d:%s\n", i, g_v->cmd[i]);
-		// 	g_v = g_v->next;
-		// }
-		//system("leaks minishell");
-		//m = expend(env, s, 0);
-		// print(0, 33, s);
-		// free(s);
+		tem = g_v;
+		while (g_v)
+		{
+			printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
+			for (int i = 0; g_v->cmdsp && g_v->cmdsp[i]; i++)
+			{
+				if (!i)
+					printf("cmd:");
+				printf("%s ", g_v->cmdsp[i]);
+			}
+			printf("\nstat:%d\ninfile:%d\n", g_v->stat, g_v->i_f);
+			read(g_v->i_f, ss, 100);
+			printf("%s\n", ss);
+			printf("outfile:%d\nh_doc:%s\n", g_v->o_f, g_v->h_d);
+			g_v = g_v->next;
+		}
+		lstfree(tem);
+		system("leaks minishell");
 	}
 }

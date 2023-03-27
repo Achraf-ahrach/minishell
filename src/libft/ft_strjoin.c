@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:30:07 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/23 15:34:52 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/03/23 14:40:44 by ajari            ###   ########.fr       */
+>>>>>>> 1fd05cdb514a5417abf4b1608a1ab17278d4255e
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +26,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	sub = malloc(len + 1);
 	if (!sub)
 		return (NULL);
-	ft_memset((void *)sub, '*', len);
+	ft_memset((void *)sub, 0, len);
 	if (s1)
 	{
 		ft_strlcpy(sub, s1, len + 1);

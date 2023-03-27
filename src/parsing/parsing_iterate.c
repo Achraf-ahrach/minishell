@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 19:08:27 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/27 13:11:25 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	add_arg(char *s, int *i, char ***cmd)
 		add_str(cmd, str);
 	}
 }
+
 int	infd(char *name, int *stat)
 {
 	int	fd;
@@ -37,14 +38,12 @@ int	infd(char *name, int *stat)
 	if (access(name, F_OK) == -1)
 	{
 		printf("minishell: %s :no such file or directory\n", name);
-		*stat = -1;
-		return (-1);
+		return (*stat = 0, -1);
 	}
 	if (access(name, R_OK) == -1)
 	{
 		printf("minishell: %s :bermission denied\n", name);
-		*stat = -1;
-		return (-1);
+		return (*stat = 0, -1);
 	}
 	fd = open(name, O_RDONLY, 777);
 	return (fd);
@@ -54,14 +53,15 @@ int	outfd(char *name, int trunc, int *stat)
 {
 	int	fd;
 
-	if (!access(name, F_OK))
+	if (access(name, F_OK) == -1)
 	{
-		if (access(name, W_OK) == -1)
-		{
-			printf("minishell: %s :bermission denied\n", name);
-			*stat = -1;
-			return (-1);
-		}
+		printf("minishell: %s :bermission denied\n", name);
+		return (*stat = 0, -1);
+	}
+	if (access(name, W_OK) == -1)
+	{
+		printf("minishell: %s :bermission denied\n", name);
+		return (*stat = 0, -1);
 	}
 	if (trunc)
 		fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 777);
@@ -70,57 +70,66 @@ int	outfd(char *name, int trunc, int *stat)
 	return (fd);
 }
 
-char	*here_doc(char *limeter)
+int	here_doc(char *lim, char *s, int exp)
 {
-	int		expend;
-	char	*s;
-	char	*str;
+	int	p[2];
 
-	str = NULL;
-	if (str[0] == '\'' || str[0] == '\"')
-		expend = 1;
+	pipe(p);
+	if (lim && (lim[0] == '\'' || lim[0] == '\"'))
+		exp = 0;
 	else
-		expend = 0;
+		exp = 1;
 	while (1)
 	{
 		s = readline("\033[36;01mhere_doc>");
-		if (!ft_strcmp(s, limeter))
-			return (str);
-		if (expend)
-			str = ft_strjoin(str, ft_strjoin(s, ft_strdup("\n")));
+		if (!ft_strcmp(s, rm_quote(lim, 0, 0)))
+			return (free(s), close(p[1]), p[0]);
+		s = expend(s, 0, exp);
+		write(p[1], s, ft_strlen(s));
+		write(p[1], "\n", 1);
+		free(s);
 	}
 }
 
-void	one_cmd(t_list *lst)
+void	one_cmd(t_list *t)
 {
 	int	i;
 
 	i = 0;
-	while (lst->cmd[i])
+	while (t->cmd[i])
 	{
-		if (!ft_strcmp(rm_quote(lst->cmd[i], 0, 0), "<"))
-			lst->infile = infd(rm_quote(lst->cmd[++i], 0, 0), &lst->stat);
-		else if (!ft_strcmp(rm_quote(lst->cmd[i], 0, 0), "<<"))
-			lst->h_d = here_doc(lst->cmd[++i]);
-		else if (!ft_strcmp(rm_quote(lst->cmd[i], 0, 0), ">"))
-			lst->outfile = outfd(rm_quote(lst->cmd[++i], 0, 0), 0, &lst->stat);
-		else if (!ft_strcmp(rm_quote(lst->cmd[i], 0, 0), ">>"))
-			lst->outfile = outfd(rm_quote(lst->cmd[++i], 0, 0), 1, &lst->stat);
+		if (!ft_strcmp(t->cmd[i], "<"))
+			t->i_f = infd(t->cmd[++i], &t->stat);
+		else if (!ft_strcmp(t->cmd[i], "<<"))
+			t->i_f = here_doc(t->cmd[++i], 0, 0);
+		else if (!ft_strcmp(t->cmd[i], ">"))
+			t->o_f = outfd(t->cmd[++i], 0, &t->stat);
+		else if (!ft_strcmp(t->cmd[i], ">>"))
+			t->o_f = outfd(t->cmd[++i], 1, &t->stat);
 		else
-			add_str(&lst->cmdsp, rm_quote(lst->cmd[i++], 0, 0));
+			add_str(&t->cmdsp, t->cmd[i]);
+		i++;
 	}
 }
 
-void	iterate_cmds(t_list *lst)
+void	iterate_cmds(t_list *t)
 {
 	int i;
 
-	i = 0;
-
-	while (lst)
+	while (t)
 	{
-		one_cmd(lst);
-		printf("stat :%d\n", lst->stat);
-		lst = lst->next;
+		i = 0;
+		while (t->cmd && t->cmd[i])
+		{
+			if (!ft_strcmp(t->cmd[i], "<") || !ft_strcmp(t->cmd[i], ">>")
+				|| !ft_strcmp(t->cmd[i], ">"))
+			{
+				t->cmd[i + 1] = rm_quote(expend(t->cmd[i + 1], 0, 1), 0, 0);
+				i++;
+			}
+			i++;
+		}
+		one_cmd(t);
+		t = t->next;
 	}
 }
