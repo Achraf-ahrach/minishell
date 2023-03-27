@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 09:55:51 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/24 14:38:46 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/27 12:59:18 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	util(t_list *p, char **cmd, t_env *ev, t_var *var)
 {
 	p->cmd = cmd;
 	p->h_d = NULL;
-	p->infile = -1;
-	p->outfile = -1;
-	p->stat = 0;
+	p->i_f = -2;
+	p->o_f = -2;
+	p->stat = 1;
 	p->env = ev;
 	p->cmdsp = NULL;
 	p->err = NULL;

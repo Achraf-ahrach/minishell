@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 16:08:02 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/23 09:37:01 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/25 13:38:05 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char	**ft_split(char *s, char c, int chiffre)
 
 	i = 0;
 	end = 0;
-	result = 0;
 	if (!s)
 		return (NULL);
 	str_chiffre(s, chiffre, 0, &c);

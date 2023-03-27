@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/23 11:03:51 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/26 14:52:56 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,15 @@ int	len_name(char *s)
 
 void	search_replace(t_env *env, char *s, char **dup, int *i)
 {
-	int		j;
 	char	*d;
 
-	j = 0;
 	d = ft_substr(s, 0, len_name(s));
 	while (env)
 	{
 		if (!ft_strcmp(env->key, d))
-		{
-			while (env->value[j])
-				add_char(dup, env->value[j++]);
-		}
+			addmany_chars(dup, env->value, 0);
+		if (!ft_strcmp("?", d))
+			addmany_chars(dup, ft_itoa(g_v->var->exit_status), 1);
 		env = env->next;
 	}
 	free(d);
@@ -55,7 +52,7 @@ void	no_expend(char *s, char **dup, char c, int *i)
 	}
 }
 
-char	*expend(t_env *env, char *s, int i, int exp)
+char	*expend(char *s, int i, int exp)
 {
 	char	*dup;
 
@@ -67,7 +64,7 @@ char	*expend(t_env *env, char *s, int i, int exp)
 		if (s[i] == '\'')
 			no_expend(s, &dup, '\'', &i);
 		else if (s[i] == '$')
-			search_replace(env, &s[i + 1], &dup, &i);
+			search_replace(g_v->env, &s[i + 1], &dup, &i);
 		else
 		{
 			add_char(&dup, s[i]);

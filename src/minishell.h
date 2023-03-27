@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/24 14:37:23 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/27 12:57:53 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct s_list
 {
 	char			**cmdsp;
 	char			**cmd;
-	int				infile;
-	int				outfile;
+	int				i_f;
+	int				o_f;
 	char			*h_d;
 	int				stat;
 	t_env			*env;
@@ -82,8 +82,8 @@ void				iterate_cmds(t_list *lst);
 void				print(char c, int color, char *str);
 int					error(char c, char *str_er);
 t_env				*getlstenv(char **ev);
-void				fill_cmds(char *s, t_env *ev);
-char				*expend(t_env *env, char *s, int i, int exp);
+void				fill_cmds(char *s, t_env *ev, t_var *var);
+char				*expend(char *s, int i, int exp);
 void				no_expend(char *s, char **dup, char c, int *i);
 void				search_replace(t_env *env, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
@@ -92,5 +92,6 @@ char				*add_spc(char *s, int i);
 char				*rm_quote(char *s, int i, char c);
 int					check_in(char *s);
 void				lstfree(t_list *list);
+void				addmany_chars(char **dup, char *s, int fre);
 /////////////////////////////////////////////
 #endif

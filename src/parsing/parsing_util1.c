@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:08:41 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/24 11:40:42 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/26 14:41:45 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ void	free_one(t_list *list)
 {
 	int	i;
 
-	i = 0;
-	while (list->cmdsp && list->cmdsp[i])
-		free(list->cmdsp[i++]);
 	i = 0;
 	while (list->cmd && list->cmd[i])
 		free(list->cmd[i++]);
@@ -36,9 +33,22 @@ void	lstfree(t_list *list)
 
 	while (list)
 	{
-		printf("hello\n");
 		tmp = list->next;
 		free_one(list);
 		list = tmp;
 	}
+}
+
+void	addmany_chars(char **dup, char *s, int fre)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		add_char(dup, s[i]);
+		i++;
+	}
+	if (fre)
+		free(s);
 }
