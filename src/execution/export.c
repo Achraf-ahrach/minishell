@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/17 08:35:03 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/27 18:01:38 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*cat_equals(char *str, int x)
 
 	i = 0;
 	len = 0;
-	while (str[i] && str[i] != '=')
+	while (str[len] && str[len] != '=')
 		len++;
 	p = malloc(len + 2);
 	i = 0;
@@ -82,7 +82,9 @@ void	export_add(t_env *env, char *key, char *str)
 			free(e);
 			return ;
 		}
-		new = env_new(key, NULL);
+		new = env_new(ft_strdup(key), NULL);
+		new->equals = 0;
+		new->index = 0;
 		envadd_back(&g_v->env, new);
 	}
 	else
@@ -126,6 +128,12 @@ void	sort_export(t_env *env)
 	int		j;
 	
 	j = 1;
+	tmp = env;
+	while (tmp)
+	{
+		tmp->index = 0;
+		tmp = tmp->next;
+	}
 	size = ft_lstsize_env(env);
 	while (j <= size)
 	{
@@ -158,7 +166,7 @@ int	check_identifier(char *str)
 	{
 		if (ft_isalpha(str[i]) || ft_isdigit(str[i]) || str[i] == '_')
 			i++;
-		else if (str[i] == '+' && str[i + 1] == '=')
+		else if (str[i] == '=' || (str[i] == '+' && str[i + 1] == '='))
 			return (1);
 		else
 			error = 1;
@@ -168,10 +176,25 @@ int	check_identifier(char *str)
 		ft_putstr_fd("minishell: export: '", 2);
 		ft_putstr_fd(str, 2);
 		ft_putstr_fd("': not a valid identifier", 2);
+		exit_status(1, 0);
 		return (0);
 	}
 	return (1);
 }
+
+// int	wach_kayn(char *str)
+// {
+// 	t_env env;
+
+// 	env = g_v->env;
+// 	while (env)
+// 	{
+// 		if (!ft_strcmp(str, env->key) && !env->value)
+// 			return (0);
+// 		env = env->next;
+// 	}
+// 	return (1);
+// }
 
 void	export_()
 {
@@ -192,8 +215,10 @@ void	export_()
 				p = cat_equals(g_v->cmdsp[i], 0);
 				if (p)
 				{
+					printf("==>>>> 1 hhhhhhhhhhhh\n");
 					if (!ft_strcmp(tmp->key, p))
 					{
+						//printf("hna\n");
 						export_add(tmp, g_v->cmdsp[i], "present");
 						free(p);
 						return ;
@@ -222,8 +247,10 @@ void	export()
 	int		i;
 	int 	size;
 	t_env	*tmp;
+	char	e;
 
 	i = 1;
+	size = 0;
 	if (!g_v->cmdsp[i])
 	{
 		sort_export(g_v->env);
@@ -233,15 +260,16 @@ void	export()
 			tmp = g_v->env;
 			while (tmp)
 			{
-				if (tmp->index == size && tmp->equals == 1)
+				if (tmp->index == size)
 				{
-					printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
-					size--;
-					break ;
-				}
-				else if (tmp->index == size && tmp->equals == 0)
-				{
-					printf("declare -x %s\"%s\"\n", tmp->key, tmp->value);
+					if (!tmp->equals)
+						e = '\0';
+					else
+						e = '=';
+					if (tmp->value)
+						printf("declare -x %s%c\"%s\"\n", tmp->key, e ,tmp->value);
+					else
+						printf("declare -x %s%c\n", tmp->key, e);
 					size--;
 					break ;
 				}

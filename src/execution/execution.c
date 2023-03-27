@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/27 13:37:50 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/27 16:01:23 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	builtins(int is_child)
 	else if (!ft_strcmp(g_v->cmdsp[0], "pwd"))
 		pwd(is_child);
 	else if (!ft_strcmp(g_v->cmdsp[0], "cd"))
-		cd(is_child);
+		cd();
 	else if (!ft_strcmp(g_v->cmdsp[0], "export"))
 		export();
 	else if (!ft_strcmp(g_v->cmdsp[0], "unset"))
@@ -32,7 +32,7 @@ int	builtins(int is_child)
 	else
 		return (0);
 	if (is_child)
-		exit_status(0);
+		exit_status(0, 0);
 	return (1);
 }
 
@@ -63,38 +63,38 @@ void	execution()
 
 	list = g_v;
 	if (ft_lstsize(list) == 1)
+		builtins(0);
+	else
 	{
-		if (builtins(0))
-			exit(0);
-	}
-	while (list)
-	{
-		if (list->next && list->stat)
+		while (list)
 		{
-			pipe(pp);
-			if (fork() == 0)
+			if (list->next && list->stat)
 			{
-				dup_pipe(list, pp);
-				ft_child(list, pp);
+				pipe(pp);
+				if (fork() == 0)
+				{
+					dup_pipe(list, pp);
+					ft_child(list);
+				}
+				close(pp[1]);
+				close(pp[0]);
+				dup2(pp[1], 0);
 			}
-			close(pp[1]);
-			close(pip[0]);
-			dup2(pp[1], 0);
-		}
-		else if (list->stat)
-		{
-			if (fork() == 0)
+			else if (list->stat)
 			{
-				dup_file(list);
-				ft_child(list, pp);
+				if (fork() == 0)
+				{
+					dup_file(list);
+					ft_child(list);
+				}
 			}
+			list = list->next;
 		}
-		list = list->next;
+		i = -1;
+		while (++i < ft_lstsize(g_v))
+			waitpid(-1, &exit_status, 0);
+		g_v->var->exit_status = WEXITSTATUS(exit_status);
 	}
-	i = -1;
-	while (++i < ft_lstsize(g_v))
-		waitpid(-1, &exit_status, 0);
-	g_v->var->exit_status = WEXITSTATUS(exit_status);
 }
 
 // int main(int ac, char **av, char **env)

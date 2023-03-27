@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/25 12:13:24 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/27 13:51:09 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	cut_pwd(char *pwd)
 	return (0);
 }
 
-void	cd(int is_child)
+void	cd()
 {
 	t_env	*env;
 	char	buffer[PATH_MAX];
@@ -109,6 +109,6 @@ void	cd(int is_child)
 	if (error)
 	{
 		printf("minishell: %s: %s: No such file or directory\n", g_v->cmdsp[0], g_v->cmdsp[1]);
-		exit_status(1);
+		exit_status(1, 1);
 	}
 }

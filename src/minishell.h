@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/26 13:57:23 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/03/27 12:57:53 by ajari            ###   ########.fr       */
->>>>>>> 1fd05cdb514a5417abf4b1608a1ab17278d4255e
+/*   Updated: 2023/03/27 13:54:06 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +50,9 @@ typedef struct s_list
 	char			**cmd;
 	int				i_f;
 	int				o_f;
-	char			*h_d;
 	int				stat;
 	t_env			*env;
 	t_var			*var;
-	const char		*err;
 	struct s_list	*next;
 }					t_list;
 
@@ -73,17 +67,13 @@ int					builtins(int is_child);
 void				pwd(int is_child);
 void				echo(char **cmd);
 void				export(void);
-void				cd(int child);
+void				execution();
+void				cd(void);
 void				unset(t_list *list);
 void				env(t_env *env);
-<<<<<<< HEAD
 void				ft_exit();
 void				exit_status(int exit_status, int x);
-=======
-void				ft_exit(void);
-void				exit_status(int exit_status);
->>>>>>> 1fd05cdb514a5417abf4b1608a1ab17278d4255e
-void				ft_child(t_list *list, int *pp);
+void				ft_child(t_list *list);
 char				**a_split(char const *s, char c);
 char				*strjoin_a(char const *s1, char const *s2);
 

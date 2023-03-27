@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/26 13:46:38 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/27 13:48:00 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ char	*srch_path()
 	return (NULL);
 }
 
-void	ft_child(t_list *list, int *pp)
+void	ft_child(t_list *list)
 {
 	char	**p;
 	char	*comand;

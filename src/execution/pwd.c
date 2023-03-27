@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:06:01 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/23 11:36:58 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/27 13:50:06 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	pwd(int is_child)
 	{
         perror("Error");
 		if (is_child)
-			exit_status(127);
+			exit_status(127, 1);
 	}
 }

@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getenv_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/23 18:00:33 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/03/23 10:02:18 by ajari            ###   ########.fr       */
->>>>>>> 1fd05cdb514a5417abf4b1608a1ab17278d4255e
+/*   Updated: 2023/03/27 15:09:09 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +22,7 @@ t_env	*env_new(char *s1, char *s2)
 		return (NULL);
 	new->key = s1;
 	new->index = 0;
-	new->equals = 0;
+	new->equals = 1;
 	new->value = s2;
 	new->next = NULL;
 	return (new);
@@ -75,6 +71,5 @@ t_env	*getlstenv(char **ev)
 		envadd_back(&env, env_new(k, v));
 		i++;
 	}
-	printf("==> %s\n", env->key);
 	return (env);
 }

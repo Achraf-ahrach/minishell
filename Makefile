@@ -1,12 +1,13 @@
 NAME = minishell
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
-SRC = src/parsing
+SRCP = src/parsing
+SRCE = src/execution
 OBJ = obj
 LIBFT = src/libft/libft.a
 LIB = -lreadline
-SRCS = $(wildcard $(SRC)/*.c)
-OBJS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
+SRCS = $(wildcard $(SRCP)/*.c $(SRCE)/*.c)
+OBJS = $(patsubst $(SRCP)/%.c $(SRCE)/%.c, $(OBJ)/%.o, $(SRCS))
 
 
 all: $(NAME)
