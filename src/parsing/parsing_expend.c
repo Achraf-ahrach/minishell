@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/26 14:52:56 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/28 14:08:32 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	len_name(char *s)
 	int	i;
 
 	i = 0;
+	if (s[0] == '?')
+		return (1);
 	while (s[i] && ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')
 			|| s[i] == '_'))
 		i++;
@@ -29,13 +31,16 @@ void	search_replace(t_env *env, char *s, char **dup, int *i)
 	char	*d;
 
 	d = ft_substr(s, 0, len_name(s));
-	while (env)
+	if (!ft_strcmp("?", d))
+		addmany_chars(dup, ft_itoa(g_v->var->exit_status), 1);
+	else
 	{
-		if (!ft_strcmp(env->key, d))
-			addmany_chars(dup, env->value, 0);
-		if (!ft_strcmp("?", d))
-			addmany_chars(dup, ft_itoa(g_v->var->exit_status), 1);
-		env = env->next;
+		while (env)
+		{
+			if (!ft_strcmp(env->key, d))
+				addmany_chars(dup, env->value, 0);
+			env = env->next;
+		}
 	}
 	free(d);
 	*i += len_name(s) + 1;

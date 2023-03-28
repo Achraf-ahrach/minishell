@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/28 12:26:59 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/28 14:12:37 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ int	here_doc(char *lim, char *s, int exp)
 	pipe(p);
 	if (lim && (lim[0] == '\'' || lim[0] == '\"'))
 		exp = 0;
-	else
-		exp = 1;
 	if (fork() == 0)
 	{
 		while (1)
@@ -76,8 +74,7 @@ int	here_doc(char *lim, char *s, int exp)
 				break ;
 			}
 			s = expend(s, 0, exp);
-			write(p[1], s, ft_strlen(s));
-			write(p[1], "\n", 1);
+			ft_putendl_fd(p[1], s);
 			free(s);
 		}
 	}
@@ -96,7 +93,7 @@ void	one_cmd(t_list *t)
 		if (!ft_strcmp(t->cmd[i], "<"))
 			t->i_f = infd(t->cmd[++i], &t->stat);
 		else if (!ft_strcmp(t->cmd[i], "<<"))
-			t->i_f = here_doc(t->cmd[++i], 0, 0);
+			t->i_f = here_doc(t->cmd[++i], 0, 1);
 		else if (!ft_strcmp(t->cmd[i], ">"))
 			t->o_f = outfd(t->cmd[++i], 0, &t->stat);
 		else if (!ft_strcmp(t->cmd[i], ">>"))
@@ -117,7 +114,11 @@ void	iterate_cmds(t_list *t)
 		while (t->cmd && t->cmd[i])
 		{
 			if (i && ft_strcmp(t->cmd[i - 1], "<<"))
+			{
+				printf("%s\n", t->cmd[i]);
 				t->cmd[i] = rm_quote(expend(t->cmd[i], 0, 1), 0, 0);
+				printf("%s\n", t->cmd[i]);
+			}
 			i++;
 		}
 		one_cmd(t);
