@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/28 18:02:03 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/03/28 18:03:43 by ajari            ###   ########.fr       */
+>>>>>>> 76e824c5f631556186f732759ee3e5f3051d5aa0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +118,7 @@ void	iterate_cmds(t_list *t)
 		while (t->cmd && t->cmd[i])
 		{
 			if (i && ft_strcmp(t->cmd[i - 1], "<<"))
-			{
-				printf("%s\n", t->cmd[i]);
 				t->cmd[i] = rm_quote(expend(t->cmd[i], 0, 1), 0, 0);
-				printf("%s\n", t->cmd[i]);
-			}
 			i++;
 		}
 		one_cmd(t);
