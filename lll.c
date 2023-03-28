@@ -1,17 +1,23 @@
 #include "src/minishell.h"
+#include "src/libft/libft.h"
 #include <string.h>
 
 int	main(int ac, char **av, char **ev)
 {
-	int fd = open("ls", O_RDONLY, 777);
-	printf("fd:%d\n", fd);
+	int id;
+	int p[2];
 
-	dup2(fd, 0);
-	if (!fork())
-		execve("/bin/cat", &av[1], ev);
+	pipe(p);
+	id = fork();
+	if (!id)
+		ft_putstr_fd("hello fomr here\n",p[1]);
+	else
+	{
+		printf("fgjfgjflgjdfklgjfklgj\n");
 	wait(0);
-	close(fd);
-	fd = open("ls", O_RDONLY | O_WRONLY, 777);
-	write(fd, "hello\n", strlen("hello\n"));
-	//printf("fd:%d\n", fd);
+	close(p[1]);
+	dup2(p[0] , 0);
+	execve("/bin/cat", &av[1], ev);
+	}
+	
 }

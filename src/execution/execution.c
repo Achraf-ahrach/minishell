@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/28 18:08:22 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/28 21:40:49 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,20 @@ void	dup_pipe(t_list *list, int *pp)
 		dup2(list->i_f, 0);
 	if (list->o_f != -1)
 		dup2(pp[1], 1);
+	//close(list);
 	close(pp[0]);
 	close(pp[1]);
 }
 
 void	dup_file(t_list *list)
 {
+	//printf("in = %d\nout = %d\n", list->i_f, list->o_f);
 	if (list->i_f != -1)
 		dup2(list->i_f, 0);
 	if (list->o_f != -1)
-		dup2(list->o_f, 0);
+		dup2(list->o_f, 1);
+	//close(list->i_f);
+	//close(list->o_f);
 }
 
 void	execution(void)
@@ -62,7 +66,7 @@ void	execution(void)
 	int		pp[2];
 
 	list = g_v;
-	if (ft_lstsize(list) == 1 && builtins(0))
+	if (ft_lstsize(list) == 1 && list->cmdsp && builtins(0))
 		return ;
 	else
 	{
@@ -96,29 +100,3 @@ void	execution(void)
 		g_v->var->exit_status = WEXITSTATUS(exit_status);
 	}
 }
-
-// int main(int ac, char **av, char **env)
-// {
-// 	char	*line;
-// 	char	**p;
-
-// 	g_v = malloc(sizeof(t_list));
-// 	//g_v->env =  malloc(sizeof(t_env));
-// 	line = readline("minishell: ");
-// 	g_v->env = getlstenv(env);
-// 	printf("g_v->env->key: %s\n", g_v->env->key);
-// 	return (0);
-// 	printf("%s\n", g_v->env->key);
-// 	p = a_split(line, ' ');
-// 	g_v = malloc(sizeof(t_list));
-// 	g_v->stat = 1;
-// 	g_v->cmdsp = malloc(2 * sizeof(char *));
-// 	//g_v->var = malloc(sizeof(t_var));
-// 	g_v->next = NULL;
-// 	g_v->infile = -1;
-// 	g_v->outfile = -1;
-// 	g_v->cmdsp[0] = ft_strdup(p[0]);
-// 	//g_v->cmdsp[1] = ft_strdup(p[1]);
-// 	g_v->cmdsp[1] = NULL;
-// 	execution();
-// }
