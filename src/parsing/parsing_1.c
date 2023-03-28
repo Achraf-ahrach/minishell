@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/27 16:00:05 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/27 18:41:10 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int ac, char **av, char **ev)
 	env = getlstenv(ev);
 	var = malloc(sizeof(t_var));
 	if (!var)
-		return (error(0, "error en allocation"));
+		return (error("error en allocation"));
 	j = env;
 	m = NULL;
 	i = 0;
@@ -53,27 +53,27 @@ int	main(int ac, char **av, char **ev)
 	{
 		g_v = 0;
 		s = readline("\033[0;32mMINISHELL#(*_*)|\033[36;01m❯❯❯❯\033[0m");
-		//add_history(ft_strdup(s)); //choufni a moul lparsing 
+		//add_history(ft_strdup(s)); //choufni a moul lparsing
 		if (!s || !check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
 		iterate_cmds(g_v);
 		tem = g_v;
-		// while (g_v)
-		// {
-		// 	printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
-		// 	for (int i = 0; g_v->cmdsp && g_v->cmdsp[i]; i++)
-		// 	{
-		// 		if (!i)
-		// 			printf("cmd:");
-		// 		printf("%s ", g_v->cmdsp[i]);
-		// 	}
-		// 	printf("\nstat:%d\ninfile:%d\n", g_v->stat, g_v->i_f);
-		// 	read(g_v->i_f, ss, 100);
-		// 	printf("%s\n", ss);
-		// 	printf("outfile:%d\n", g_v->o_f);
-		// 	g_v = g_v->next;
-		// }
+		while (g_v)
+		{
+			printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
+			for (int i = 0; g_v->cmdsp && g_v->cmdsp[i]; i++)
+			{
+				if (!i)
+					printf("cmd:");
+				printf("%s ", g_v->cmdsp[i]);
+			}
+			printf("\nstat:%d\ninfile:%d\n", g_v->stat, g_v->i_f);
+			//read(g_v->i_f, ss, 100);
+			//printf("%s\n", ss);
+			printf("outfile:%d\n", g_v->o_f);
+			g_v = g_v->next;
+		}
 		g_v = tem;
 		execution();
 		lstfree(tem);

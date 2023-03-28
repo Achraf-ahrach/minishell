@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/23 09:41:44 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/27 18:41:04 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	check_quote(char *s)
 				i++;
 		}
 		if (!s[i])
-			return (error(c, "do not forget to close quotes"));
+			return (error("do not forget to close quotes"));
 		i++;
 	}
 	return (1);
@@ -48,7 +48,7 @@ static int	check_file(char *s, char c)
 			while (ft_isspace(s[++i]))
 				;
 			if (s[i] == '<' || s[i] == '>')
-				return (error(0, "syntax error near unexpected token `<<'"));
+				return (error("syntax error near unexpected token `<<'"));
 		}
 		else
 			i++;
@@ -68,7 +68,7 @@ static int	check_pipe(char *s)
 			while (ft_isspace(s[++i]))
 				;
 			if (s[i] == '|')
-				return (error('|', "Minishell: Error sequance of pipe"));
+				return (error("Minishell: Error sequance of pipe"));
 		}
 		else
 			i++;
@@ -95,7 +95,7 @@ int	check_in(char *s)
 		(s[len] == '|') && (c = '|');
 		(s[len] == '<') && (c = '<');
 		(s[len] == '>') && (c = '>');
-		return (error(c, "syntax error near unexpected token"));
+		return (error("syntax error near unexpected token"));
 	}
 	return (check_quote(s) * check_file(s, 0) * check_pipe(s));
 }
