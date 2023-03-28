@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/28 14:12:37 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/28 17:54:44 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	here_doc(char *lim, char *s, int exp)
 				break ;
 			}
 			s = expend(s, 0, exp);
-			ft_putendl_fd(p[1], s);
+			ft_putendl_fd(s, p[1]);
 			free(s);
 		}
 	}

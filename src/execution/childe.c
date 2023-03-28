@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/27 13:48:00 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/28 18:01:05 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char	*cmd_access(char **p, char *comand)
 
 	j = 0;
 	i = -1;
-	if (access(comand, F_OK) == 0)
+	if (comand[0] == '/' && access(comand, F_OK) == 0)
 		return (comand);
 	while (i != 0 && p[j] != NULL)
 	{
@@ -159,7 +159,7 @@ void	ft_child(t_list *list)
 			exit_status (127, 1);
 		}
 		p = a_split(path, ':');
-		comand = cmd_access(p, g_v->cmdsp[0]);
+		comand = cmd_access(p, g_v->cmdsp[0]);;
 		if (!comand)
 		{
 			ft_putstr_fd(list->cmdsp[0], 2);
