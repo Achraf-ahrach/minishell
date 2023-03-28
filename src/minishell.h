@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/28 12:17:29 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/03/28 11:42:27 by ajari            ###   ########.fr       */
+>>>>>>> fba35c85123e538c281e3684789b91529a35ba8c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +72,11 @@ int					builtins(int is_child);
 void				pwd(int is_child);
 void				echo(char **cmd);
 void				export(void);
-void				execution();
+void				execution(void);
 void				cd(void);
 void				unset(t_list *list);
 void				env(t_env *env);
-void				ft_exit();
+void				ft_exit(void);
 void				exit_status(int exit_status, int x);
 void				ft_child(t_list *list);
 char				**a_split(char const *s, char c);
@@ -83,7 +87,7 @@ void				add_char(char **s, char c);
 void				add_str(char ***s, char *str);
 void				iterate_cmds(t_list *lst);
 void				print(char c, int color, char *str);
-int					error(char c, char *str_er);
+int					error(char *str_er, char *name);
 t_env				*getlstenv(char **ev);
 void				fill_cmds(char *s, t_env *ev, t_var *var);
 char				*expend(char *s, int i, int exp);
