@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/27 18:39:38 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/28 11:42:27 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void				add_char(char **s, char c);
 void				add_str(char ***s, char *str);
 void				iterate_cmds(t_list *lst);
 void				print(char c, int color, char *str);
-int					error(char *str_er);
+int					error(char *str_er, char *name);
 t_env				*getlstenv(char **ev);
 void				fill_cmds(char *s, t_env *ev, t_var *var);
 char				*expend(char *s, int i, int exp);

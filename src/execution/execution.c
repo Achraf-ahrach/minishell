@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/27 18:08:48 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/28 12:00:35 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
 int	builtins(int is_child)
 {
@@ -42,8 +42,8 @@ void	dup_pipe(t_list *list, int *pp)
 		dup2(list->i_f, 0);
 	if (list->o_f != -1)
 		dup2(pp[1], 1);
-	//close(pp[0]);
-	//close(pp[1]);
+	close(pp[0]);
+	close(pp[1]);
 }
 
 void	dup_file(t_list *list)
@@ -54,7 +54,7 @@ void	dup_file(t_list *list)
 		dup2(list->o_f, 0);
 }
 
-void	execution()
+void	execution(void)
 {
 	t_list	*list;
 	int		exit_status;
@@ -63,7 +63,7 @@ void	execution()
 
 	list = g_v;
 	if (ft_lstsize(list) == 1 && builtins(0))
-		return;
+		return ;
 	else
 	{
 		while (list)

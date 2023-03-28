@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/27 19:37:15 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/28 12:26:59 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,9 @@ int	infd(char *name, int *stat)
 	int	fd;
 
 	if (access(name, F_OK) == -1)
-	{
-		printf("minishell: %s :no such file or directory\n", name);
-		return (*stat = 0, -1);
-	}
+		return (error(": no such file or directory\n", name), *stat = 0, -1);
 	if (access(name, R_OK) == -1)
-	{
-		printf("minishell: %s :bermission denied\n", name);
-		return (*stat = 0, -1);
-	}
+		return (error(": bermission denied\n", name), *stat = 0, -1);
 	fd = open(name, O_RDONLY, 777);
 	return (fd);
 }
@@ -54,10 +48,7 @@ int	outfd(char *name, int trunc, int *stat)
 	int	fd;
 
 	if (access(name, W_OK) == 0 && access(name, W_OK) == -1)
-	{
-		printf("minishell: %s :permission denied\n", name);
-		return (*stat = 0, -1);
-	}
+		return (error(": permission denied\n", name), *stat = 0, -1);
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
@@ -74,16 +65,25 @@ int	here_doc(char *lim, char *s, int exp)
 		exp = 0;
 	else
 		exp = 1;
-	while (1)
+	if (fork() == 0)
 	{
-		s = readline("\033[36;01mhere_doc>");
-		if (!ft_strcmp(s, rm_quote(lim, 0, 0)))
-			return (free(s), close(p[1]), p[0]);
-		s = expend(s, 0, exp);
-		write(p[1], s, ft_strlen(s));
-		write(p[1], "\n", 1);
-		free(s);
+		while (1)
+		{
+			s = readline("\033[36;01mhere_doc>\033[0m");
+			if (!ft_strcmp(s, rm_quote(lim, 0, 0)))
+			{
+				free(s);
+				break ;
+			}
+			s = expend(s, 0, exp);
+			write(p[1], s, ft_strlen(s));
+			write(p[1], "\n", 1);
+			free(s);
+		}
 	}
+	wait(0);
+	close(p[1]);
+	return (p[0]);
 }
 
 void	one_cmd(t_list *t)

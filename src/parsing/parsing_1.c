@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/28 11:01:53 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/28 12:03:18 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,17 @@ int	main(int ac, char **av, char **ev)
 	env = getlstenv(ev);
 	var = malloc(sizeof(t_var));
 	if (!var)
-		return (error("error en allocation"));
+		return (error("error en allocation", ""));
 	j = env;
 	m = NULL;
 	i = 0;
 	while (1)
 	{
 		g_v = 0;
-		printf(RED);
-		s = readline("MINISHELL#(*_*)|❯❯❯❯");
-		//add_history(ft_strdup(s)); //choufni a moul lparsing
+		printf(GREEN);
+		s = readline("MINISHELL#(*_*)|❯❯❯❯\033[0m");
+		//printf(AS_DEFAULT);
+		add_history(ft_strdup(s)); //choufni a moul lparsing
 		if (!s || !check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
@@ -77,6 +78,7 @@ int	main(int ac, char **av, char **ev)
 		}
 		g_v = tem;
 		execution();
+		close(g_v->i_f);
 		lstfree(tem);
 		//system("leaks minishell");
 	}

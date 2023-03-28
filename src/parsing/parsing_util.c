@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/27 19:35:38 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/28 11:25:33 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	add_char(char **s, char c)
 	len = ft_strlen(*s);
 	add = malloc(len + 2);
 	if (!add)
-		exit(error("error allocation"));
+		exit(error("error allocation", ""));
 	if (*s)
 	{
 		ft_strcpy(add, *s);
@@ -54,10 +54,12 @@ void	add_char(char **s, char c)
 	*s = add;
 }
 
-int	error(char *str_er)
+int	error(char *str_er, char *name)
 {
 	write(2, RED, ft_strlen(RED));
-	ft_putendl_fd(str_er, 2);
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(name, 2);
+	ft_putstr_fd(str_er, 2);
 	return (0);
 }
 
