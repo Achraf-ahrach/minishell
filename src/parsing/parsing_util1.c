@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:08:41 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/28 14:04:24 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/28 18:06:11 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	addmany_chars(char **dup, char *s, int fre)
 	int	i;
 
 	i = 0;
-	printf("exitstatus:%s \n", s);
 	while (s[i])
 	{
 		add_char(dup, s[i]);
