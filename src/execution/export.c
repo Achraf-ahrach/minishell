@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/27 18:07:14 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/28 17:32:57 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,32 +59,37 @@ char	*cat_equals(char *str, int x)
 	return (NULL);
 }
 
-void	export_add(t_env *env, char *key, char *str)
+void	export_add(t_env *env, char *key, char *value,char *str)
 {
-	char	*e;
 	t_env	*new;
+	char	*e;
 
 	if (!ft_strcmp(str, "present"))
 	{
+		//printf("9bel => key = %s\nvalue = %s\n", env->key, env->value);
 		if (env->value)
 			free(env->value);
-		env->key = ft_strrchr(key, '=') + 1;
+		env->value = value;
+		printf("key = %s\nvalue = %s\n", env->key, env->value);
 		env->equals = 1;
+		env->index = 0;
 	}
 	else if (!ft_strcmp(str, "absent"))
 	{
 		e = cat_equals(key, 0);
 		if (e)
 		{
-			new = env_new(e, ft_strrchr(key, '=') + 1);
+			new = env_new(e, value);
 			new->equals = 1;
 			envadd_back(&g_v->env, new);
-			free(e);
+			//free(e);
+			//printf("key = (%s)\nvalue = (%s)\n", e, value);
 			return ;
 		}
 		new = env_new(ft_strdup(key), NULL);
 		new->equals = 0;
 		new->index = 0;
+		//printf("key = (%s)\nvalue = (%s)\n", ft_strdup(key), NULL);
 		envadd_back(&g_v->env, new);
 	}
 	else
@@ -189,11 +194,38 @@ int	wach_kayn(char *str)
 	env = g_v->env;
 	while (env)
 	{
-		if (!ft_strcmp(str, env->key) && !env->value)
+		if (!ft_strcmp(str, env->key))
 			return (1);
 		env = env->next;
 	}
 	return (0);
+}
+
+char	*join_plus(char const *s1, char const *s2)
+{
+	char	*p;
+	int		k;
+	int		i;
+	int		j;
+	int		c;
+
+	k = 0;
+	c = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	i = ft_strlen(s1);
+	j = ft_strlen(s2);
+	p = malloc((i + j + 1) * sizeof(char));
+	if (p == 0)
+		return (NULL);
+	while (k++ < i)
+		p[k] = s1[k];
+	while (k < i + j)
+	{
+		p[k++] = s2[c++];
+	}
+	p[k] = '\0';
+	return (p);
 }
 
 void	export_()
@@ -203,40 +235,50 @@ void	export_()
 	char	*p;
 	char	*s;
 	char	*l;
+	char	*v;
 
 	i = 1;
-	tmp = g_v->env;
+	v = NULL;
+	s = "pp";
 	while (g_v->cmdsp[i])
 	{
+		tmp = g_v->env;
 		if (check_identifier(g_v->cmdsp[i])  && !wach_kayn(g_v->cmdsp[i]))
 		{
-			while (tmp)
+			p = cat_equals(g_v->cmdsp[i], 0);
+			if (p)
+				v = ft_substr(g_v->cmdsp[i], len_equal(g_v->cmdsp[i]) + 1, ft_strlen(g_v->cmdsp[i]));
+			else
+				p = ft_strdup(g_v->cmdsp[i]);
+			if (wach_kayn(p))
 			{
-				p = cat_equals(g_v->cmdsp[i], 0);
-				if (p)
+				l = ft_strdup("+");
+				s = join_plus(g_v->cmdsp[i], l);
+				while (tmp)
 				{
-					printf("==>>>> 1 hhhhhhhhhhhh\n");
-					if (!ft_strcmp(tmp->key, p))
-					{
-						//printf("hna\n");
-						export_add(tmp, g_v->cmdsp[i], "present");
-						free(p);
-						return ;
-					}
-					l = ft_strdup("+");
-					s = ft_strjoin(tmp->key, l);
 					if (!ft_strcmp(tmp->key, s))
 					{
-						export_add(tmp, ft_strrchr(g_v->cmdsp[i], '=') + 1, "join");
-						free(p);
-						free(s);
+						printf("======>    join\n");
+						export_add(tmp, ft_strrchr(g_v->cmdsp[i], '=') + 1, v,"join");
+						break ;
 					}
-					free(p);
-					free(s);
+					if (!ft_strcmp(tmp->key, p))
+					{
+						printf("=======>    presnt\n");
+						export_add(tmp, g_v->cmdsp[i], v, "present");
+						break ;
+					}
+					tmp = tmp->next;
 				}
-				tmp = tmp->next;
+				free(l);
+				free(s);
 			}
-			export_add(tmp, g_v->cmdsp[i], "absent");
+			else
+			{
+				printf("makaynach (%s)\n", p);
+				export_add(tmp, g_v->cmdsp[i], v, "absent");
+			}
+			free(p);
 		}
 		i++;
 	}

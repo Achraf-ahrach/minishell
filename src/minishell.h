@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/27 13:54:06 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/28 12:17:29 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_list				*g_v;
 /////////////// execution //////////////////
 
 void				sort_env(t_env **env);
+int					len_equal(char *s);
 void				envadd_back(t_env **lst, t_env *new);
 t_env				*env_new(char *s1, char *s2);
 int					builtins(int is_child);
