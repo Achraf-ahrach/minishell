@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/29 12:06:35 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/29 23:07:58 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	error(char *str_er, char *name)
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(name, 2);
 	ft_putendl_fd(str_er, 2);
+	write(2, AS_DEFAULT, ft_strlen(AS_DEFAULT));
 	return (0);
 }
 
