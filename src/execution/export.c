@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/28 18:07:48 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/28 22:43:38 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -298,9 +298,9 @@ void	export()
 						e = '\0';
 					else
 						e = '=';
-					if (tmp->value)
+					if (tmp->value && ft_strcmp(tmp->key, "_"))
 						printf("declare -x %s%c\"%s\"\n", tmp->key, e ,tmp->value);
-					else
+					else if (ft_strcmp(tmp->key, "_"))
 						printf("declare -x %s%c\n", tmp->key, e);
 					size--;
 					break ;
