@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/28 14:08:32 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/29 16:22:51 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,40 @@ void	no_expend(char *s, char **dup, char c, int *i)
 		*i += 1;
 	}
 }
+void	squiplim(char **dup, char *s, int *i)
+{
+	(void)dup;
+	while (ft_isspace(s[*i]) || s[*i] == '<')
+	{
+		add_char(dup, s[*i]);
+		*i += 1;
+	}
+	while (!ft_isspace(s[*i]) && s[*i])
+	{
+		add_char(dup, s[*i]);
+		*i += 1;
+	}
+}
 
-char	*expend(char *s, int i, int exp)
+char	*expend(char *s, int exp)
 {
 	char	*dup;
+	int		i;
 
 	dup = NULL;
+	i = 0;
 	if (!exp)
 		return (s);
 	while (s[i])
 	{
 		if (s[i] == '\'')
 			no_expend(s, &dup, '\'', &i);
+		else if (!ft_strncmp(&s[i], "<<", 2))
+			squiplim(&dup, s, &i);
 		else if (s[i] == '$')
 			search_replace(g_v->env, &s[i + 1], &dup, &i);
 		else
-		{
-			add_char(&dup, s[i]);
-			i++;
-		}
+			add_char(&dup, s[i++]);
 	}
 	free(s);
 	return (dup);

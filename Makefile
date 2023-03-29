@@ -15,7 +15,7 @@ all: $(NAME)
 $(NAME):  $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(LIB) $(OBJS) $(LIBFT) -o $@
 
-$(OBJ)/%.o: $(SRC)/%.c $(OBJ)
+$(OBJ)/%.o: $(SRCP)/%.c $(SRCE)/%.c $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ):

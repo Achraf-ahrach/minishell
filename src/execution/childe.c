@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/29 12:07:21 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/29 23:06:02 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*join_cmd(char *s1, char *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	p = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	p = malloc((ft_strlen(s1) + ft_strlen(s2) + 2) * sizeof(char));
 	if (p == 0)
 		return (NULL);
 	while (*s1)
