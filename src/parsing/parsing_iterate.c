@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/28 18:03:43 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/28 21:29:59 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int	here_doc(char *lim, char *s, int exp)
 	pipe(p);
 	if (lim && (lim[0] == '\'' || lim[0] == '\"'))
 		exp = 0;
-	if (fork() == 0)
+		int id = fork();
+	if ( id == 0)
 	{
+		close(p[0]);
 		while (1)
 		{
 			s = readline("\033[36;01mhere_doc>\033[0m");
@@ -77,9 +79,14 @@ int	here_doc(char *lim, char *s, int exp)
 			ft_putendl_fd(s, p[1]);
 			free(s);
 		}
+		close(p[1]);
+		exit(0);
 	}
-	wait(0);
-	close(p[1]);
+	else
+	{
+		close(p[1]);
+		wait(0);
+	}
 	return (p[0]);
 }
 

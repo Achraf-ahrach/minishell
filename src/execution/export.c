@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/28 17:32:57 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/28 18:07:48 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,9 @@ void	export_add(t_env *env, char *key, char *value,char *str)
 
 	if (!ft_strcmp(str, "present"))
 	{
-		//printf("9bel => key = %s\nvalue = %s\n", env->key, env->value);
 		if (env->value)
 			free(env->value);
 		env->value = value;
-		printf("key = %s\nvalue = %s\n", env->key, env->value);
 		env->equals = 1;
 		env->index = 0;
 	}
@@ -82,14 +80,11 @@ void	export_add(t_env *env, char *key, char *value,char *str)
 			new = env_new(e, value);
 			new->equals = 1;
 			envadd_back(&g_v->env, new);
-			//free(e);
-			//printf("key = (%s)\nvalue = (%s)\n", e, value);
 			return ;
 		}
 		new = env_new(ft_strdup(key), NULL);
 		new->equals = 0;
 		new->index = 0;
-		//printf("key = (%s)\nvalue = (%s)\n", ft_strdup(key), NULL);
 		envadd_back(&g_v->env, new);
 	}
 	else
@@ -239,7 +234,6 @@ void	export_()
 
 	i = 1;
 	v = NULL;
-	s = "pp";
 	while (g_v->cmdsp[i])
 	{
 		tmp = g_v->env;
@@ -264,7 +258,6 @@ void	export_()
 					}
 					if (!ft_strcmp(tmp->key, p))
 					{
-						printf("=======>    presnt\n");
 						export_add(tmp, g_v->cmdsp[i], v, "present");
 						break ;
 					}
@@ -274,10 +267,7 @@ void	export_()
 				free(s);
 			}
 			else
-			{
-				printf("makaynach (%s)\n", p);
 				export_add(tmp, g_v->cmdsp[i], v, "absent");
-			}
 			free(p);
 		}
 		i++;
