@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/28 22:43:38 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/29 16:13:17 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void	sort_export(t_env *env)
 }
 
 
-int	check_identifier(char *str)
+int	check_identifier(char *str, int is_childe)
 {
 	int	i;
 	int	error;
@@ -169,14 +169,15 @@ int	check_identifier(char *str)
 		else if (str[i] == '=' || (str[i] == '+' && str[i + 1] == '='))
 			return (1);
 		else
+		{
 			error = 1;
+			break ;
+		}
 	}
 	if (error == 1)
 	{
-		ft_putstr_fd("minishell: export: '", 2);
-		ft_putstr_fd(str, 2);
-		ft_putstr_fd("': not a valid identifier", 2);
-		exit_status(1, 0);
+		ft_error("minishell: export: '", str, "': not a valid identifier", 1);
+		exit_status(1, is_childe);
 		return (0);
 	}
 	return (1);
@@ -223,7 +224,7 @@ char	*join_plus(char const *s1, char const *s2)
 	return (p);
 }
 
-void	export_()
+void	export_(int	is_childe)
 {
 	t_env	*tmp;
 	int		i;
@@ -237,7 +238,7 @@ void	export_()
 	while (g_v->cmdsp[i])
 	{
 		tmp = g_v->env;
-		if (check_identifier(g_v->cmdsp[i])  && !wach_kayn(g_v->cmdsp[i]))
+		if (check_identifier(g_v->cmdsp[i], is_childe)  && !wach_kayn(g_v->cmdsp[i]))
 		{
 			p = cat_equals(g_v->cmdsp[i], 0);
 			if (p)
@@ -252,12 +253,13 @@ void	export_()
 				{
 					if (!ft_strcmp(tmp->key, s))
 					{
-						printf("======>    join\n");
+						//printf("======>    join\n");
 						export_add(tmp, ft_strrchr(g_v->cmdsp[i], '=') + 1, v,"join");
 						break ;
 					}
 					if (!ft_strcmp(tmp->key, p))
 					{
+						//printf("present\n");
 						export_add(tmp, g_v->cmdsp[i], v, "present");
 						break ;
 					}
@@ -274,7 +276,7 @@ void	export_()
 	}
 }
 
-void	export()
+void	export(int is_childe)
 {
 	int		i;
 	int 	size;
@@ -310,5 +312,5 @@ void	export()
 		}
 	}
 	else
-		export_();
+		export_(is_childe);
 }

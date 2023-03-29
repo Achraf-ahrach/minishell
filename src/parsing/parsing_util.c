@@ -6,84 +6,43 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/28 11:25:33 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/29 12:03:10 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-void	add_str(char ***s, char *str)
-{
-	int		i;
-	char	**m;
-
-	i = 0;
-	while (*s && (*s)[i])
-		i++;
-	m = malloc(sizeof(char *) * (i + 2));
-	i = 0;
-	while (*s && (*s)[i])
-	{
-		m[i] = (*s)[i];
-		i++;
-	}
-	m[i++] = str;
-	m[i] = NULL;
-	if (*s)
-		free(*s);
-	*s = m;
-}
-
-void	add_char(char **s, char c)
-{
-	char	*add;
-	int		len;
-
-	len = ft_strlen(*s);
-	add = malloc(len + 2);
-	if (!add)
-		exit(error("error allocation", ""));
-	if (*s)
-	{
-		ft_strcpy(add, *s);
-		free(*s);
-	}
-	add[len] = c;
-	add[len + 1] = 0;
-	*s = add;
-}
-
 int	error(char *str_er, char *name)
 {
 	write(2, RED, ft_strlen(RED));
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(name, 2);
-	ft_putstr_fd(str_er, 2);
+	ft_putendl_fd(str_er, 2);
 	return (0);
 }
 
-int	open_fd(char **error, char *name, int mode)
+int	infd(char *name, int *stat)
 {
 	int	fd;
 
-	fd = open(name, mode, 777);
-	if (fd == -1)
-		*error = strerror(errno);
+	if (access(name, F_OK) == -1)
+		return (error(": no such file or directory\n", name), *stat = 0, -1);
+	if (access(name, R_OK) == -1)
+		return (error(": bermission denied\n", name), *stat = 0, -1);
+	fd = open(name, O_RDONLY, 777);
 	return (fd);
 }
 
-void	print(char c, int color, char *str)
+int	outfd(char *name, int trunc, int *stat)
 {
-	if (color == 31)
-		printf(RED);
-	else if (color == 32)
-		printf(GREEN);
-	else if (color == 33)
-		printf(WELLOW);
-	else if (color == 34)
-		printf(BLUE);
+	int	fd;
+
+	if (access(name, W_OK) == 0 && access(name, W_OK) == -1)
+		return (error(": permission denied\n", name), *stat = 0, -1);
+	if (trunc)
+		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
-		printf(AS_DEFAULT);
-	printf("%s%c\n", str, c);
+		fd = open(name, O_CREAT | O_WRONLY, 0777);
+	return (fd);
 }

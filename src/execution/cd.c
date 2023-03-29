@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/27 13:51:09 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/29 15:27:37 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	chang_pwd_oldpwd(char *oldpwd)
 {
 	char	buffer[PATH_MAX];
 	t_env	*env;
-
+	
 	env = g_v->env;
 	getcwd(buffer, sizeof(buffer));
 	while (env)
@@ -54,13 +54,25 @@ int	cut_pwd(char *pwd)
 	return (0);
 }
 
-void	cd()
+int	ft_error(char *one, char *two, char *thre, int new_line)
+{
+	write(2, RED, ft_strlen(RED));
+	ft_putstr_fd(one, 2);
+	ft_putstr_fd(two, 2);
+	if (new_line)
+		ft_putendl_fd(thre, 2);
+	else
+		ft_putstr_fd(thre, 2);
+	return (0);
+}
+
+void	cd(int is_childe)
 {
 	t_env	*env;
 	char	buffer[PATH_MAX];
-	int		error;
+	int		eror;
 
-	error = 0;
+	eror = 0;
 	env = g_v->env;
 	if (!g_v->cmdsp[1] || !ft_strcmp(g_v->cmdsp[1], "~"))
 	{
@@ -77,7 +89,7 @@ void	cd()
 			}
 			env = env->next;
 		}
-		error = 1;
+		eror = 2;
 	}
 	else if (!ft_strcmp(g_v->cmdsp[1], "-"))
 	{
@@ -95,20 +107,25 @@ void	cd()
 			}
 			env = env->next;
 		}
-		error = 1;
+		eror = 2;
 	}
 	else
 	{
     	getcwd(buffer, sizeof(buffer));
 		if (!chdir(g_v->cmdsp[1]))
 			chang_pwd_oldpwd(ft_strdup(buffer));
-
 		else
-			error = 1;
+			eror = 1;
 	}
-	if (error)
+	if (eror == 1)
 	{
-		printf("minishell: %s: %s: No such file or directory\n", g_v->cmdsp[0], g_v->cmdsp[1]);
-		exit_status(1, 1);
+		ft_error("minishell: ", g_v->cmdsp[0], ": ",0);
+		ft_error(g_v->cmdsp[1], ": ", "No such file or directory", 1);
+		exit_status(1, is_childe);
+	}
+	else if (eror == 2)
+	{
+		error(g_v->cmdsp[1], " OLDPWD not set");
+		exit_status(1, is_childe);
 	}
 }

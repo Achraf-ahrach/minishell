@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/28 18:11:30 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/29 16:13:46 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/errno.h>
@@ -67,9 +68,9 @@ t_env				*env_new(char *s1, char *s2);
 int					builtins(int is_child);
 void				pwd(int is_child);
 void				echo(char **cmd);
-void				export(void);
+void				export(int is_childe);
 void				execution(void);
-void				cd(void);
+void				cd(int is_childe);
 void				unset(t_list *list);
 void				env(t_env *env);
 void				ft_exit(void);
@@ -77,6 +78,7 @@ void				exit_status(int exit_status, int x);
 void				ft_child(t_list *list);
 char				**a_split(char const *s, char c);
 char				*strjoin_a(char const *s1, char const *s2);
+int					ft_error(char *one, char *two, char *thre, int new_line);
 
 //////////// parsing ////////////////////
 void				add_char(char **s, char c);
@@ -94,6 +96,8 @@ int					len_name(char *s);
 char				*add_spc(char *s, int i);
 char				*rm_quote(char *s, int i, char c);
 int					check_in(char *s);
+int					infd(char *name, int *stat);
+int					outfd(char *name, int trunc, int *stat);
 void				lstfree(t_list *list);
 void				addmany_chars(char **dup, char *s, int fre);
 /////////////////////////////////////////////

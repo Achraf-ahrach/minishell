@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/29 12:01:43 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:07:21 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,11 +167,12 @@ void	ft_child(t_list *list)
 		if (access(comand, X_OK))
 		{
 			perror("Error:");
+			write(2, "\n", 1);
 			exit_status (126, 1);
 		}
 		execve(comand, list->cmdsp, ft_env(g_v->env));
 		perror("Error: ");
-		
+		write(2, "\n", 1);
 		exit_status (127, 1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/29 11:54:20 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/29 22:58:07 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	builtins(int is_child)
 	else if (!ft_strcmp(g_v->cmdsp[0], "pwd"))
 		pwd(is_child);
 	else if (!ft_strcmp(g_v->cmdsp[0], "cd"))
-		cd();
+		cd(is_child);
 	else if (!ft_strcmp(g_v->cmdsp[0], "export"))
-		export();
+		export(is_child);
 	else if (!ft_strcmp(g_v->cmdsp[0], "unset"))
 		unset(g_v);
 	else if (!ft_strcmp(g_v->cmdsp[0], "env"))
