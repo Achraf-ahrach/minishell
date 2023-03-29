@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/29 15:35:11 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/29 16:28:30 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	fill_cmds(char *s, t_env *env, t_var *var)
 	int		i;
 
 	i = 0;
-	c = ft_split(expend(add_spc(s, 0), 0, 0), '|', 1);
+	g_v = ft_lstnew(0, env, var);
+	c = ft_split(expend(add_spc(s, 0), 1), '|', 1);
+	free(g_v);
+	g_v = 0;
 	while (c && c[i])
 		ft_lstadd_back(&g_v, ft_lstnew(ft_split(c[i++], ' ', 1), env, var));
 	free(c);
@@ -68,7 +71,7 @@ int	main(int ac, char **av, char **ev)
 			{
 				if (!i)
 					printf("cmd:");
-				printf("-%s- ", g_v->cmdsp[i]);
+				printf("#%s# ", g_v->cmdsp[i]);
 			}
 			printf("\nstat:%d\ninfile:%d\n", g_v->stat, g_v->i_f);
 			//read(g_v->i_f, ss, 100);
