@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/28 21:29:59 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/29 11:41:59 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,37 +56,40 @@ int	outfd(char *name, int trunc, int *stat)
 	return (fd);
 }
 
-int	here_doc(char *lim, char *s, int exp)
+void	utilhere_doc(int *p, char *lim, int exp)
+{
+	char	*s;
+
+	close(p[0]);
+	while (1)
+	{
+		s = readline("\033[36;01mhere_doc>\033[0m");
+		if (!ft_strcmp(s, rm_quote(lim, 0, 0)))
+		{
+			free(s);
+			break ;
+		}
+		s = expend(s, 0, exp);
+		ft_putendl_fd(s, p[1]);
+		free(s);
+	}
+	close(p[1]);
+	exit(0);
+}
+
+int	here_doc(char *lim, int exp)
 {
 	int	p[2];
+	int	id;
 
 	pipe(p);
 	if (lim && (lim[0] == '\'' || lim[0] == '\"'))
 		exp = 0;
-		int id = fork();
-	if ( id == 0)
-	{
-		close(p[0]);
-		while (1)
-		{
-			s = readline("\033[36;01mhere_doc>\033[0m");
-			if (!ft_strcmp(s, rm_quote(lim, 0, 0)))
-			{
-				free(s);
-				break ;
-			}
-			s = expend(s, 0, exp);
-			ft_putendl_fd(s, p[1]);
-			free(s);
-		}
-		close(p[1]);
-		exit(0);
-	}
-	else
-	{
-		close(p[1]);
-		wait(0);
-	}
+	id = fork();
+	if (id == 0)
+		utilhere_doc(p, lim, exp);
+	close(p[1]);
+	wait(0);
 	return (p[0]);
 }
 
@@ -100,7 +103,7 @@ void	one_cmd(t_list *t)
 		if (!ft_strcmp(t->cmd[i], "<"))
 			t->i_f = infd(t->cmd[++i], &t->stat);
 		else if (!ft_strcmp(t->cmd[i], "<<"))
-			t->i_f = here_doc(t->cmd[++i], 0, 1);
+			t->i_f = here_doc(t->cmd[++i], 1);
 		else if (!ft_strcmp(t->cmd[i], ">"))
 			t->o_f = outfd(t->cmd[++i], 0, &t->stat);
 		else if (!ft_strcmp(t->cmd[i], ">>"))
@@ -113,7 +116,7 @@ void	one_cmd(t_list *t)
 
 void	iterate_cmds(t_list *t)
 {
-	int i;
+	int	i;
 
 	while (t)
 	{
