@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/29 11:41:59 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/29 11:55:30 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,6 @@ void	add_arg(char *s, int *i, char ***cmd)
 		}
 		add_str(cmd, str);
 	}
-}
-
-int	infd(char *name, int *stat)
-{
-	int	fd;
-
-	if (access(name, F_OK) == -1)
-		return (error(": no such file or directory\n", name), *stat = 0, -1);
-	if (access(name, R_OK) == -1)
-		return (error(": bermission denied\n", name), *stat = 0, -1);
-	fd = open(name, O_RDONLY, 777);
-	return (fd);
-}
-
-int	outfd(char *name, int trunc, int *stat)
-{
-	int	fd;
-
-	if (access(name, W_OK) == 0 && access(name, W_OK) == -1)
-		return (error(": permission denied\n", name), *stat = 0, -1);
-	if (trunc)
-		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	else
-		fd = open(name, O_CREAT | O_WRONLY, 0777);
-	return (fd);
 }
 
 void	utilhere_doc(int *p, char *lim, int exp)

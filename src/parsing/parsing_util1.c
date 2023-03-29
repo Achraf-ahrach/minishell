@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:08:41 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/28 18:06:11 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/29 11:58:04 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,25 @@ void	lstfree(t_list *list)
 	}
 }
 
+void	add_char(char **s, char c)
+{
+	char	*add;
+	int		len;
+
+	len = ft_strlen(*s);
+	add = malloc(len + 2);
+	if (!add)
+		exit(error("error allocation", *s));
+	if (*s)
+	{
+		ft_strcpy(add, *s);
+		free(*s);
+	}
+	add[len] = c;
+	add[len + 1] = 0;
+	*s = add;
+}
+
 void	addmany_chars(char **dup, char *s, int fre)
 {
 	int	i;
@@ -51,4 +70,26 @@ void	addmany_chars(char **dup, char *s, int fre)
 	}
 	if (fre)
 		free(s);
+}
+
+void	add_str(char ***s, char *str)
+{
+	int		i;
+	char	**m;
+
+	i = 0;
+	while (*s && (*s)[i])
+		i++;
+	m = malloc(sizeof(char *) * (i + 2));
+	i = 0;
+	while (*s && (*s)[i])
+	{
+		m[i] = (*s)[i];
+		i++;
+	}
+	m[i++] = str;
+	m[i] = NULL;
+	if (*s)
+		free(*s);
+	*s = m;
 }

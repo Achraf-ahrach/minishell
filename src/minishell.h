@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/29 11:49:48 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/29 11:56:15 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int					len_name(char *s);
 char				*add_spc(char *s, int i);
 char				*rm_quote(char *s, int i, char c);
 int					check_in(char *s);
+int					infd(char *name, int *stat);
+int					outfd(char *name, int trunc, int *stat);
 void				lstfree(t_list *list);
 void				addmany_chars(char **dup, char *s, int fre);
 /////////////////////////////////////////////
