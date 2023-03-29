@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/29 11:55:30 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/29 15:35:20 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,8 @@ void	one_cmd(t_list *t)
 
 void	iterate_cmds(t_list *t)
 {
-	int	i;
-
 	while (t)
 	{
-		i = 0;
-		while (t->cmd && t->cmd[i])
-		{
-			if (i && ft_strcmp(t->cmd[i - 1], "<<"))
-				t->cmd[i] = rm_quote(expend(t->cmd[i], 0, 1), 0, 0);
-			i++;
-		}
 		one_cmd(t);
 		t = t->next;
 	}
