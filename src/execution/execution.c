@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/29 22:58:07 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/29 23:25:11 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ void	dup_pipe(t_list *list, int *pp)
 	if (list->i_f != -2)
 		dup2(list->i_f, 0);
 	if (list->o_f != -2)
-		dup2(pp[1], 1);
-	//close(list);
+		dup2(list->o_f, 1);
+	else
+		dup2(pp[0], 1);
 	close(pp[0]);
 	close(pp[1]);
 }
@@ -66,7 +67,7 @@ void	execution(void)
 	int		i;
 	int		pp[2];
 
-	printf("\n\n\n\n\n\n\n");
+	//printf("\n\n\n\n\n\n\n");
 	list = g_v;
 	if (ft_lstsize(list) == 1 && list->cmdsp && builtins(0))
 		return ;
