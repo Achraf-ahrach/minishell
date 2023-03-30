@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/30 10:41:05 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/30 19:33:41 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ void	printf_list(t_list *tem)
 	}
 }
 
+void	crl_c(int k)
+{
+	(void)k;
+	printf("exit hello\n");
+	exit(0);
+}
 int	main(int ac, char **av, char **ev)
 {
 	char	*s;
@@ -66,6 +72,7 @@ int	main(int ac, char **av, char **ev)
 		return (error("error en allocation", ""));
 	while (1)
 	{
+		//signal(SIGINT, &crl_c);
 		s = readline("MINISHELL#(*_*)|❯❯❯❯");
 		add_history(ft_strdup(s)); //choufni a moul lparsing
 		if (!s || !check_in(s))

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/30 10:03:17 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/30 16:20:18 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ char	*expend(char *s, int exp)
 			no_expend(s, &dup, '\'', &i);
 		else if (!ft_strncmp(&s[i], "<<", 2))
 			squiplim(&dup, s, &i);
+		else if (s[i] == '$' && ft_isdigit(s[i + 1]))
+			i += 2;
 		else if (s[i] == '$' && (s[i + 1] == '\'' || s[i + 1] == '\"'))
 			i++;
 		else if (s[i] == '$' && s[i + 1] != ' ' && s[i + 1])
