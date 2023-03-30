@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/29 23:02:33 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/30 10:36:52 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <dirent.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <readline/history.h>
@@ -94,7 +95,7 @@ void				search_replace(t_env *env, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
 int					len_name(char *s);
 char				*add_spc(char *s, int i);
-char				*rm_quote(char *s, int i, char c);
+char				*rm_quote(char *s);
 int					check_in(char *s);
 int					infd(char *name, int *stat);
 int					outfd(char *name, int trunc, int *stat);

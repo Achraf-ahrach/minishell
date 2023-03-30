@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:57:37 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/17 19:04:12 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/30 10:36:16 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@ static void	rm_quote_uti(char *s, int i)
 	}
 }
 
-char	*rm_quote(char *s, int i, char c)
+char	*rm_quote(char *s)
 {
+	char	c;
+	int		i;
+
+	i = 0;
 	while (s[i])
 	{
 		if (s[i] == '\'' || s[i] == '\"')

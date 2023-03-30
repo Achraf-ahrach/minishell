@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/29 23:03:15 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/30 10:41:05 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	printf_list(t_list *tem)
 			printf("#%s# ", tem->cmdsp[i]);
 		}
 		printf("\nstat:%d\ninfile:%d\n", tem->stat, tem->i_f);
-		if (tem->i_f != -1 && tem->i_f != -2)
+		if (0 && tem->i_f != -1 && tem->i_f != -2)
 		{
 			read(tem->i_f, ss, 100);
 			printf("%s\n", ss);
