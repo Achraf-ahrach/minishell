@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/31 16:28:12 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/31 23:18:32 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	len_name(char *s)
 	i = 0;
 	if (s[0] == '?')
 		return (1);
-	while (s[i] && ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')
-			|| s[i] == '_' || s[i] == '$'))
+	while (s[i] && ft_isalnum(s[i]) || == '_')
 		i++;
 	return (i);
 }
@@ -51,9 +50,9 @@ void	no_expend(char *s, char **dup, char c, int *i)
 	while (1)
 	{
 		add_char(dup, s[*i]);
-		*i += 1;
 		if (s[*i] != c)
 			break ;
+		*i += 1;
 	}
 }
 
@@ -81,7 +80,7 @@ char	*expend(char *s, int i, int exp)
 		return (s);
 	while (s[i])
 	{
-		if (s[i] == '\'' && !i)
+		if (s[i] == '\'')
 			no_expend(s, &dup, '\'', &i);
 		else if (!ft_strncmp(&s[i], "<<", 2))
 			squiplim(&dup, s, &i);

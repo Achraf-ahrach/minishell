@@ -5,16 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/31 16:17:23 by ajari            ###   ########.fr       */
-=======
-<<<<<<< HEAD
-/*   Updated: 2023/03/30 15:19:20 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/03/31 14:30:58 by ajari            ###   ########.fr       */
->>>>>>> 8d8922e07eb654a2bcd4c280aef5afe205f7fb36
->>>>>>> 0cf2684734520e7a5ce65227e80ac1a7b033db8c
+/*   Created: 2023/03/31 18:24:56 by ajari             #+#    #+#             */
+/*   Updated: 2023/03/31 18:26:51 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +87,7 @@ int	main(int ac, char **av, char **ev)
 			continue ;
 		fill_cmds(s, env, var);
 		printf_list(g_v);
-		execution();
+		//execution();
 		lstfree(g_v);
 		//system("leaks minishell");
 	}
