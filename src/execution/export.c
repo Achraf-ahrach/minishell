@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/29 16:13:17 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/30 23:47:44 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,11 +183,11 @@ int	check_identifier(char *str, int is_childe)
 	return (1);
 }
 
-int	wach_kayn(char *str)
+int	wach_kayn(t_list *list, char *str)
 {
 	t_env *env;
 
-	env = g_v->env;
+	env = list->env;
 	while (env)
 	{
 		if (!ft_strcmp(str, env->key))
@@ -224,7 +224,7 @@ char	*join_plus(char const *s1, char const *s2)
 	return (p);
 }
 
-void	export_(int	is_childe)
+void	export_(t_list *list, int	is_childe)
 {
 	t_env	*tmp;
 	int		i;
@@ -235,32 +235,32 @@ void	export_(int	is_childe)
 
 	i = 1;
 	v = NULL;
-	while (g_v->cmdsp[i])
+	while (list->cmdsp[i])
 	{
-		tmp = g_v->env;
-		if (check_identifier(g_v->cmdsp[i], is_childe)  && !wach_kayn(g_v->cmdsp[i]))
+		tmp = list->env;
+		if (check_identifier(list->cmdsp[i], is_childe)  && !wach_kayn(list, list->cmdsp[i]))
 		{
-			p = cat_equals(g_v->cmdsp[i], 0);
+			p = cat_equals(list->cmdsp[i], 0);
 			if (p)
-				v = ft_substr(g_v->cmdsp[i], len_equal(g_v->cmdsp[i]) + 1, ft_strlen(g_v->cmdsp[i]));
+				v = ft_substr(list->cmdsp[i], len_equal(list->cmdsp[i]) + 1, ft_strlen(list->cmdsp[i]));
 			else
-				p = ft_strdup(g_v->cmdsp[i]);
-			if (wach_kayn(p))
+				p = ft_strdup(list->cmdsp[i]);
+			if (wach_kayn(list, p))
 			{
 				l = ft_strdup("+");
-				s = join_plus(g_v->cmdsp[i], l);
+				s = join_plus(list->cmdsp[i], l);
 				while (tmp)
 				{
 					if (!ft_strcmp(tmp->key, s))
 					{
 						//printf("======>    join\n");
-						export_add(tmp, ft_strrchr(g_v->cmdsp[i], '=') + 1, v,"join");
+						export_add(tmp, ft_strrchr(list->cmdsp[i], '=') + 1, v,"join");
 						break ;
 					}
 					if (!ft_strcmp(tmp->key, p))
 					{
 						//printf("present\n");
-						export_add(tmp, g_v->cmdsp[i], v, "present");
+						export_add(tmp, list->cmdsp[i], v, "present");
 						break ;
 					}
 					tmp = tmp->next;
@@ -269,14 +269,14 @@ void	export_(int	is_childe)
 				free(s);
 			}
 			else
-				export_add(tmp, g_v->cmdsp[i], v, "absent");
+				export_add(tmp, list->cmdsp[i], v, "absent");
 			free(p);
 		}
 		i++;
 	}
 }
 
-void	export(int is_childe)
+void	export(t_list *list, int is_childe)
 {
 	int		i;
 	int 	size;
@@ -285,13 +285,13 @@ void	export(int is_childe)
 
 	i = 1;
 	size = 0;
-	if (!g_v->cmdsp[i])
+	if (!list->cmdsp[i])
 	{
-		sort_export(g_v->env);
-		size = ft_lstsize_env(g_v->env);
+		sort_export(list->env);
+		size = ft_lstsize_env(list->env);
 		while (size > 0)
 		{
-			tmp = g_v->env;
+			tmp = list->env;
 			while (tmp)
 			{
 				if (tmp->index == size)
@@ -312,5 +312,5 @@ void	export(int is_childe)
 		}
 	}
 	else
-		export_(is_childe);
+		export_(list, is_childe);
 }

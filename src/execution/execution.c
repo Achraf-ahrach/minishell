@@ -6,100 +6,105 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/29 23:25:11 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/31 14:57:16 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	builtins(int is_child)
+int	builtins(t_list *list, int is_child)
 {
-	if (!ft_strcmp(g_v->cmdsp[0], "echo"))
-		echo(g_v->cmdsp);
-	else if (!ft_strcmp(g_v->cmdsp[0], "pwd"))
+	if (!ft_strcmp(list->cmdsp[0], "echo"))
+		echo(list->cmdsp);
+	else if (!ft_strcmp(list->cmdsp[0], "pwd"))
 		pwd(is_child);
-	else if (!ft_strcmp(g_v->cmdsp[0], "cd"))
+	else if (!ft_strcmp(list->cmdsp[0], "cd"))
 		cd(is_child);
-	else if (!ft_strcmp(g_v->cmdsp[0], "export"))
-		export(is_child);
-	else if (!ft_strcmp(g_v->cmdsp[0], "unset"))
-		unset(g_v);
-	else if (!ft_strcmp(g_v->cmdsp[0], "env"))
-		env(g_v->env);
-	else if (!ft_strcmp(g_v->cmdsp[0], "exit"))
+	else if (!ft_strcmp(list->cmdsp[0], "export"))
+		export(list, is_child);
+	else if (!ft_strcmp(list->cmdsp[0], "unset"))
+		unset(list);
+	else if (!ft_strcmp(list->cmdsp[0], "env"))
+		env(list->env);
+	else if (!ft_strcmp(list->cmdsp[0], "exit"))
 		ft_exit();
 	else
 		return (0);
-	if (is_child)
-		exit_status(0, 0);
+	// if (is_child)
+	// 	exit_status(0, 1);
 	return (1);
 }
 
 void	dup_pipe(t_list *list, int *pp)
 {
-	//printf("in = %d\nout = %d\n", list->i_f, list->o_f);
 	if (list->i_f != -2)
+	{
 		dup2(list->i_f, 0);
+		close(pp[0]);
+	}
 	if (list->o_f != -2)
+	{
 		dup2(list->o_f, 1);
+		close(pp[1]);
+	}
 	else
-		dup2(pp[0], 1);
-	close(pp[0]);
-	close(pp[1]);
+	{
+		dup2(pp[1], 1);
+		close(pp[0]);
+		close(pp[1]);
+	}
 }
 
 void	dup_file(t_list *list)
 {
-	//printf("in = %d\nout = %d\n", list->i_f, list->o_f);
-	if (list->i_f != -1)
+	if (list->i_f != -2)
 		dup2(list->i_f, 0);
-	if (list->o_f != -1)
+	if (list->o_f != -2)
 		dup2(list->o_f, 1);
-	//close(list->i_f);
-	//close(list->o_f);
 }
 
 void	execution(void)
 {
 	t_list	*list;
 	int		exit_status;
-	int		i;
 	int		pp[2];
+	int		k = 0;
+	int		h = 0;
 
-	//printf("\n\n\n\n\n\n\n");
 	list = g_v;
-	if (ft_lstsize(list) == 1 && list->cmdsp && builtins(0))
+	k = dup(1);
+	h = dup(0);
+	if (ft_lstsize(list) == 1 && list->cmdsp && builtins(list, 0))
 		return ;
-	else
+	while (list)
 	{
-		while (list)
+		if (list->next && list->stat)
 		{
-			if (list->next && list->stat)
+			pipe(pp);
+			if (fork() == 0)
 			{
-				pipe(pp);
-				if (fork() == 0)
-				{
-					dup_pipe(list, pp);
-					ft_child(list);
-				}
-				close(pp[1]);
-				close(pp[0]);
-				dup2(pp[1], 0);
+				dup_pipe(list, pp);
+				ft_child(list);
 			}
-			else if (list->stat)
-			{
-				if (fork() == 0)
-				{
-					dup_file(list);
-					ft_child(list);
-				}
-			}
-			list = list->next;
+			dup2(pp[0], 0);
+			close(pp[1]);	//hadi darori
+			close(pp[0]);
 		}
-		i = -1;
-		while (++i < ft_lstsize(g_v))
-			waitpid(-1, &exit_status, 0);
-		g_v->var->exit_status = WEXITSTATUS(exit_status);
+		else if (list->stat)
+		{
+			if (fork() == 0)
+			{
+				dup_file(list);
+				ft_child(list);
+			}
+		}
+		list = list->next;
 	}
+	dup2(k, 1);
+	dup2(h, 0);
+	while (wait(&exit_status) != -1)
+		;
+	g_v->var->exit_status = WEXITSTATUS(exit_status);
+	//printf("==> exit = %d\n", g_v->var->exit_status);
 }
