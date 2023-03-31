@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/29 15:27:37 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/31 17:37:04 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	ft_error(char *one, char *two, char *thre, int new_line)
 		ft_putendl_fd(thre, 2);
 	else
 		ft_putstr_fd(thre, 2);
+	write(2, AS_DEFAULT, ft_strlen(AS_DEFAULT));
 	return (0);
 }
 

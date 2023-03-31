@@ -3,10 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
+/*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
+/*   Updated: 2023/03/31 15:17:41 by aahrach          ###   ########.fr       */
+=======
 /*   Created: 2023/03/31 18:23:50 by ajari             #+#    #+#             */
 /*   Updated: 2023/03/31 18:24:03 by ajari            ###   ########.fr       */
+>>>>>>> 54c1c99507ad7694041999ff7f2961dce58ce8a0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +82,7 @@ void				unset(t_list *list);
 void				env(t_env *env);
 void				printf_list(t_list *t);
 
-void				ft_exit(void);
+void				ft_exit(t_list *list);
 void				exit_status(int exit_status, int x);
 void				ft_child(t_list *list);
 char				**a_split(char const *s, char c);

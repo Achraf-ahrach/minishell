@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/30 23:47:44 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/31 21:47:34 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ int	ft_lstsize_env(t_env *env)
 	return (size);
 }
 
-char	*cat_equals(char *str, int x)
+char	*cat_equals(char *str, int *x)
 {
 	int		i;
 	int		len;
 	char	*p;
 
 	i = 0;
+	(*x) = 0;
 	len = 0;
-	while (str[len] && str[len] != '=')
+	while (str[len] && str[len] != '=' && str[len] != '+')
 		len++;
 	p = malloc(len + 2);
 	i = 0;
@@ -42,15 +43,11 @@ char	*cat_equals(char *str, int x)
 	{
 		p[i] = str[i];
 		i++;
-		if (str[i] == '=' && x == 1)
-		{
-			p[i] = str[i];
-			p[i + 1] = '\0';
-			return (p);
-		}
-		else if (str[i] == '=' && x == 0)
+		if (str[i] == '=' || str[i] == '+')
 		{
 			p[i] = '\0';
+			if (str[i] == '+')
+				(*x) = 1;
 			return (p);
 		}
 	}
@@ -59,41 +56,23 @@ char	*cat_equals(char *str, int x)
 	return (NULL);
 }
 
-void	export_add(t_env *env, char *key, char *value,char *str)
+void	export_add(t_env *env, char *key, char *value, char *str)
 {
 	t_env	*new;
-	char	*e;
 
-	if (!ft_strcmp(str, "present"))
-	{
-		if (env->value)
-			free(env->value);
-		env->value = value;
-		env->equals = 1;
-		env->index = 0;
-	}
-	else if (!ft_strcmp(str, "absent"))
-	{
-		e = cat_equals(key, 0);
-		if (e)
-		{
-			new = env_new(e, value);
-			new->equals = 1;
-			envadd_back(&g_v->env, new);
-			return ;
-		}
-		new = env_new(ft_strdup(key), NULL);
-		new->equals = 0;
-		new->index = 0;
-		envadd_back(&g_v->env, new);
-	}
-	else
-	{
-		e = ft_strjoin(env->value, key);
-		if (env->value)
-			free(env->value);
-		env->value = e;
-	}
+	(void)str;
+	(void)env;
+	// if (!ft_strcmp(str, "present"))
+	// {
+	// 	if (env->value)
+	// 		free(env->value);
+	// 	env->value = value;
+	// 	env->equals = 1;
+	// 	env->index = 0;
+	// }
+	new = env_new(key, value);
+	printf("key = %s   value = %s\n", new->key, new->value);
+	envadd_back(&g_v->env, new);
 }
 
 char	*come_max(t_env *env)
@@ -228,9 +207,10 @@ void	export_(t_list *list, int	is_childe)
 {
 	t_env	*tmp;
 	int		i;
+	int		x;
 	char	*p;
-	char	*s;
-	char	*l;
+	// char	*s;
+	// char	*l;
 	char	*v;
 
 	i = 1;
@@ -240,36 +220,41 @@ void	export_(t_list *list, int	is_childe)
 		tmp = list->env;
 		if (check_identifier(list->cmdsp[i], is_childe)  && !wach_kayn(list, list->cmdsp[i]))
 		{
-			p = cat_equals(list->cmdsp[i], 0);
+			p = cat_equals(list->cmdsp[i], &x);
 			if (p)
 				v = ft_substr(list->cmdsp[i], len_equal(list->cmdsp[i]) + 1, ft_strlen(list->cmdsp[i]));
 			else
 				p = ft_strdup(list->cmdsp[i]);
+			//printf("====>%s\n", p);
 			if (wach_kayn(list, p))
 			{
-				l = ft_strdup("+");
-				s = join_plus(list->cmdsp[i], l);
 				while (tmp)
 				{
-					if (!ft_strcmp(tmp->key, s))
+					if (!ft_strcmp(tmp->key, p) && x)
 					{
-						//printf("======>    join\n");
-						export_add(tmp, ft_strrchr(list->cmdsp[i], '=') + 1, v,"join");
+						printf("======>    join\n");
+						// export_add(tmp, ft_strrchr(list->cmdsp[i], '=') + 1, v,"join");
+						tmp->value = ft_strjoin(tmp->value, v);
 						break ;
 					}
 					if (!ft_strcmp(tmp->key, p))
 					{
-						//printf("present\n");
-						export_add(tmp, list->cmdsp[i], v, "present");
+						printf("present\n");
+						if (!v)
+							break ;
+						free(tmp->value);
+						tmp->value = v;
 						break ;
 					}
 					tmp = tmp->next;
 				}
-				free(l);
-				free(s);
 			}
 			else
-				export_add(tmp, list->cmdsp[i], v, "absent");
+			{
+				printf("absent\n");
+				printf("key = %s    value = %s\n", p, v);
+				export_add(tmp, p, v, "absent");
+			}
 			free(p);
 		}
 		i++;
@@ -296,6 +281,7 @@ void	export(t_list *list, int is_childe)
 			{
 				if (tmp->index == size)
 				{
+					printf("dfgdg=> 111 \n");
 					if (!tmp->equals)
 						e = '\0';
 					else

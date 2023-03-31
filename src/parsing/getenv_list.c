@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/27 15:09:09 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/31 18:48:39 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ t_env	*env_new(char *s1, char *s2)
 		return (NULL);
 	new->key = s1;
 	new->index = 0;
-	new->equals = 1;
+	new->equals = 0;
+	if (s2)
+		new->equals = 1;
 	new->value = s2;
 	new->next = NULL;
 	return (new);
