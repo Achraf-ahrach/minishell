@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/31 14:32:10 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/31 16:25:15 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void				print(char c, int color, char *str);
 int					error(char *str_er, char *name);
 t_env				*getlstenv(char **ev);
 void				fill_cmds(char *s, t_env *ev, t_var *var);
-char				*expend(char *s, int exp);
+char				*expend(char *s, int i, int exp);
 void				no_expend(char *s, char **dup, char c, int *i);
 void				search_replace(t_env *env, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
@@ -101,6 +101,6 @@ int					check_in(char *s);
 int					infd(char *name, int *stat);
 int					outfd(char *name, int trunc, int *stat);
 void				lstfree(t_list *list);
-void				addmany_chars(char **dup, char *s, int fre);
+int					add_chars(char **dup, char *s, int fre);
 /////////////////////////////////////////////
 #endif
