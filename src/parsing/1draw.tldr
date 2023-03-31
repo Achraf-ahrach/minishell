@@ -66,11 +66,11 @@
             "parentId": "page",
             "childIndex": 3,
             "point": [
-              658.14,
+              653.64,
               199.29
             ],
             "rotation": 0,
-            "text": "-open close quote.                      \n-is there file after redirections\n  -is there dilemiters after herdoc\n ",
+            "text": "-open close quote.                      \n-is there file after redirections\n  -is there dilemiters after herdoc\n -check for give name of file in env\n-expend $lll111 is ok                      \n-16 heredoc                                    \n-stop en error in a pipe.               \n-$\"US'ER\"                                        \n-echo walid > $skjf.                        \n-<< \"\"                                               \n                        ",
             "style": {
               "color": "black",
               "size": "small",

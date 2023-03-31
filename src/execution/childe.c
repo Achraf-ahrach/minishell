@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   childe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/31 14:45:05 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/03/29 23:20:22 by ajari            ###   ########.fr       */
+>>>>>>> 8d8922e07eb654a2bcd4c280aef5afe205f7fb36
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
 char	*strjoin_a(char const *s1, char const *s2)
 {
@@ -55,7 +59,7 @@ char	*get_env(t_env *env)
 	return (p);
 }
 
-char	**ft_env(t_env	*env)
+char	**ft_env(t_env *env)
 {
 	t_env	*v;
 	char	**p;
@@ -73,7 +77,7 @@ char	**ft_env(t_env	*env)
 	i = 0;
 	while (env)
 	{
-		if(env->equals == 1)
+		if (env->equals == 1)
 		{
 			p[i] = get_env(env);
 			i++;
@@ -129,7 +133,7 @@ char	*cmd_access(char **p, char *comand)
 	return (NULL);
 }
 
-char	*srch_path()
+char	*srch_path(void)
 {
 	t_env	*env;
 
@@ -145,15 +149,16 @@ char	*srch_path()
 
 void	ft_child(t_list *list)
 {
-	char	**p;
-	char	*comand;
-	char	*path;
+	char **p;
+	char *comand;
+	char *path;
 
 	if (!builtins(list, 1))
 	{
 		path = srch_path();
-		if (!path)
+		if (!path || (g_v->cmdsp && g_v->cmdsp[0] && !g_v->cmdsp[0][0]))
 		{
+<<<<<<< HEAD
 			error(": command not found" , list->cmdsp[0]);
 			exit_status (127, 1);
 		}
@@ -163,16 +168,27 @@ void	ft_child(t_list *list)
 		{
 			error(": command not found" , list->cmdsp[0]);
 			exit_status (127, 1);
+=======
+			error("command not found: ", list->cmdsp[0]);
+			exit_status(127, 1);
+		}
+		p = a_split(path, ':');
+		comand = cmd_access(p, g_v->cmdsp[0]);
+		if (!comand)
+		{
+			error("command not found: ", list->cmdsp[0]);
+			exit_status(127, 1);
+>>>>>>> 8d8922e07eb654a2bcd4c280aef5afe205f7fb36
 		}
 		if (access(comand, X_OK))
 		{
-			perror("Error:");
+			perror("Errordgdfgf:");
 			write(2, "\n", 1);
-			exit_status (126, 1);
+			exit_status(126, 1);
 		}
 		execve(comand, list->cmdsp, ft_env(g_v->env));
-		perror("Error: ");
+		perror("Error111: ");
 		write(2, "\n", 1);
-		exit_status (127, 1);
+		exit_status(127, 1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/29 16:22:51 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/30 16:20:18 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	len_name(char *s)
 	if (s[0] == '?')
 		return (1);
 	while (s[i] && ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')
-			|| s[i] == '_'))
+			|| s[i] == '_' || s[i] == '$'))
 		i++;
 	return (i);
 }
@@ -86,7 +86,11 @@ char	*expend(char *s, int exp)
 			no_expend(s, &dup, '\'', &i);
 		else if (!ft_strncmp(&s[i], "<<", 2))
 			squiplim(&dup, s, &i);
-		else if (s[i] == '$')
+		else if (s[i] == '$' && ft_isdigit(s[i + 1]))
+			i += 2;
+		else if (s[i] == '$' && (s[i + 1] == '\'' || s[i + 1] == '\"'))
+			i++;
+		else if (s[i] == '$' && s[i + 1] != ' ' && s[i + 1])
 			search_replace(g_v->env, &s[i + 1], &dup, &i);
 		else
 			add_char(&dup, s[i++]);

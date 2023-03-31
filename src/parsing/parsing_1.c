@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/30 15:19:20 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/03/31 14:30:58 by ajari            ###   ########.fr       */
+>>>>>>> 8d8922e07eb654a2bcd4c280aef5afe205f7fb36
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +46,7 @@ void	printf_list(t_list *tem)
 			printf("#%s# ", tem->cmdsp[i]);
 		}
 		printf("\nstat:%d\ninfile:%d\n", tem->stat, tem->i_f);
-		if (tem->i_f != -1 && tem->i_f != -2)
+		if (0 && tem->i_f != -1 && tem->i_f != -2)
 		{
 			read(tem->i_f, ss, 100);
 			printf("%s\n", ss);
@@ -52,6 +56,12 @@ void	printf_list(t_list *tem)
 	}
 }
 
+void	crl_c(int k)
+{
+	(void)k;
+	printf("exit hello\n");
+	exit(0);
+}
 int	main(int ac, char **av, char **ev)
 {
 	char	*s;
@@ -66,12 +76,13 @@ int	main(int ac, char **av, char **ev)
 		return (error("error en allocation", ""));
 	while (1)
 	{
+		//signal(SIGINT, &crl_c);
 		s = readline("MINISHELL#(*_*)|❯❯❯❯");
 		add_history(ft_strdup(s)); //choufni a moul lparsing
 		if (!s || !check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
-		iterate_cmds(g_v);
+		iterate_cmds(g_v, 0);
 		printf_list(g_v);
 		execution();
 		lstfree(g_v);

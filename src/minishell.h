@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/30 23:46:01 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/03/31 14:32:10 by ajari            ###   ########.fr       */
+>>>>>>> 8d8922e07eb654a2bcd4c280aef5afe205f7fb36
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <dirent.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <readline/history.h>
@@ -51,6 +56,7 @@ typedef struct s_list
 	char			**cmd;
 	int				i_f;
 	int				o_f;
+	int				h_d;
 	int				stat;
 	t_env			*env;
 	t_var			*var;
@@ -85,7 +91,7 @@ int					ft_error(char *one, char *two, char *thre, int new_line);
 //////////// parsing ////////////////////
 void				add_char(char **s, char c);
 void				add_str(char ***s, char *str);
-void				iterate_cmds(t_list *lst);
+void				iterate_cmds(t_list *lst, int i);
 void				print(char c, int color, char *str);
 int					error(char *str_er, char *name);
 t_env				*getlstenv(char **ev);
@@ -96,7 +102,7 @@ void				search_replace(t_env *env, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
 int					len_name(char *s);
 char				*add_spc(char *s, int i);
-char				*rm_quote(char *s, int i, char c);
+char				*rm_quote(char *s);
 int					check_in(char *s);
 int					infd(char *name, int *stat);
 int					outfd(char *name, int trunc, int *stat);
