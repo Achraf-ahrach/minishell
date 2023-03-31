@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/31 14:49:20 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/31 16:16:51 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	utilhere_doc(int *p, char *lim, int exp)
 			free(s);
 			break ;
 		}
-		s = expend(s, exp);
+		s = expend(s, 0, exp);
 		ft_putendl_fd(s, p[1]);
 		free(s);
 	}
@@ -116,7 +116,7 @@ void	iterate_cmds(t_list *t, int i)
 			else if (!ft_strcmp(t->cmd[i], ">>") && op(rm_quote(t->cmd[i + 1])))
 				t->o_f = outfd(t->cmd[++i], 1, &t->stat);
 			else if (op(rm_quote(t->cmd[i])))
-				add_str(&t->cmdsp, rm_quote(t->cmd[i]));
+				add_str(&t->cmdsp, t->cmd[i]);
 			i++;
 		}
 		t = t->next;

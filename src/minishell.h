@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
 /*   Updated: 2023/03/31 15:17:41 by aahrach          ###   ########.fr       */
+=======
+/*   Created: 2023/03/31 18:23:50 by ajari             #+#    #+#             */
+/*   Updated: 2023/03/31 18:24:03 by ajari            ###   ########.fr       */
+>>>>>>> 54c1c99507ad7694041999ff7f2961dce58ce8a0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +97,7 @@ void				print(char c, int color, char *str);
 int					error(char *str_er, char *name);
 t_env				*getlstenv(char **ev);
 void				fill_cmds(char *s, t_env *ev, t_var *var);
-char				*expend(char *s, int exp);
+char				*expend(char *s, int i, int exp);
 void				no_expend(char *s, char **dup, char c, int *i);
 void				search_replace(t_env *env, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
@@ -103,6 +108,6 @@ int					check_in(char *s);
 int					infd(char *name, int *stat);
 int					outfd(char *name, int trunc, int *stat);
 void				lstfree(t_list *list);
-void				addmany_chars(char **dup, char *s, int fre);
+int					add_chars(char **dup, char *s, int fre);
 /////////////////////////////////////////////
 #endif

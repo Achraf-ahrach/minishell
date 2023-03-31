@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:08:41 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/29 11:58:04 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/31 16:27:04 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	add_char(char **s, char c)
 	*s = add;
 }
 
-void	addmany_chars(char **dup, char *s, int fre)
+int	add_chars(char **dup, char *s, int fre)
 {
 	int	i;
 
@@ -70,6 +70,7 @@ void	addmany_chars(char **dup, char *s, int fre)
 	}
 	if (fre)
 		free(s);
+	return (1);
 }
 
 void	add_str(char ***s, char *str)

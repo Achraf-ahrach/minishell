@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
 /*   Updated: 2023/03/31 14:58:20 by aahrach          ###   ########.fr       */
+=======
+/*   Created: 2023/03/31 18:24:56 by ajari             #+#    #+#             */
+/*   Updated: 2023/03/31 18:26:51 by ajari            ###   ########.fr       */
+>>>>>>> 54c1c99507ad7694041999ff7f2961dce58ce8a0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +25,13 @@ void	fill_cmds(char *s, t_env *env, t_var *var)
 
 	i = 0;
 	g_v = ft_lstnew(0, env, var);
-	c = ft_split(expend(add_spc(s, 0), 1), '|', 1);
+	c = ft_split(expend(add_spc(s, 0), 0, 1), '|', 1);
 	free(g_v);
 	g_v = 0;
 	while (c && c[i])
 		ft_lstadd_back(&g_v, ft_lstnew(ft_split(c[i++], ' ', 1), env, var));
 	free(c);
+	iterate_cmds(g_v, 0);
 }
 
 void	printf_list(t_list *tem)
@@ -58,6 +64,17 @@ void	crl_c(int k)
 	printf("exit hello\n");
 	exit(0);
 }
+
+void	init_variables(t_env **ev, t_var **var, char **av, char **env)
+{
+	(void)av;
+	*ev = getlstenv(env);
+	*var = malloc(sizeof(t_var));
+	if (!*var)
+		exit(error("Error of allocation", "struct var"));
+	(*var)->exit_status = 0;
+}
+
 int	main(int ac, char **av, char **ev)
 {
 	char	*s;
@@ -65,11 +82,7 @@ int	main(int ac, char **av, char **ev)
 	t_var	*var;
 
 	(void)ac;
-	(void)av;
-	env = getlstenv(ev);
-	var = malloc(sizeof(t_var));
-	if (!var)
-		return (error("error en allocation", ""));
+	init_variables(&env, &var, av, ev);
 	while (1)
 	{
 		//signal(SIGINT, &crl_c);
@@ -78,9 +91,8 @@ int	main(int ac, char **av, char **ev)
 		if (!s || !check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
-		iterate_cmds(g_v, 0);
 		printf_list(g_v);
-		execution();
+		//execution();
 		lstfree(g_v);
 		//system("leaks minishell");
 	}

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/30 16:20:18 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/31 23:18:56 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	len_name(char *s)
 	i = 0;
 	if (s[0] == '?')
 		return (1);
-	while (s[i] && ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')
-			|| s[i] == '_' || s[i] == '$'))
+	while (s[i] && ft_isalnum(s[i]) || s[i] == '_')
 		i++;
 	return (i);
 }
@@ -32,13 +31,13 @@ void	search_replace(t_env *env, char *s, char **dup, int *i)
 
 	d = ft_substr(s, 0, len_name(s));
 	if (!ft_strcmp("?", d))
-		addmany_chars(dup, ft_itoa(g_v->var->exit_status), 1);
+		add_chars(dup, ft_itoa(g_v->var->exit_status), 1);
 	else
 	{
 		while (env)
 		{
 			if (!ft_strcmp(env->key, d))
-				addmany_chars(dup, env->value, 0);
+				add_chars(dup, env->value, 0);
 			env = env->next;
 		}
 	}
@@ -56,6 +55,7 @@ void	no_expend(char *s, char **dup, char c, int *i)
 		*i += 1;
 	}
 }
+
 void	squiplim(char **dup, char *s, int *i)
 {
 	(void)dup;
@@ -71,13 +71,11 @@ void	squiplim(char **dup, char *s, int *i)
 	}
 }
 
-char	*expend(char *s, int exp)
+char	*expend(char *s, int i, int exp)
 {
 	char	*dup;
-	int		i;
 
 	dup = NULL;
-	i = 0;
 	if (!exp)
 		return (s);
 	while (s[i])
@@ -88,6 +86,8 @@ char	*expend(char *s, int exp)
 			squiplim(&dup, s, &i);
 		else if (s[i] == '$' && ft_isdigit(s[i + 1]))
 			i += 2;
+		else if (s[i] == '$' && s[i + 1] == '$' && add_chars(&dup, "\"\"", 0))
+			i += 2;
 		else if (s[i] == '$' && (s[i + 1] == '\'' || s[i + 1] == '\"'))
 			i++;
 		else if (s[i] == '$' && s[i + 1] != ' ' && s[i + 1])
@@ -95,6 +95,5 @@ char	*expend(char *s, int exp)
 		else
 			add_char(&dup, s[i++]);
 	}
-	free(s);
-	return (dup);
+	return (free(s), dup);
 }
