@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expend.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/31 23:18:56 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/31 23:20:53 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	len_name(char *s)
 	i = 0;
 	if (s[0] == '?')
 		return (1);
-	while (s[i] && ft_isalnum(s[i]) || s[i] == '_')
+	while (s[i] && (ft_isalnum(s[i]) || s[i] == '_'))
 		i++;
 	return (i);
 }

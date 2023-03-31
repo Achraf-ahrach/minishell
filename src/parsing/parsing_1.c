@@ -5,13 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/31 14:58:20 by aahrach          ###   ########.fr       */
-=======
-/*   Created: 2023/03/31 18:24:56 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/31 18:26:51 by ajari            ###   ########.fr       */
->>>>>>> 54c1c99507ad7694041999ff7f2961dce58ce8a0
+/*   Updated: 2023/03/31 23:22:41 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +87,7 @@ int	main(int ac, char **av, char **ev)
 			continue ;
 		fill_cmds(s, env, var);
 		printf_list(g_v);
-		//execution();
+		execution();
 		lstfree(g_v);
 		//system("leaks minishell");
 	}

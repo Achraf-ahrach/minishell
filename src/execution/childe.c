@@ -6,11 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/31 14:58:26 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/03/31 18:25:34 by ajari            ###   ########.fr       */
->>>>>>> 54c1c99507ad7694041999ff7f2961dce58ce8a0
+/*   Updated: 2023/03/31 23:21:06 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +154,6 @@ void	ft_child(t_list *list)
 		path = srch_path();
 		if (!path || (g_v->cmdsp && g_v->cmdsp[0] && !g_v->cmdsp[0][0]))
 		{
-<<<<<<< HEAD
 			error(": command not found" , list->cmdsp[0]);
 			exit_status (127, 1);
 		}
@@ -168,18 +163,6 @@ void	ft_child(t_list *list)
 		{
 			error(": command not found" , list->cmdsp[0]);
 			exit_status (127, 1);
-=======
-			error(": command not found", list->cmdsp[0]);
-			exit_status(127, 1);
-		}
-		p = a_split(path, ':');
-		comand = cmd_access(p, list->cmdsp[0]);
-		;
-		if (!comand)
-		{
-			error(": command not found", list->cmdsp[0]);
-			exit_status(127, 1);
->>>>>>> 54c1c99507ad7694041999ff7f2961dce58ce8a0
 		}
 		if (access(comand, X_OK))
 		{
