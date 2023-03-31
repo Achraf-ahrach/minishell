@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:46:02 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/31 14:47:19 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/31 17:04:15 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,24 @@ int	str_isdigit(char *str)
 	return (1);
 }
 
-void	ft_exit()
+void	ft_exit(t_list *list)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	if (!g_v->cmdsp[1])
+	if (!list->cmdsp[1])
 		exit_status(0, 1);
-	else if (!str_isdigit(g_v->cmdsp[1]))
+	else if (!str_isdigit(list->cmdsp[1]))
 	{
 		ft_putstr_fd("exit\n", 2);
 		ft_putstr_fd("minishell: exit: ", 2);
-		ft_putstr_fd(g_v->cmdsp[1], 2);
+		ft_putstr_fd(list->cmdsp[1], 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
 		exit_status(255, 1);
 	}
-	else if (str_isdigit(g_v->cmdsp[1]) && g_v->cmdsp[2])
+	else if (str_isdigit(list->cmdsp[1]) && list->cmdsp[2])
 	{
 		ft_putstr_fd("exit\n", 2);
 		ft_putstr_fd("minishell: exit: ", 2);
@@ -61,6 +61,7 @@ void	ft_exit()
 	else
 	{
 		ft_putstr_fd("exit\n", 2);
-		exit_status(ft_atoi(g_v->cmdsp[1]), 1);
+		//printf("===> %d\n", ft_atoi(list->cmdsp[1]));
+		exit_status(ft_atoi(list->cmdsp[1]), 1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/31 14:57:16 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/31 17:32:17 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	builtins(t_list *list, int is_child)
 	else if (!ft_strcmp(list->cmdsp[0], "env"))
 		env(list->env);
 	else if (!ft_strcmp(list->cmdsp[0], "exit"))
-		ft_exit();
+		ft_exit(list);
 	else
 		return (0);
-	// if (is_child)
-	// 	exit_status(0, 1);
+	if (is_child)
+		exit_status(0, 1);
 	return (1);
 }
 
@@ -106,5 +106,5 @@ void	execution(void)
 	while (wait(&exit_status) != -1)
 		;
 	g_v->var->exit_status = WEXITSTATUS(exit_status);
-	//printf("==> exit = %d\n", g_v->var->exit_status);
+	printf("==> exit = %d\n", g_v->var->exit_status);
 }

@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 SRCP = src/parsing
 SRCE = src/execution
 OBJ = obj
@@ -35,5 +35,5 @@ fclean: clean
 
 re: fclean fcleanlib all
 
-run: re
+run:
 	@./minishell
