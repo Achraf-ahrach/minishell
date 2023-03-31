@@ -6,7 +6,15 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/31 16:25:15 by ajari            ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2023/03/30 23:46:01 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/03/31 14:32:10 by ajari            ###   ########.fr       */
+>>>>>>> 8d8922e07eb654a2bcd4c280aef5afe205f7fb36
+>>>>>>> 0cf2684734520e7a5ce65227e80ac1a7b033db8c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +75,16 @@ void				sort_env(t_env **env);
 int					len_equal(char *s);
 void				envadd_back(t_env **lst, t_env *new);
 t_env				*env_new(char *s1, char *s2);
-int					builtins(int is_child);
+int					builtins(t_list *list, int is_child);
 void				pwd(int is_child);
 void				echo(char **cmd);
-void				export(int is_childe);
+void				export(t_list *list, int is_childe);
 void				execution(void);
 void				cd(int is_childe);
 void				unset(t_list *list);
 void				env(t_env *env);
+void				printf_list(t_list *t);
+
 void				ft_exit(void);
 void				exit_status(int exit_status, int x);
 void				ft_child(t_list *list);
