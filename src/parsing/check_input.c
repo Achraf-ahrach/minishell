@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/28 11:24:01 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/31 14:09:25 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	check_file(char *s, char c)
 		{
 			c = s[i++];
 			(s[i] == c) && (i++);
-			while (ft_isspace(s[++i]))
+			while (ft_isspace(s[i++]))
 				;
 			if (s[i] == '<' || s[i] == '>')
 				return (error("syntax error near unexpected token `<<'", ""));
@@ -95,7 +95,7 @@ int	check_in(char *s)
 		(s[len] == '|') && (c = '|');
 		(s[len] == '<') && (c = '<');
 		(s[len] == '>') && (c = '>');
-		return (error("syntax error near unexpected token",""));
+		return (error("syntax error near unexpected token", ""));
 	}
 	return (check_quote(s) * check_file(s, 0) * check_pipe(s));
 }

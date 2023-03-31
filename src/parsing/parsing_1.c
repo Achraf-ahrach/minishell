@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/30 19:33:41 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/31 14:30:58 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(int ac, char **av, char **ev)
 		if (!s || !check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
-		iterate_cmds(g_v);
+		iterate_cmds(g_v, 0);
 		printf_list(g_v);
 		execution();
 		lstfree(g_v);

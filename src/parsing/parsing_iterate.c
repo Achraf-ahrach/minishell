@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/30 14:10:54 by ajari            ###   ########.fr       */
+/*   Updated: 2023/03/31 14:49:20 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ void	add_arg(char *s, int *i, char ***cmd)
 	}
 }
 
+int	op(char *dir)
+{
+	DIR	*t;
+
+	t = opendir(dir);
+	if (t)
+	{
+		closedir(t);
+		return (error("Is a directory", dir));
+	}
+	else
+		return (1);
+}
+
 void	utilhere_doc(int *p, char *lim, int exp)
 {
 	char	*s;
@@ -52,24 +66,10 @@ void	utilhere_doc(int *p, char *lim, int exp)
 	exit(0);
 }
 
-int	op(char *dir)
-{
-	DIR	*t;
-
-	t = opendir(dir);
-	if (t)
-	{
-		closedir(t);
-		return (error("Is a directory", dir));
-	}
-	else
-		return (1);
-}
-
 int	here_doc(char *lim, int exp)
 {
-	int	p[2];
 	int	id;
+	int	p[2];
 
 	pipe(p);
 	if (lim && (lim[0] == '\'' || lim[0] == '\"'))
@@ -77,12 +77,12 @@ int	here_doc(char *lim, int exp)
 	id = fork();
 	if (id == 0)
 		utilhere_doc(p, lim, exp);
-	close(p[1]);
 	wait(0);
+	close(p[1]);
 	return (p[0]);
 }
 
-void	iterate_cmds(t_list *t)
+void	open_heredocs(t_list *t)
 {
 	int	i;
 
@@ -91,14 +91,30 @@ void	iterate_cmds(t_list *t)
 		i = 0;
 		while (t->cmd[i])
 		{
+			if (!ft_strcmp(t->cmd[i], "<<"))
+				t->h_d = here_doc(t->cmd[i + 1], 1);
+			i++;
+		}
+		t = t->next;
+	}
+}
+
+void	iterate_cmds(t_list *t, int i)
+{
+	open_heredocs(t);
+	while (t)
+	{
+		i = 0;
+		while (t->cmd[i])
+		{
 			if (!ft_strcmp(t->cmd[i], "<") && op(rm_quote(t->cmd[i + 1])))
 				t->i_f = infd(t->cmd[++i], &t->stat);
+			else if (!ft_strcmp(t->cmd[i], "<<"))
+				t->i_f = t->h_d;
 			else if (!ft_strcmp(t->cmd[i], ">") && op(rm_quote(t->cmd[i + 1])))
 				t->o_f = outfd(t->cmd[++i], 0, &t->stat);
 			else if (!ft_strcmp(t->cmd[i], ">>") && op(rm_quote(t->cmd[i + 1])))
 				t->o_f = outfd(t->cmd[++i], 1, &t->stat);
-			else if (!ft_strcmp(t->cmd[i], "<<"))
-				t->i_f = here_doc(t->cmd[++i], 1);
 			else if (op(rm_quote(t->cmd[i])))
 				add_str(&t->cmdsp, rm_quote(t->cmd[i]));
 			i++;
