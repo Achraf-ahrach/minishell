@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/31 23:20:53 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/03/31 23:25:42 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,15 @@ void	search_replace(t_env *env, char *s, char **dup, int *i)
 		while (env)
 		{
 			if (!ft_strcmp(env->key, d))
+			{
 				add_chars(dup, env->value, 0);
+				break ;
+			}
 			env = env->next;
 		}
 	}
+	if (!env)
+		add_chars(dup, "\"\"", 0);
 	free(d);
 	*i += len_name(s) + 1;
 }
