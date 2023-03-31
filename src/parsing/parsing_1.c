@@ -92,7 +92,7 @@ int	main(int ac, char **av, char **ev)
 			continue ;
 		fill_cmds(s, env, var);
 		printf_list(g_v);
-		//execution();
+		execution();
 		lstfree(g_v);
 		//system("leaks minishell");
 	}
