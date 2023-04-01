@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 16:17:59 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 18:39:12 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	utilhere_doc(int *p, char *lim, int exp)
 			free(s);
 			break ;
 		}
-		s = expend(s, 0, exp);
+		s = expend(s, 0, exp, 0);
 		ft_putendl_fd(s, p[1]);
 		free(s);
 	}

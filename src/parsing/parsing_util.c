@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 18:21:25 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 18:42:22 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ int	outfd(char *name, int trunc, int *stat)
 {
 	int	fd;
 
-	if (access(name, W_OK) = -1)
+	name = expend(name, 0, 1, 1);
+	if (access(name, W_OK) == -1)
+		return (error("no such file or directory", name), *stat = 0, 1);
+	if (access(name, W_OK) == -1)
 		return (error("permission denied", name), *stat = 0, -1);
-	if (&&access(name, W_OK) == -1)
-		return (error("no such file or directory", name), *stat = 0, -1);
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
