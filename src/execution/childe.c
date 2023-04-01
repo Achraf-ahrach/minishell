@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 15:55:53 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 16:15:36 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ void	ft_child(t_list *list)
 		}
 		p = a_split(path, ':');
 		comand = cmd_access(p, list->cmdsp[0]);
-		;
 		if (!comand)
 		{
 			error("3: command not found", list->cmdsp[0]);
