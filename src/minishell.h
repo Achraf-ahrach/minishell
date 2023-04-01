@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 22:32:15 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 23:44:16 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int					builtins(t_list *list, int is_child);
 void				pwd(int is_child);
 void				echo(char **cmd);
 void				export(t_list *list, int is_childe);
-void				execution(void);
+void				execution(t_env **llll);
 void				cd(t_list *list, int is_childe);
 void				unset(t_list *list);
 void				env(t_env *env);

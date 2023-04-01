@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 18:31:00 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 23:38:49 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int	builtins(t_list *list, int is_child)
 	else if (!ft_strcmp(list->cmdsp[0], "cd"))
 		cd(list, is_child);
 	else if (!ft_strcmp(list->cmdsp[0], "export"))
+	{
 		export(list, is_child);
+		//printf("() ===> %p\n", g_v->env);
+	}
 	else if (!ft_strcmp(list->cmdsp[0], "unset"))
 		unset(list);
 	else if (!ft_strcmp(list->cmdsp[0], "env"))
@@ -33,6 +36,7 @@ int	builtins(t_list *list, int is_child)
 		return (0);
 	if (is_child)
 		exit_status(0, 1);
+	//printf("111===> %p \n", g_v->env);
 	return (1);
 }
 
@@ -64,8 +68,9 @@ void	dup_file(t_list *list)
 		dup2(list->o_f, 1);
 }
 
-void	execution(void)
+void	execution(t_env **llll)
 {
+	(void)llll;
 	t_list	*list;
 	int		exit_status;
 	int		pid;
@@ -78,7 +83,11 @@ void	execution(void)
 	k = dup(1);
 	h = dup(0);
 	if (ft_lstsize(list) == 1 && list->cmdsp && builtins(list, 0))
+	{
+		printf("() ===> %p\n", g_v->env);
+		//*llll = g_v->env;
 		return ;
+	}
 	while (list)
 	{
 		if (list->next && list->stat)
