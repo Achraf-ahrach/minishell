@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:44:38 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/21 17:35:54 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 14:40:16 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_delete_key(t_env *env, char *key)
 	{
 		if (!ft_strcmp(env->next->key, key))
 		{
-			delete = env;
+			delete = env->next;
 			env->next = env->next->next;
 			free(delete->key);
 			free(delete->value);
@@ -32,24 +32,16 @@ void	ft_delete_key(t_env *env, char *key)
 	}
 }
 
-void	unset()
+void	unset(t_list *list)
 {
 	int		i;
-	t_env	*delete;
+	t_env	*env;
 	
 	i = 0;
-	while (g_v->cmdsp[i])
+	while (list->cmdsp[i])
 	{
-		if (!ft_strcmp(g_v->env->key, g_v->cmdsp[i]))
-		{
-			delete = g_v->env;
-			g_v->env = g_v->env->next;
-			free(delete->key);
-			free(delete->value);
-			free(delete);
-		}
-		else
-			ft_delete_key(g_v->env, g_v->cmdsp[i]);
+		env = list->env;
+			ft_delete_key(env, list->cmdsp[i]);
 		i++;
 	}
 }

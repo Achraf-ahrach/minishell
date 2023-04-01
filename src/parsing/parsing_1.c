@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/31 23:22:41 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/03/31 23:29:06 by ajari            ###   ########.fr       */
->>>>>>> 8efa1333bb79fd30e8e6c730977be41f8b9374f9
+/*   Updated: 2023/04/01 12:41:31 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +86,7 @@ int	main(int ac, char **av, char **ev)
 		if (!s || !check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
-		printf_list(g_v);
+		//printf_list(g_v);
 		execution();
 		lstfree(g_v);
 		//system("leaks minishell");

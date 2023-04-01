@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 12:20:48 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 13:31:34 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	builtins(t_list *list, int is_child)
 	else if (!ft_strcmp(list->cmdsp[0], "pwd"))
 		pwd(is_child);
 	else if (!ft_strcmp(list->cmdsp[0], "cd"))
-		cd(is_child);
+		cd(list, is_child);
 	else if (!ft_strcmp(list->cmdsp[0], "export"))
 		export(list, is_child);
 	else if (!ft_strcmp(list->cmdsp[0], "unset"))
@@ -69,7 +69,6 @@ void	execution(void)
 	t_list	*list;
 	int		exit_status;
 	int		pid;
-	//int		pid_wait;
 	int		pp[2];
 	int		k = 0;
 	int		h = 0;
@@ -107,17 +106,12 @@ void	execution(void)
 	dup2(k, 1);
 	dup2(h, 0);
 
-	// int i = -1;
-	// while (++i < 1)
-	// {
-	// 	pid_wait = wait(&exit_status);
-	// 	if (pid_wait == pid)
-	// 		g_v->var->exit_status = WEXITSTATUS(exit_status);
-	// }
-	
-	while (wait(&exit_status) != -1)
-		;
-	g_v->var->exit_status = WEXITSTATUS(exit_status);
-	//exit (1);
-	//printf("==> exit = %d\n", g_v->var->exit_status);
+	int		pid_wait;
+	int i = -1;
+	while (++i < ft_lstsize(g_v))
+	{
+		pid_wait = wait(&exit_status);
+		if (pid_wait == pid)
+			g_v->var->exit_status = WEXITSTATUS(exit_status);
+	}
 }

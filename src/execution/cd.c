@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/31 17:37:04 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 15:13:16 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,18 @@ int	ft_error(char *one, char *two, char *thre, int new_line)
 	return (0);
 }
 
-void	cd(int is_childe)
+void	cd(t_list *list, int is_childe)
 {
 	t_env	*env;
 	char	buffer[PATH_MAX];
 	int		eror;
 
 	eror = 0;
-	env = g_v->env;
-	if (!g_v->cmdsp[1] || !ft_strcmp(g_v->cmdsp[1], "~"))
+	env = list->env;
+	printf("000000000\n");
+	if (!list->cmdsp[1] || !ft_strcmp(list->cmdsp[1], "~"))
 	{
+		printf("[ ~ ] = (%s)\n", list->cmdsp[1]);
 		while (env)
 		{
 			if (!ft_strcmp(env->key, "HOME"))
@@ -92,8 +94,9 @@ void	cd(int is_childe)
 		}
 		eror = 2;
 	}
-	else if (!ft_strcmp(g_v->cmdsp[1], "-"))
+	else if (!ft_strcmp(list->cmdsp[1], "-"))
 	{
+		printf("[ - ] = (%s)\n", list->cmdsp[1]);
 		while (env)
 		{
 			if (!ft_strcmp(env->key, "OLDPWD"))
@@ -112,21 +115,22 @@ void	cd(int is_childe)
 	}
 	else
 	{
+		printf("rgsd111111( %s )\n\n", list->cmdsp[1]);
     	getcwd(buffer, sizeof(buffer));
-		if (!chdir(g_v->cmdsp[1]))
+		if (chdir(list->cmdsp[1]))
 			chang_pwd_oldpwd(ft_strdup(buffer));
 		else
 			eror = 1;
 	}
 	if (eror == 1)
 	{
-		ft_error("minishell: ", g_v->cmdsp[0], ": ",0);
-		ft_error(g_v->cmdsp[1], ": ", "No such file or directory", 1);
+		ft_error("minishell: ", list->cmdsp[0], ": ",0);
+		ft_error(list->cmdsp[1], ": ", "No such file or directory", 1);
 		exit_status(1, is_childe);
 	}
 	else if (eror == 2)
 	{
-		error(g_v->cmdsp[1], " OLDPWD not set");
+		error(list->cmdsp[1], " OLDPWD not set");
 		exit_status(1, is_childe);
 	}
 }
