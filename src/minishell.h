@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 19:54:11 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 22:32:15 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char				*expend(char *s, int i, int exp, int *fd);
 void				no_expend(char *s, char **dup, char c, int *i);
 void				search_replace(int *fd, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
-int					len_name(char *s);
+int					len_name(char *s, int *j);
 char				*add_spc(char *s, int i);
 char				*rm_quote(char *s);
 int					check_in(char *s);

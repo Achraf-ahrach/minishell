@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 22:16:11 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 22:57:22 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	outfd(char *name, int trunc, int *stat)
 {
 	int	fd;
 
-	fd = -2;
+	fd = 1;
 	name = expend(ft_strdup(name), 0, 1, &fd);
 	if (fd == -1)
 		return (fd);
@@ -53,13 +53,20 @@ int	outfd(char *name, int trunc, int *stat)
 		if (access(name, W_OK) == -1)
 			return (error("permission denied", name), *stat = 0, -1);
 	}
-	if (access(name, W_OK) == -1)
-		return (error("no such file or directory", name), *stat = 0, 1);
-	if (access(name, W_OK) == -1)
-		return (error("permission denied", name), *stat = 0, -1);
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
 		fd = open(name, O_CREAT | O_APPEND | O_WRONLY, 0777);
 	return (fd);
+}
+
+int	len_name(char *s, int *j)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && (!ft_isspace(s[i])))
+		i++;
+	*j += i + 1;
+	return (i);
 }

@@ -14,3 +14,17 @@ ok5
 ok6
 pull.sh
 src
+Makefile
+ajari
+ls
+minishell
+obj
+pull.sh
+src
+Makefile
+ajari
+ls
+minishell
+obj
+pull.sh
+src
