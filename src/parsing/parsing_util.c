@@ -3,15 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_util.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 19:48:46 by aahrach          ###   ########.fr       */
-=======
-/*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 22:57:22 by ajari            ###   ########.fr       */
->>>>>>> 6f65733df44c67be3c045e536c0e84a1bfa8d516
+/*   Updated: 2023/04/01 23:44:35 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +44,8 @@ int	outfd(char *name, int trunc, int *stat)
 {
 	int	fd;
 
-<<<<<<< HEAD
 	if (access(name, W_OK) == -1 && access(name, W_OK) == -1)
 		return (error("permission denied", name), *stat = 0, -1);
-=======
-	fd = 1;
-	name = expend(ft_strdup(name), 0, 1, &fd);
-	if (fd == -1)
-		return (fd);
-	if (!access(name, F_OK))
-	{
-		if (access(name, W_OK) == -1)
-			return (error("permission denied", name), *stat = 0, -1);
-	}
->>>>>>> 6f65733df44c67be3c045e536c0e84a1bfa8d516
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
