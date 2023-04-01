@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 22:57:22 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 23:17:40 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	outfd(char *name, int trunc, int *stat)
 	fd = 1;
 	name = expend(ft_strdup(name), 0, 1, &fd);
 	if (fd == -1)
-		return (fd);
+		return (*stat = 0, fd);
 	if (!access(name, F_OK))
 	{
 		if (access(name, W_OK) == -1)
