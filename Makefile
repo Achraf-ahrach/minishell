@@ -10,9 +10,6 @@ OBJP = $(patsubst $(SRCP)/%.c, $(OBJ)/%.o, $(wildcard $(SRCP)/*.c))
 OBJE = $(patsubst $(SRCE)/%.c, $(OBJ)/%.o, $(wildcard $(SRCE)/*.c))
 OBJS = $(OBJP) $(OBJE)
 
-echo:
-	echo $(OBJS)
-
 all: $(NAME)
 
 $(NAME):  $(LIBFT) $(OBJS)

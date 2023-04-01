@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 18:14:13 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 18:44:33 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,31 @@ int	len_name(char *s)
 	return (i);
 }
 
-void	search_replace(t_env *env, char *s, char **dup, int *i)
+int	check_sp(char *s, int fd)
+{
+	int	i;
+	int	result;
+
+	i = 0;
+	result = 0;
+	while (s && s[i])
+	{
+		if ((i == 0 && s[i] != ' ') || (s[i] == ' ' && s[i + 1] != ' ' && s[i
+				+ 1]))
+			result++;
+		i++;
+	}
+	if (i > 1 && fd)
+		return (0);
+	return (1);
+}
+
+void	search_replace(int fd, char *s, char **dup, int *i)
 {
 	char	*d;
+	t_env	*env;
 
+	env = g_v->env;
 	d = ft_substr(s, 0, len_name(s));
 	if (!ft_strcmp("?", d))
 		add_chars(dup, ft_itoa(g_v->var->exit_status), 1);
@@ -36,7 +57,7 @@ void	search_replace(t_env *env, char *s, char **dup, int *i)
 	{
 		while (env)
 		{
-			if (!ft_strcmp(env->key, d))
+			if (!ft_strcmp(env->key, d) && check_sp(env->value, fd))
 			{
 				add_chars(dup, env->value, 0);
 				break ;
@@ -44,8 +65,12 @@ void	search_replace(t_env *env, char *s, char **dup, int *i)
 			env = env->next;
 		}
 	}
-	if (!env)
-		add_chars(dup, "\"\"", 0);
+	(!env && !fd) && (add_chars(dup, "\"\"", 0));
+	if ((!env && fd))
+	{
+		d = ft_strjoin(ft_strdup("$"), d);
+		error("ambiguous redirect", d);
+	}
 	free(d);
 	*i += len_name(s) + 1;
 }
@@ -80,7 +105,7 @@ void	squiplim(char **dup, char *s, int *i)
 	}
 }
 
-char	*expend(char *s, int i, int exp)
+char	*expend(char *s, int i, int exp, int fd)
 {
 	char	*dup;
 
@@ -100,7 +125,7 @@ char	*expend(char *s, int i, int exp)
 		else if (s[i] == '$' && (s[i + 1] == '\'' || s[i + 1] == '\"'))
 			i++;
 		else if (s[i] == '$' && s[i + 1] != ' ' && s[i + 1])
-			search_replace(g_v->env, &s[i + 1], &dup, &i);
+			search_replace(fd, &s[i + 1], &dup, &i);
 		else
 			add_char(&dup, s[i++]);
 	}

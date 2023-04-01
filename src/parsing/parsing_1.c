@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/01 18:19:03 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/04/01 18:36:19 by ajari            ###   ########.fr       */
+>>>>>>> d314fef6c656e3aacafe64e032cca0f4851112c9
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +24,7 @@ void	fill_cmds(char *s, t_env *env, t_var *var)
 
 	i = 0;
 	g_v = ft_lstnew(0, env, var);
-	c = ft_split(expend(add_spc(s, 0), 0, 1), '|', 1);
+	c = ft_split(expend(add_spc(s, 0), 0, 1, 0), '|', 1);
 	free(g_v);
 	g_v = 0;
 	while (c && c[i])
