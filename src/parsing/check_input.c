@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/31 14:09:25 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 16:35:49 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static int	check_file(char *s, char c)
 		{
 			c = s[i++];
 			(s[i] == c) && (i++);
-			while (ft_isspace(s[i++]))
-				;
+			while (ft_isspace(s[i]))
+				i++;
 			if (s[i] == '<' || s[i] == '>')
 				return (error("syntax error near unexpected token `<<'", ""));
 		}
