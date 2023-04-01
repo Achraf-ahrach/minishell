@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getenv_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:04:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 11:45:28 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 17:06:19 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ t_env	*getlstenv(char **ev)
 		envadd_back(&env, env_new(k, v));
 		i++;
 	}
+	printf("%p\n", env);
 	return (env);
 }
