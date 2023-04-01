@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 17:31:24 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 18:31:00 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	execution(void)
 	int		k = 0;
 	int		h = 0;
 
+	printf("\n\n\n======> exicotion <======\n\n");
 	list = g_v;
 	k = dup(1);
 	h = dup(0);

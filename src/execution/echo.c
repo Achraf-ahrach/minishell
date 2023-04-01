@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:04:06 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 17:50:55 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 18:37:38 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	echo(char **cmd)
 	int i;
 	int line;
 
-	i = 1;
 	line = 0;
-	if (check_n(cmd[i]))
+	i = 1;
+	while (check_n(cmd[i]))
 	{
 		i++;
 		line = 1;
