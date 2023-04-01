@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 15:19:36 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 15:47:44 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,9 @@ void	iterate_cmds(t_list *t, int i)
 			else if (!ft_strcmp(t->cmd[i], "<<"))
 				t->i_f = t->h_d;
 			else if (!ft_strcmp(t->cmd[i], ">") && op(rm_quote(t->cmd[i + 1])))
-				t->o_f = outfd(t->cmd[++i], 0, &t->stat);
-			else if (!ft_strcmp(t->cmd[i], ">>") && op(rm_quote(t->cmd[i + 1])))
 				t->o_f = outfd(t->cmd[++i], 1, &t->stat);
+			else if (!ft_strcmp(t->cmd[i], ">>") && op(rm_quote(t->cmd[i + 1])))
+				t->o_f = outfd(t->cmd[++i], 0, &t->stat);
 			else if (op(rm_quote(t->cmd[i])))
 				add_str(&t->cmdsp, t->cmd[i]);
 			i++;
