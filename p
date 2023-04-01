@@ -1,0 +1,22 @@
+total 288
+drwxr-xr-x  21 aahrach  2019     714 Apr  1 15:44 .
+drwxr-xr-x  10 aahrach  2019     340 Apr  1 11:38 ..
+-rw-r--r--   1 aahrach  2019    6148 Mar 31 23:19 .DS_Store
+drwxr-xr-x  18 aahrach  2019     612 Apr  1 15:28 .git
+drwxr-xr-x   3 aahrach  2019     102 Mar 29 12:04 .vscode
+-rwxr-xr-x   1 aahrach  2019     767 Apr  1 15:14 Makefile
+-rwxr-xr-x   1 aahrach  2019       0 Mar 30 15:37 cmdsp[i]
+-rwxr-xr-x   1 aahrach  2019       0 Mar 31 15:22 exit_status
+-rwxr-xr-x   1 aahrach  2019    1142 Apr  1 15:44 f
+-rwxr-xr-x   1 aahrach  2019     341 Mar 28 18:42 lll.c
+-rw-r--r--   1 aahrach  2019       0 Mar 31 14:57 llllllll
+-rwxr-xr-x   1 aahrach  2019  116376 Apr  1 15:38 minishell
+drwxr-xr-x   3 aahrach  2019     102 Mar 29 23:00 minishell.dSYM
+drwxr-xr-x  21 aahrach  2019     714 Apr  1 15:38 obj
+-rwxr-xr-x   1 aahrach  2019      93 Mar 31 17:12 ok
+-rw-r--r--   1 aahrach  2019       0 Mar 31 14:57 out2
+-rw-r--r--   1 aahrach  2019    2180 Apr  1 15:43 outf
+-rwxr-xr-x   1 aahrach  2019       0 Apr  1 15:45 p
+-rwxr-xr-x   1 aahrach  2019       0 Mar 31 14:57 rrrrr
+drwxr-xr-x   6 aahrach  2019     204 Mar 31 23:19 src
+-rwxr-xr-x   1 aahrach  2019       0 Mar 31 15:22 var-

@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/31 23:27:12 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 15:55:53 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,9 +154,9 @@ void	ft_child(t_list *list)
 		path = srch_path();
 		if (!path || (g_v->cmdsp && g_v->cmdsp[0] && !g_v->cmdsp[0][0]))
 		{
-			error(": command not found", list->cmdsp[0]);
+			error(" 1: command not found", list->cmdsp[0]);
 			exit_status(127, 1);
-			error(": command not found" , list->cmdsp[0]);
+			error("2: command not found" , list->cmdsp[0]);
 			exit_status (127, 1);
 		}
 		p = a_split(path, ':');
@@ -164,7 +164,7 @@ void	ft_child(t_list *list)
 		;
 		if (!comand)
 		{
-			error(": command not found", list->cmdsp[0]);
+			error("3: command not found", list->cmdsp[0]);
 			exit_status(127, 1);
 		}
 		if (access(comand, X_OK))

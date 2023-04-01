@@ -4074,6 +4074,34 @@
               ]
             ],
             "isComplete": true
+          },
+          "be2f760c-a222-469e-359d-7bd56a0aaa77": {
+            "id": "be2f760c-a222-469e-359d-7bd56a0aaa77",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 33,
+            "point": [
+              204.86,
+              642.76
+            ],
+            "size": [
+              518.86,
+              330.2
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
           }
         },
         "bindings": {}

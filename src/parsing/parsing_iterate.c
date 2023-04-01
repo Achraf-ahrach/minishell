@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/31 16:16:51 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 15:54:04 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,17 @@ int	op(char *dir)
 {
 	DIR	*t;
 
-	t = opendir(dir);
-	if (t)
+	if (!ft_strncmp(dir, "./", 2))
 	{
-		closedir(t);
-		return (error("Is a directory", dir));
+		t = opendir(dir);
+		if (t)
+		{
+			closedir(t);
+			return (error("Is a directory", dir));
+			
+		}
+		
+		return (1);
 	}
 	else
 		return (1);

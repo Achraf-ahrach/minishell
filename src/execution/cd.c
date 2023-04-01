@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 15:25:08 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 15:31:10 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void	cd(t_list *list, int is_childe)
 	else
 	{
     	getcwd(buffer, sizeof(buffer));
-		printf("[%s]\n", list->cmdsp[1]);
 		if (!chdir(list->cmdsp[1]))
 			chang_pwd_oldpwd(ft_strdup(buffer));
 		else
