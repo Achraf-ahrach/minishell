@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 16:17:20 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 16:17:59 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ int	op(char *dir)
 	if (!ft_strncmp(dir, "./", 2))
 	{
 		t = opendir(dir);
-		closedir(t);
 		if (t)
+		{
+			closedir(t);
 			return (error("Is a directory", dir));
+		}
 		return (1);
 	}
 	else
