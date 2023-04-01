@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 17:30:02 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 18:16:28 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,14 @@ int	main(int ac, char **av, char **ev)
 	{
 		//signal(SIGINT, &crl_c);
 		s = readline("MINISHELL#(*_*)|❯❯❯❯");
-		add_history(ft_strdup(s)); //choufni a moul lparsing
+		add_history(s); //choufni a moul lparsing
 		if (!s || !check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
 		printf_list(g_v);
 		execution();
 		lstfree(g_v);
+		//free(s);
 		//system("leaks minishell");
 	}
 }

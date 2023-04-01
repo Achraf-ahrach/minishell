@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:04:06 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/29 21:44:56 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 17:50:55 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_n(char *str)
 
 	i = 0;
 	if (!str)
-		return (1);
+		return (0);
 	if (str[i] == '-' && str[1] && str[1] == 'n')
 		i++;
 	else
