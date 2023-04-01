@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 16:12:20 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 16:17:59 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ int	op(char *dir)
 		{
 			closedir(t);
 			return (error("Is a directory", dir));
-			
 		}
-		
 		return (1);
 	}
 	else
@@ -125,6 +123,8 @@ void	iterate_cmds(t_list *t, int i)
 				add_str(&t->cmdsp, t->cmd[i]);
 			i++;
 		}
+		if (!t->cmdsp)
+			t->stat = 0;
 		t = t->next;
 	}
 }
