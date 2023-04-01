@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 16:15:36 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 17:13:32 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ char	*cmd_access(char **p, char *comand)
 	i = -1;
 	if (comand[0] == '/' && access(comand, F_OK) == 0)
 		return (comand);
+	if (comand[0] == '.')
+		return (comand);
 	while (i != 0 && p[j] != NULL)
 	{
 		path = join_cmd(p[j], comand);
@@ -154,26 +156,26 @@ void	ft_child(t_list *list)
 		path = srch_path();
 		if (!path || (g_v->cmdsp && g_v->cmdsp[0] && !g_v->cmdsp[0][0]))
 		{
-			error(" 1: command not found", list->cmdsp[0]);
+			error(" : command not found", list->cmdsp[0]);
 			exit_status(127, 1);
-			error("2: command not found" , list->cmdsp[0]);
+			error(" : command not found" , list->cmdsp[0]);
 			exit_status (127, 1);
 		}
 		p = a_split(path, ':');
 		comand = cmd_access(p, list->cmdsp[0]);
 		if (!comand)
 		{
-			error("3: command not found", list->cmdsp[0]);
+			error(" : command not found", list->cmdsp[0]);
 			exit_status(127, 1);
 		}
 		if (access(comand, X_OK))
 		{
-			perror("Errordgdfgf:");
+			perror("Error");
 			write(2, "\n", 1);
 			exit_status(126, 1);
 		}
 		execve(comand, list->cmdsp, ft_env(g_v->env));
-		perror("Error111: ");
+		perror("Error: ");
 		write(2, "\n", 1);
 		exit_status(127, 1);
 	}
