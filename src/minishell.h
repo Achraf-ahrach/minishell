@@ -6,7 +6,11 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/01 23:32:29 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/04/01 22:32:15 by ajari            ###   ########.fr       */
+>>>>>>> 6f65733df44c67be3c045e536c0e84a1bfa8d516
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +96,11 @@ void				print(char c, int color, char *str);
 int					error(char *str_er, char *name);
 t_env				*getlstenv(char **ev);
 void				fill_cmds(char *s, t_env *ev, t_var *var);
-char				*expend(char *s, int i, int exp, int fd);
+char				*expend(char *s, int i, int exp, int *fd);
 void				no_expend(char *s, char **dup, char c, int *i);
-void				search_replace(int fd, char *s, char **dup, int *i);
+void				search_replace(int *fd, char *s, char **dup, int *i);
 t_env				*getlstenv(char **ev);
-int					len_name(char *s);
+int					len_name(char *s, int *j);
 char				*add_spc(char *s, int i);
 char				*rm_quote(char *s);
 int					check_in(char *s);

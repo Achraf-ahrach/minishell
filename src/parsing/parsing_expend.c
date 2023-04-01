@@ -6,26 +6,14 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 18:44:33 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 22:56:08 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	len_name(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (s[0] == '?')
-		return (1);
-	while (s[i] && (!ft_isspace(s[i])))
-		i++;
-	return (i);
-}
-
-int	check_sp(char *s, int fd)
+int	nb(char **dup, char *s, int *fd)
 {
 	int	i;
 	int	result;
@@ -34,45 +22,44 @@ int	check_sp(char *s, int fd)
 	result = 0;
 	while (s && s[i])
 	{
-		if ((i == 0 && s[i] != ' ') || (s[i] == ' ' && s[i + 1] != ' ' && s[i
-				+ 1]))
+		if ((!i && s[i] != ' ') || (s[i] == ' ' && s[i + 1] != ' ' && s[i + 1]))
 			result++;
 		i++;
 	}
-	if (i > 1 && fd)
+	if (result > 1 && *fd)
+	{
+		*fd = -1;
 		return (0);
+	}
+	add_chars(dup, s, 0);
 	return (1);
 }
 
-void	search_replace(int fd, char *s, char **dup, int *i)
+void	search_replace(int *fd, char *s, char **dup, int *i)
 {
 	char	*d;
 	t_env	*env;
 
 	env = g_v->env;
-	d = ft_substr(s, 0, len_name(s));
-	if (!ft_strcmp("?", d))
+	d = ft_substr(s, 0, len_name(s, i));
+	if (!ft_strcmp("?", d + 1))
 		add_chars(dup, ft_itoa(g_v->var->exit_status), 1);
 	else
 	{
 		while (env)
 		{
-			if (!ft_strcmp(env->key, d) && check_sp(env->value, fd))
-			{
-				add_chars(dup, env->value, 0);
+			if (!ft_strcmp(env->key, d) && nb(dup, env->value, fd))
 				break ;
-			}
 			env = env->next;
 		}
 	}
-	(!env && !fd) && (add_chars(dup, "\"\"", 0));
-	if ((!env && fd))
+	(!env && !*fd) && (add_chars(dup, "\"\"", 0));
+	if (!env && *fd)
 	{
-		d = ft_strjoin(ft_strdup("$"), d);
+		*fd = -1;
 		error("ambiguous redirect", d);
 	}
 	free(d);
-	*i += len_name(s) + 1;
 }
 
 void	no_expend(char *s, char **dup, char c, int *i)
@@ -105,7 +92,7 @@ void	squiplim(char **dup, char *s, int *i)
 	}
 }
 
-char	*expend(char *s, int i, int exp, int fd)
+char	*expend(char *s, int i, int exp, int *fd)
 {
 	char	*dup;
 
@@ -116,7 +103,7 @@ char	*expend(char *s, int i, int exp, int fd)
 	{
 		if (s[i] == '\'')
 			no_expend(s, &dup, '\'', &i);
-		else if (!ft_strncmp(&s[i], ">", 1) && !ft_strncmp(&s[i], "<", 1))
+		else if (!ft_strncmp(&s[i], ">", 1) || !ft_strncmp(&s[i], "<", 1))
 			squiplim(&dup, s, &i);
 		else if (s[i] == '$' && ft_isdigit(s[i + 1]))
 			i += 2;
@@ -124,8 +111,8 @@ char	*expend(char *s, int i, int exp, int fd)
 			i += 2;
 		else if (s[i] == '$' && (s[i + 1] == '\'' || s[i + 1] == '\"'))
 			i++;
-		else if (s[i] == '$' && s[i + 1] != ' ' && s[i + 1])
-			search_replace(fd, &s[i + 1], &dup, &i);
+		else if (s[i] == '$' && !ft_isspace(s[i + 1]) && s[i + 1])
+			search_replace(fd, &s[i], &dup, &i);
 		else
 			add_char(&dup, s[i++]);
 	}

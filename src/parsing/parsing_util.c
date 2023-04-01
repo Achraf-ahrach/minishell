@@ -3,10 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_util.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
 /*   Updated: 2023/04/01 19:48:46 by aahrach          ###   ########.fr       */
+=======
+/*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
+/*   Updated: 2023/04/01 22:57:22 by ajari            ###   ########.fr       */
+>>>>>>> 6f65733df44c67be3c045e536c0e84a1bfa8d516
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +33,10 @@ int	infd(char *name, int *stat)
 {
 	int	fd;
 
+	fd = -2;
+	name = expend(ft_strdup(name), 0, 1, &fd);
+	if (fd == -1)
+		return (fd);
 	if (access(name, F_OK) == -1)
 		return (error("no such file or directory", name), *stat = 0, -1);
 	if (access(name, R_OK) == -1)
@@ -40,11 +49,34 @@ int	outfd(char *name, int trunc, int *stat)
 {
 	int	fd;
 
+<<<<<<< HEAD
 	if (access(name, W_OK) == -1 && access(name, W_OK) == -1)
 		return (error("permission denied", name), *stat = 0, -1);
+=======
+	fd = 1;
+	name = expend(ft_strdup(name), 0, 1, &fd);
+	if (fd == -1)
+		return (fd);
+	if (!access(name, F_OK))
+	{
+		if (access(name, W_OK) == -1)
+			return (error("permission denied", name), *stat = 0, -1);
+	}
+>>>>>>> 6f65733df44c67be3c045e536c0e84a1bfa8d516
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
 		fd = open(name, O_CREAT | O_APPEND | O_WRONLY, 0777);
 	return (fd);
+}
+
+int	len_name(char *s, int *j)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && (!ft_isspace(s[i])))
+		i++;
+	*j += i + 1;
+	return (i);
 }

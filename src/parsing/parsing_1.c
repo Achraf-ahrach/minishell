@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
 /*   Updated: 2023/04/01 23:40:06 by aahrach          ###   ########.fr       */
+=======
+/*   Created: 2023/04/01 22:14:08 by ajari             #+#    #+#             */
+/*   Updated: 2023/04/01 22:38:32 by ajari            ###   ########.fr       */
+>>>>>>> 6f65733df44c67be3c045e536c0e84a1bfa8d516
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +25,7 @@ void	fill_cmds(char *s, t_env *env, t_var *var)
 
 	i = 0;
 	g_v = ft_lstnew(0, env, var);
-	c = ft_split(expend(add_spc(s, 0), 0, 1, 0), '|', 1);
+	c = ft_split(expend(add_spc(s, 0), 0, 1, &i), '|', 1);
 	free(g_v);
 	g_v = 0;
 	while (c && c[i])
