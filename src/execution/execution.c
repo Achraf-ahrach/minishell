@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 16:19:30 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 17:17:11 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ void	execution(void)
 	int		k = 0;
 	int		h = 0;
 
+	//printf("(%p)\n\n",g_v->env);
 	list = g_v;
 	k = dup(1);
 	h = dup(0);
-	printf("(%p)\n\n",g_v->env);
 	if (ft_lstsize(list) == 1 && list->cmdsp && builtins(list, 0))
 		return ;
 	while (list)
