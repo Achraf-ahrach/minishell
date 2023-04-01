@@ -1,1 +1,1 @@
-git add . && git commit -m set$USER && git push && git pull
+git add . && git commit -m set_$USER && git push && git pull
