@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 15:38:28 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 18:14:13 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	len_name(char *s)
 	i = 0;
 	if (s[0] == '?')
 		return (1);
-	while (s[i] && (ft_isalnum(s[i]) || s[i] == '_'))
+	while (s[i] && (!ft_isspace(s[i])))
 		i++;
 	return (i);
 }
@@ -65,8 +65,10 @@ void	no_expend(char *s, char **dup, char c, int *i)
 
 void	squiplim(char **dup, char *s, int *i)
 {
-	(void)dup;
-	while (ft_isspace(s[*i]) || s[*i] == '<')
+	char	c;
+
+	c = s[*i];
+	while (ft_isspace(s[*i]) || s[*i] == c)
 	{
 		add_char(dup, s[*i]);
 		*i += 1;
@@ -89,7 +91,7 @@ char	*expend(char *s, int i, int exp)
 	{
 		if (s[i] == '\'')
 			no_expend(s, &dup, '\'', &i);
-		else if (!ft_strncmp(&s[i], "<<", 2))
+		else if (!ft_strncmp(&s[i], ">", 1) && !ft_strncmp(&s[i], "<", 1))
 			squiplim(&dup, s, &i);
 		else if (s[i] == '$' && ft_isdigit(s[i + 1]))
 			i += 2;
