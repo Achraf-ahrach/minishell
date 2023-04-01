@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 09:55:51 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 17:15:33 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 17:30:20 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	util(t_list *p, char **cmd, t_env *ev, t_var *var)
 {
-	(void)ev;
 	p->cmd = cmd;
 	p->i_f = -2;
 	p->o_f = -2;
@@ -35,6 +34,5 @@ t_list	*ft_lstnew(char **cmd, t_env *ev, t_var *var)
 	if (!p)
 		return (NULL);
 	util(p, cmd, ev, var);
-	printf("s:%p\n s:%p\n", ev, var);
 	return (p);
 }
