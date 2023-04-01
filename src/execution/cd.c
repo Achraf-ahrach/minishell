@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 15:13:16 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 15:25:08 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,8 @@ void	cd(t_list *list, int is_childe)
 
 	eror = 0;
 	env = list->env;
-	printf("000000000\n");
 	if (!list->cmdsp[1] || !ft_strcmp(list->cmdsp[1], "~"))
 	{
-		printf("[ ~ ] = (%s)\n", list->cmdsp[1]);
 		while (env)
 		{
 			if (!ft_strcmp(env->key, "HOME"))
@@ -96,7 +94,6 @@ void	cd(t_list *list, int is_childe)
 	}
 	else if (!ft_strcmp(list->cmdsp[1], "-"))
 	{
-		printf("[ - ] = (%s)\n", list->cmdsp[1]);
 		while (env)
 		{
 			if (!ft_strcmp(env->key, "OLDPWD"))
@@ -115,9 +112,9 @@ void	cd(t_list *list, int is_childe)
 	}
 	else
 	{
-		printf("rgsd111111( %s )\n\n", list->cmdsp[1]);
     	getcwd(buffer, sizeof(buffer));
-		if (chdir(list->cmdsp[1]))
+		printf("[%s]\n", list->cmdsp[1]);
+		if (!chdir(list->cmdsp[1]))
 			chang_pwd_oldpwd(ft_strdup(buffer));
 		else
 			eror = 1;
