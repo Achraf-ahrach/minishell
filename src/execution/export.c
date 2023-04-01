@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/31 21:47:34 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 12:02:17 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,11 @@ char	*cat_equals(char *str, int *x)
 	return (NULL);
 }
 
-void	export_add(t_env *env, char *key, char *value, char *str)
+void	export_add(char *key, char *value)
 {
 	t_env	*new;
 
-	(void)str;
-	(void)env;
-	// if (!ft_strcmp(str, "present"))
-	// {
-	// 	if (env->value)
-	// 		free(env->value);
-	// 	env->value = value;
-	// 	env->equals = 1;
-	// 	env->index = 0;
-	// }
 	new = env_new(key, value);
-	printf("key = %s   value = %s\n", new->key, new->value);
 	envadd_back(&g_v->env, new);
 }
 
@@ -176,74 +165,70 @@ int	wach_kayn(t_list *list, char *str)
 	return (0);
 }
 
-char	*join_plus(char const *s1, char const *s2)
-{
-	char	*p;
-	int		k;
-	int		i;
-	int		j;
-	int		c;
+// char	*join_plus(char const *s1, char const *s2)
+// {
+// 	char	*p;
+// 	int		k;
+// 	int		i;
+// 	int		j;
+// 	int		c;
 
-	k = 0;
-	c = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	i = ft_strlen(s1);
-	j = ft_strlen(s2);
-	p = malloc((i + j + 1) * sizeof(char));
-	if (p == 0)
-		return (NULL);
-	while (k++ < i)
-		p[k] = s1[k];
-	while (k < i + j)
-	{
-		p[k++] = s2[c++];
-	}
-	p[k] = '\0';
-	return (p);
-}
+// 	k = 0;
+// 	c = 0;
+// 	if (!s1 || !s2)
+// 		return (NULL);
+// 	i = ft_strlen(s1);
+// 	j = ft_strlen(s2);
+// 	p = malloc((i + j + 1) * sizeof(char));
+// 	if (p == 0)
+// 		return (NULL);
+// 	while (k++ < i)
+// 		p[k] = s1[k];
+// 	while (k < i + j)
+// 	{
+// 		p[k++] = s2[c++];
+// 	}
+// 	p[k] = '\0';
+// 	return (p);
+// }
 
 void	export_(t_list *list, int	is_childe)
 {
 	t_env	*tmp;
 	int		i;
 	int		x;
-	char	*p;
-	// char	*s;
-	// char	*l;
-	char	*v;
+	char	*key;
+	char	*value;
 
 	i = 1;
-	v = NULL;
+	value = NULL;
 	while (list->cmdsp[i])
 	{
 		tmp = list->env;
 		if (check_identifier(list->cmdsp[i], is_childe)  && !wach_kayn(list, list->cmdsp[i]))
 		{
-			p = cat_equals(list->cmdsp[i], &x);
-			if (p)
-				v = ft_substr(list->cmdsp[i], len_equal(list->cmdsp[i]) + 1, ft_strlen(list->cmdsp[i]));
+			key = cat_equals(list->cmdsp[i], &x);
+			if (key)
+				value = ft_substr(list->cmdsp[i], len_equal(list->cmdsp[i]) + 1, ft_strlen(list->cmdsp[i]));
 			else
-				p = ft_strdup(list->cmdsp[i]);
-			//printf("====>%s\n", p);
-			if (wach_kayn(list, p))
+				key = ft_strdup(list->cmdsp[i]);
+			if (wach_kayn(list, key))
 			{
 				while (tmp)
 				{
-					if (!ft_strcmp(tmp->key, p) && x)
+					if (!ft_strcmp(tmp->key, key) && x)
 					{
-						printf("======>    join\n");
-						// export_add(tmp, ft_strrchr(list->cmdsp[i], '=') + 1, v,"join");
-						tmp->value = ft_strjoin(tmp->value, v);
+						tmp->value = ft_strjoin(tmp->value, value);
+						tmp->equals = 1;
 						break ;
 					}
-					if (!ft_strcmp(tmp->key, p))
+					if (!ft_strcmp(tmp->key, key))
 					{
-						printf("present\n");
-						if (!v)
+						if (!value)
 							break ;
 						free(tmp->value);
-						tmp->value = v;
+						tmp->value = value;
+						tmp->equals = 1;
 						break ;
 					}
 					tmp = tmp->next;
@@ -251,11 +236,10 @@ void	export_(t_list *list, int	is_childe)
 			}
 			else
 			{
-				printf("absent\n");
-				printf("key = %s    value = %s\n", p, v);
-				export_add(tmp, p, v, "absent");
+				export_add(key, value);
+				break ;
 			}
-			free(p);
+			free(key);
 		}
 		i++;
 	}
@@ -281,7 +265,6 @@ void	export(t_list *list, int is_childe)
 			{
 				if (tmp->index == size)
 				{
-					printf("dfgdg=> 111 \n");
 					if (!tmp->equals)
 						e = '\0';
 					else

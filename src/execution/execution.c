@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/31 17:32:17 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 12:20:48 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	execution(void)
 {
 	t_list	*list;
 	int		exit_status;
+	int		pid;
+	//int		pid_wait;
 	int		pp[2];
 	int		k = 0;
 	int		h = 0;
@@ -93,7 +95,8 @@ void	execution(void)
 		}
 		else if (list->stat)
 		{
-			if (fork() == 0)
+			pid = fork();
+			if (pid == 0)
 			{
 				dup_file(list);
 				ft_child(list);
@@ -103,8 +106,18 @@ void	execution(void)
 	}
 	dup2(k, 1);
 	dup2(h, 0);
+
+	// int i = -1;
+	// while (++i < 1)
+	// {
+	// 	pid_wait = wait(&exit_status);
+	// 	if (pid_wait == pid)
+	// 		g_v->var->exit_status = WEXITSTATUS(exit_status);
+	// }
+	
 	while (wait(&exit_status) != -1)
 		;
 	g_v->var->exit_status = WEXITSTATUS(exit_status);
-	printf("==> exit = %d\n", g_v->var->exit_status);
+	//exit (1);
+	//printf("==> exit = %d\n", g_v->var->exit_status);
 }

@@ -35,5 +35,5 @@ fclean: clean
 
 re: fclean fcleanlib all
 
-run:
+run: re
 	@./minishell
