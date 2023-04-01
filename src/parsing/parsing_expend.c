@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 22:56:08 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 23:22:08 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,13 @@ int	nb(char **dup, char *s, int *fd)
 	result = 0;
 	while (s && s[i])
 	{
-		if ((!i && s[i] != ' ') || (s[i] == ' ' && s[i + 1] != ' ' && s[i + 1]))
+		if ((!i && !ft_isspace(s[i])) || (ft_isspace(s[i]) && !ft_isspace(s[i
+					+ 1]) && s[i + 1]))
 			result++;
 		i++;
 	}
 	if (result > 1 && *fd)
-	{
-		*fd = -1;
-		return (0);
-	}
+		return (*fd = -1, 0);
 	add_chars(dup, s, 0);
 	return (1);
 }
@@ -48,7 +46,7 @@ void	search_replace(int *fd, char *s, char **dup, int *i)
 	{
 		while (env)
 		{
-			if (!ft_strcmp(env->key, d) && nb(dup, env->value, fd))
+			if (!ft_strcmp(env->key, d + 1) && nb(dup, env->value, fd))
 				break ;
 			env = env->next;
 		}

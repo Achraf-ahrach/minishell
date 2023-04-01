@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_util.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 23:44:35 by aahrach          ###   ########.fr       */
+/*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
+/*   Updated: 2023/04/01 23:47:48 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ int	outfd(char *name, int trunc, int *stat)
 {
 	int	fd;
 
-	if (access(name, W_OK) == -1 && access(name, W_OK) == -1)
+	fd = 1;
+	name = expend(ft_strdup(name), 0, 1, &fd);
+	if (fd == -1)
+		return (*stat = 0, fd);
+	if (!access(name, F_OK) && access(name, W_OK) == -1)
 		return (error("permission denied", name), *stat = 0, -1);
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
