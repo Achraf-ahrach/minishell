@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/31 23:20:28 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 12:46:51 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void				pwd(int is_child);
 void				echo(char **cmd);
 void				export(t_list *list, int is_childe);
 void				execution(void);
-void				cd(int is_childe);
+void				cd(t_list *list, int is_childe);
 void				unset(t_list *list);
 void				env(t_env *env);
 void				printf_list(t_list *t);
