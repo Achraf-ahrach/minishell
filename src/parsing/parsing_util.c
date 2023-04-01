@@ -49,7 +49,6 @@ int	outfd(char *name, int trunc, int *stat)
 {
 	int	fd;
 
-<<<<<<< HEAD
 	fd = 1;
 	name = expend(ft_strdup(name), 0, 1, &fd);
 	if (fd == -1)
@@ -59,10 +58,6 @@ int	outfd(char *name, int trunc, int *stat)
 		if (access(name, W_OK) == -1)
 			return (error("permission denied", name), *stat = 0, -1);
 	}
-=======
-	if (access(name, W_OK) == -1 && access(name, W_OK) == -1)
-		return (error("permission denied", name), *stat = 0, -1);
->>>>>>> ac890e2c668fdbc15ecf3c7fb7d63d5f324bf829
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
