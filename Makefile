@@ -6,16 +6,22 @@ SRCE = src/execution
 OBJ = obj
 LIBFT = src/libft/libft.a
 LIB = -lreadline
-SRCS = $(wildcard $(SRCP)/*.c $(SRCE)/*.c)
-OBJS = $(patsubst $(SRCP)/%.c $(SRCE)/%.c, $(OBJ)/%.o, $(SRCS))
+OBJP = $(patsubst $(SRCP)/%.c, $(OBJ)/%.o, $(wildcard $(SRCP)/*.c))
+OBJE = $(patsubst $(SRCE)/%.c, $(OBJ)/%.o, $(wildcard $(SRCE)/*.c))
+OBJS = $(OBJP) $(OBJE)
 
+echo:
+	echo $(OBJS)
 
 all: $(NAME)
 
 $(NAME):  $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(LIB) $(OBJS) $(LIBFT) -o $@
 
-$(OBJ)/%.o: $(SRCP)/%.c $(SRCE)/%.c $(OBJ)
+$(OBJ)/%.o: $(SRCP)/%.c $(OBJ)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ)/%.o: $(SRCE)/%.c $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ):
