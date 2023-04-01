@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 12:02:17 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 22:42:23 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ void	export_(t_list *list, int	is_childe)
 		tmp = list->env;
 		if (check_identifier(list->cmdsp[i], is_childe)  && !wach_kayn(list, list->cmdsp[i]))
 		{
+			//printf("11111111111\n");
 			key = cat_equals(list->cmdsp[i], &x);
 			if (key)
 				value = ft_substr(list->cmdsp[i], len_equal(list->cmdsp[i]) + 1, ft_strlen(list->cmdsp[i]));

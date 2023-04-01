@@ -6,11 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/01 18:19:31 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/04/01 18:42:22 by ajari            ###   ########.fr       */
->>>>>>> d314fef6c656e3aacafe64e032cca0f4851112c9
+/*   Updated: 2023/04/01 19:48:46 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +40,7 @@ int	outfd(char *name, int trunc, int *stat)
 {
 	int	fd;
 
-<<<<<<< HEAD
 	if (access(name, W_OK) == -1 && access(name, W_OK) == -1)
-=======
-	name = expend(name, 0, 1, 1);
-	if (access(name, W_OK) == -1)
-		return (error("no such file or directory", name), *stat = 0, 1);
-	if (access(name, W_OK) == -1)
->>>>>>> d314fef6c656e3aacafe64e032cca0f4851112c9
 		return (error("permission denied", name), *stat = 0, -1);
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
