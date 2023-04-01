@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 18:36:19 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 19:58:14 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	fill_cmds(char *s, t_env *env, t_var *var)
 
 	i = 0;
 	g_v = ft_lstnew(0, env, var);
-	c = ft_split(expend(add_spc(s, 0), 0, 1, 0), '|', 1);
+	c = ft_split(expend(add_spc(s, 0), 0, 1, &i), '|', 1);
 	free(g_v);
 	g_v = 0;
 	while (c && c[i])

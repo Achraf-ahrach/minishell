@@ -2,6 +2,7 @@ Makefile
 ajari
 lll.c
 llll
+ls
 minishell
 minishell.dSYM
 obj

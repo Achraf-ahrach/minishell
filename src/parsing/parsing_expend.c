@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 18:44:33 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 19:57:13 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	len_name(char *s)
 	return (i);
 }
 
-int	check_sp(char *s, int fd)
+int	check_sp(char *s, int *fd)
 {
 	int	i;
 	int	result;
@@ -39,12 +39,15 @@ int	check_sp(char *s, int fd)
 			result++;
 		i++;
 	}
-	if (i > 1 && fd)
+	if (result > 1 && *fd)
+	{
+		*fd = -1;
 		return (0);
+	}
 	return (1);
 }
 
-void	search_replace(int fd, char *s, char **dup, int *i)
+void	search_replace(int *fd, char *s, char **dup, int *i)
 {
 	char	*d;
 	t_env	*env;
@@ -65,8 +68,8 @@ void	search_replace(int fd, char *s, char **dup, int *i)
 			env = env->next;
 		}
 	}
-	(!env && !fd) && (add_chars(dup, "\"\"", 0));
-	if ((!env && fd))
+	(!env && !*fd) && (add_chars(dup, "\"\"", 0));
+	if ((!env && *fd))
 	{
 		d = ft_strjoin(ft_strdup("$"), d);
 		error("ambiguous redirect", d);
@@ -105,7 +108,7 @@ void	squiplim(char **dup, char *s, int *i)
 	}
 }
 
-char	*expend(char *s, int i, int exp, int fd)
+char	*expend(char *s, int i, int exp, int *fd)
 {
 	char	*dup;
 
@@ -116,7 +119,7 @@ char	*expend(char *s, int i, int exp, int fd)
 	{
 		if (s[i] == '\'')
 			no_expend(s, &dup, '\'', &i);
-		else if (!ft_strncmp(&s[i], ">", 1) && !ft_strncmp(&s[i], "<", 1))
+		else if (!ft_strncmp(&s[i], ">", 1) || !ft_strncmp(&s[i], "<", 1))
 			squiplim(&dup, s, &i);
 		else if (s[i] == '$' && ft_isdigit(s[i + 1]))
 			i += 2;
