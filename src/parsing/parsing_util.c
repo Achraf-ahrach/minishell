@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 15:47:24 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 18:17:49 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	outfd(char *name, int trunc, int *stat)
 {
 	int	fd;
 
-	if (access(name, W_OK) == 0 && access(name, W_OK) == -1)
+	if (access(name, W_OK) = -1 & access(name, W_OK) == -1)
 		return (error("permission denied", name), *stat = 0, -1);
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
