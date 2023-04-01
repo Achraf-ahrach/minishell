@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expend.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/31 23:25:42 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/01 15:38:28 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@ void	search_replace(t_env *env, char *s, char **dup, int *i)
 
 void	no_expend(char *s, char **dup, char c, int *i)
 {
+	add_char(dup, s[*i]);
 	while (1)
 	{
-		add_char(dup, s[*i]);
-		if (s[*i] != c)
-			break ;
 		*i += 1;
+		add_char(dup, s[*i]);
+		if (s[*i] == c)
+			break ;
 	}
+	*i += 1;
 }
 
 void	squiplim(char **dup, char *s, int *i)

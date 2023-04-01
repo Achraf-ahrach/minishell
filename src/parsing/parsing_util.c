@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:43:23 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/30 10:16:23 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/01 15:47:24 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int	outfd(char *name, int trunc, int *stat)
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
-		fd = open(name, O_CREAT | O_WRONLY, 0777);
+		fd = open(name, O_CREAT | O_APPEND | O_WRONLY, 0777);
 	return (fd);
 }
