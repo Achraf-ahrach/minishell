@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 23:22:08 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/02 12:49:00 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ char	*expend(char *s, int i, int exp, int *fd)
 			search_replace(fd, &s[i], &dup, &i);
 		else
 			add_char(&dup, s[i++]);
+		printf("dup:%s \ns[%d]%c\n", dup, i, s[i]);
 	}
 	return (free(s), dup);
 }
