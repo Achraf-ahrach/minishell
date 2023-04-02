@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/02 12:49:00 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/02 15:30:27 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	nb(char **dup, char *s, int *fd)
 	}
 	if (result > 1 && *fd)
 		return (*fd = -1, 0);
+	printf("hello \n");
 	add_chars(dup, s, 0);
 	return (1);
 }
@@ -62,15 +63,28 @@ void	search_replace(int *fd, char *s, char **dup, int *i)
 
 void	no_expend(char *s, char **dup, char c, int *i)
 {
+	char	*t;
+	int		j;
+
+	j = 0;
 	add_char(dup, s[*i]);
-	while (1)
+	if (s[*i] == '\'')
 	{
+		while (1)
+		{
+			*i += 1;
+			add_char(dup, s[*i]);
+			if (s[*i] == c)
+				break ;
+		}
 		*i += 1;
-		add_char(dup, s[*i]);
-		if (s[*i] == c)
-			break ;
+		return ;
 	}
-	*i += 1;
+	t = ft_substr(s + *i + 1, 0, ft_index(s + *i + 1, c));
+	*dup = ft_strjoin(*dup, expend(t, 0, 1, &j));
+	add_char(dup, c);
+	*i += ft_index(s + *i + 1, c) + 2;
+	//printf("i no expend =%d\n", *i);
 }
 
 void	squiplim(char **dup, char *s, int *i)
@@ -92,15 +106,17 @@ void	squiplim(char **dup, char *s, int *i)
 
 char	*expend(char *s, int i, int exp, int *fd)
 {
+	int		j;
 	char	*dup;
 
 	dup = NULL;
+	j = 0;
 	if (!exp)
 		return (s);
 	while (s[i])
 	{
-		if (s[i] == '\'')
-			no_expend(s, &dup, '\'', &i);
+		if (s[i] == '\'' || s[i] == '\"')
+			no_expend(s, &dup, s[i], &i);
 		else if (!ft_strncmp(&s[i], ">", 1) || !ft_strncmp(&s[i], "<", 1))
 			squiplim(&dup, s, &i);
 		else if (s[i] == '$' && ft_isdigit(s[i + 1]))
@@ -113,7 +129,10 @@ char	*expend(char *s, int i, int exp, int *fd)
 			search_replace(fd, &s[i], &dup, &i);
 		else
 			add_char(&dup, s[i++]);
-		printf("dup:%s \ns[%d]%c\n", dup, i, s[i]);
+		j++;
+		//if (j == 6)
+		//	exit(0);
+		//printf("i = :%d:\n", i);
 	}
 	return (free(s), dup);
 }
