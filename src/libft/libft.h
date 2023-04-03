@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:55:47 by ajari             #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2023/04/01 23:56:43 by aahrach          ###   ########.fr       */
+=======
 /*   Updated: 2023/04/02 14:30:46 by ajari            ###   ########.fr       */
+>>>>>>> 9bd8a8d5cf13d186bc6308f8a98da885344192cc
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +30,8 @@ int		ft_isdigit(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_toupper(int c);
-int		ft_tolower(int c);
 char	*ft_itoa(int n);
+char	*ft_tolower(char *s);
 int		ft_atoi(const char *str);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);

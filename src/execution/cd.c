@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 15:31:10 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/02 00:03:47 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	chang_pwd_oldpwd(char *oldpwd)
 {
 	char	buffer[PATH_MAX];
 	t_env	*env;
-	
+
 	env = g_v->env;
 	getcwd(buffer, sizeof(buffer));
 	while (env)
@@ -112,7 +112,7 @@ void	cd(t_list *list, int is_childe)
 	}
 	else
 	{
-    	getcwd(buffer, sizeof(buffer));
+		getcwd(buffer, sizeof(buffer));
 		if (!chdir(list->cmdsp[1]))
 			chang_pwd_oldpwd(ft_strdup(buffer));
 		else
@@ -120,7 +120,7 @@ void	cd(t_list *list, int is_childe)
 	}
 	if (eror == 1)
 	{
-		ft_error("minishell: ", list->cmdsp[0], ": ",0);
+		ft_error("minishell: ", list->cmdsp[0], ": ", 0);
 		ft_error(list->cmdsp[1], ": ", "No such file or directory", 1);
 		exit_status(1, is_childe);
 	}

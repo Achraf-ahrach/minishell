@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:04:06 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 18:37:38 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/02 00:52:27 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	check_n(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)
@@ -35,8 +35,8 @@ int	check_n(char *str)
 
 void	echo(char **cmd)
 {
-	int i;
-	int line;
+	int	i;
+	int	line;
 
 	line = 0;
 	i = 1;
