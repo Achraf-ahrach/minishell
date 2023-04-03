@@ -6,24 +6,25 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:08:41 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/31 16:27:04 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/02 19:41:04 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-void	free_one(t_list *list)
+void	free_one(t_list *list, int i)
 {
-	int	i;
-
-	i = 0;
 	while (list->cmd && list->cmd[i])
 		free(list->cmd[i++]);
 	if (list->cmdsp)
 		free(list->cmdsp);
 	if (list->cmd)
 		free(list->cmd);
+	if (list->i_f >= 0)
+		close(list->i_f);
+	if (list->o_f >= 0)
+		close(list->o_f);
 	free(list);
 }
 
@@ -34,7 +35,7 @@ void	lstfree(t_list *list)
 	while (list)
 	{
 		tmp = list->next;
-		free_one(list);
+		free_one(list, 0);
 		list = tmp;
 	}
 }
@@ -63,7 +64,7 @@ int	add_chars(char **dup, char *s, int fre)
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		add_char(dup, s[i]);
 		i++;

@@ -1,0 +1,9 @@
+total 112
+-rwxr-xr-x   1 ajari  2019    747 Apr  1 18:45 Makefile
+-rw-r--r--   1 ajari  2019      0 Apr  2 13:47 hhh hhhh
+-rwxr-xr-x   1 ajari  2019  38596 Apr  2 13:43 minishell
+drwxr-xr-x  21 ajari  2019    714 Apr  2 13:43 obj
+-rwxr-xr-x   1 ajari  2019      3 Apr  2 13:32 out1
+-rwxr-xr-x   1 ajari  2019      6 Apr  2 13:32 out2
+-rwxr--r--   1 ajari  2019     69 Apr  1 17:38 pull.sh
+drwxr-xr-x   6 ajari  2019    204 Apr  2 12:30 src

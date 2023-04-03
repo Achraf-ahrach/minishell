@@ -1,49 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_rm_quote.c                                 :+:      :+:    :+:   */
+/*   ft_index.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 12:57:37 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/02 15:23:31 by ajari            ###   ########.fr       */
+/*   Created: 2023/04/02 14:28:22 by ajari             #+#    #+#             */
+/*   Updated: 2023/04/02 15:06:17 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../minishell.h"
+#include "libft.h"
 
-static void	rm_quote_uti(char *s, int i)
+int	ft_index(char *s, char c)
 {
-	while (1)
-	{
-		s[i] = s[i + 2];
-		if (!s[i])
-			break ;
-		i++;
-	}
-}
-
-char	*rm_quote(char *s)
-{
-	char	c;
-	int		i;
+	int	i;
 
 	i = 0;
-	while (s && s[i])
+	if (!s)
+		return (-1);
+	printf("len len cahr :%s \n", s);
+	while (s[i])
 	{
-		if (s[i] == '\'' || s[i] == '\"')
-		{
-			c = s[i];
-			while (s[i + 1] != c)
-			{
-				s[i] = s[i + 1];
-				i++;
-			}
-			rm_quote_uti(s, i);
-		}
-		else
-			i++;
+		if (s[i] == c)
+			return (i);
+		i++;
 	}
-	return (s);
+	return (-2);
 }

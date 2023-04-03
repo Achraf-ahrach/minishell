@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 18:39:12 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/02 15:19:24 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ int	op(char *dir)
 {
 	DIR	*t;
 
+	dir = rm_quote(ft_strdup(dir));
 	if (!ft_strncmp(dir, "./", 2))
 	{
 		t = opendir(dir);
+		free(dir);
 		if (t)
 		{
 			closedir(t);
@@ -45,8 +47,8 @@ int	op(char *dir)
 		}
 		return (1);
 	}
-	else
-		return (1);
+	free(dir);
+	return (1);
 }
 
 void	utilhere_doc(int *p, char *lim, int exp)
@@ -111,13 +113,13 @@ void	iterate_cmds(t_list *t, int i)
 		i = 0;
 		while (t->cmd[i])
 		{
-			if (!ft_strcmp(t->cmd[i], "<") && op(rm_quote(t->cmd[i + 1])))
+			if (!ft_strcmp(t->cmd[i], "<") && op(t->cmd[i + 1]))
 				t->i_f = infd(t->cmd[++i], &t->stat);
 			else if (!ft_strcmp(t->cmd[i], "<<") && ++i)
 				t->i_f = t->h_d;
-			else if (!ft_strcmp(t->cmd[i], ">") && op(rm_quote(t->cmd[i + 1])))
+			else if (!ft_strcmp(t->cmd[i], ">") && op(t->cmd[i + 1]))
 				t->o_f = outfd(t->cmd[++i], 1, &t->stat);
-			else if (!ft_strcmp(t->cmd[i], ">>") && op(rm_quote(t->cmd[i + 1])))
+			else if (!ft_strcmp(t->cmd[i], ">>") && op(t->cmd[i + 1]))
 				t->o_f = outfd(t->cmd[++i], 0, &t->stat);
 			else if (op(rm_quote(t->cmd[i])))
 				add_str(&t->cmdsp, t->cmd[i]);

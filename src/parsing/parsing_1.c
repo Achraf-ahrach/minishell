@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 23:47:53 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/02 13:40:57 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int ac, char **av, char **ev)
 	while (1)
 	{
 		//signal(SIGINT, &crl_c);
-		s = readline("MINISHELL#(*_*)|❯❯❯❯");
+		s = readline("MINISHELL#(*_*)|❯❯❯❯ ");
 		add_history(s); //choufni a moul lparsing
 		if (!s || !check_in(s))
 			continue ;
