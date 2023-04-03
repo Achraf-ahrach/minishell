@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 23:46:07 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/02 00:51:24 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ void				cd(t_list *list, int is_childe);
 void				unset(t_list *list);
 void				env(t_env *env);
 void				printf_list(t_list *t);
-
 void				ft_exit(t_list *list);
 void				exit_status(int exit_status, int x);
-void				ft_child(t_list *list);
+void				ft_child(t_list *list, char *comand, char *path);
+char				**ft_env(t_env *env);
+char				*join_cmd(char *s1, char *s2);
 char				**a_split(char const *s, char c);
 char				*strjoin_a(char const *s1, char const *s2);
 int					ft_error(char *one, char *two, char *thre, int new_line);

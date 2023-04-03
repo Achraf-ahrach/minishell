@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 22:42:23 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/03 11:47:56 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	ft_lstsize_env(t_env *env)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (env)
@@ -39,7 +39,7 @@ char	*cat_equals(char *str, int *x)
 		len++;
 	p = malloc(len + 2);
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		p[i] = str[i];
 		i++;
@@ -94,7 +94,7 @@ void	sort_export(t_env *env)
 	char	*max;
 	t_env	*tmp;
 	int		j;
-	
+
 	j = 1;
 	tmp = env;
 	while (tmp)
@@ -119,7 +119,6 @@ void	sort_export(t_env *env)
 		}
 	}
 }
-
 
 int	check_identifier(char *str, int is_childe)
 {
@@ -165,34 +164,7 @@ int	wach_kayn(t_list *list, char *str)
 	return (0);
 }
 
-// char	*join_plus(char const *s1, char const *s2)
-// {
-// 	char	*p;
-// 	int		k;
-// 	int		i;
-// 	int		j;
-// 	int		c;
-
-// 	k = 0;
-// 	c = 0;
-// 	if (!s1 || !s2)
-// 		return (NULL);
-// 	i = ft_strlen(s1);
-// 	j = ft_strlen(s2);
-// 	p = malloc((i + j + 1) * sizeof(char));
-// 	if (p == 0)
-// 		return (NULL);
-// 	while (k++ < i)
-// 		p[k] = s1[k];
-// 	while (k < i + j)
-// 	{
-// 		p[k++] = s2[c++];
-// 	}
-// 	p[k] = '\0';
-// 	return (p);
-// }
-
-void	export_(t_list *list, int	is_childe)
+void	export_(t_list *list, int is_childe)
 {
 	t_env	*tmp;
 	int		i;
@@ -207,7 +179,6 @@ void	export_(t_list *list, int	is_childe)
 		tmp = list->env;
 		if (check_identifier(list->cmdsp[i], is_childe)  && !wach_kayn(list, list->cmdsp[i]))
 		{
-			//printf("11111111111\n");
 			key = cat_equals(list->cmdsp[i], &x);
 			if (key)
 				value = ft_substr(list->cmdsp[i], len_equal(list->cmdsp[i]) + 1, ft_strlen(list->cmdsp[i]));
@@ -249,7 +220,7 @@ void	export_(t_list *list, int	is_childe)
 void	export(t_list *list, int is_childe)
 {
 	int		i;
-	int 	size;
+	int		size;
 	t_env	*tmp;
 	char	e;
 
@@ -271,7 +242,7 @@ void	export(t_list *list, int is_childe)
 					else
 						e = '=';
 					if (tmp->value && ft_strcmp(tmp->key, "_"))
-						printf("declare -x %s%c\"%s\"\n", tmp->key, e ,tmp->value);
+						printf("declare -x %s%c\"%s\"\n", tmp->key, e, tmp->value);
 					else if (ft_strcmp(tmp->key, "_"))
 						printf("declare -x %s%c\n", tmp->key, e);
 					size--;

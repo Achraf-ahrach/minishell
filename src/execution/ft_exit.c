@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:46:02 by aahrach           #+#    #+#             */
-/*   Updated: 2023/03/31 17:04:15 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/02 00:00:30 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ft_exit(t_list *list)
 	else
 	{
 		ft_putstr_fd("exit\n", 2);
-		//printf("===> %d\n", ft_atoi(list->cmdsp[1]));
 		exit_status(ft_atoi(list->cmdsp[1]), 1);
 	}
 }

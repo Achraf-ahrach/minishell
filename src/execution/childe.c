@@ -6,54 +6,12 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 17:13:32 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/02 00:50:20 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
-
-char	*strjoin_a(char const *s1, char const *s2)
-{
-	char	*p;
-	int		k;
-	int		i;
-	int		j;
-	int		c;
-
-	c = 0;
-	k = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	i = ft_strlen(s1);
-	j = ft_strlen(s2);
-	p = malloc((i + j + 1) * sizeof(char));
-	if (p == 0)
-		return (NULL);
-	while (k < i)
-	{
-		p[k] = s1[k];
-		k++;
-	}
-	while (k < i + j)
-		p[k++] = s2[c++];
-	p[k] = '\0';
-	return (p);
-}
-
-char	*get_env(t_env *env)
-{
-	char	*key;
-	char	*value;
-	char	*p;
-	char	*s;
-
-	key = ft_strdup(env->key);
-	value = ft_strdup(env->value);
-	s = strjoin_a(key, "=");
-	p = ft_strjoin(s, value);
-	return (p);
-}
 
 char	**ft_env(t_env *env)
 {
@@ -145,12 +103,8 @@ char	*srch_path(void)
 	return (NULL);
 }
 
-void	ft_child(t_list *list)
+void	ft_child(t_list *list, char *comand, char *path)
 {
-	char **p;
-	char *comand;
-	char *path;
-
 	if (!builtins(list, 1))
 	{
 		path = srch_path();
@@ -158,11 +112,8 @@ void	ft_child(t_list *list)
 		{
 			error(" : command not found", list->cmdsp[0]);
 			exit_status(127, 1);
-			error(" : command not found" , list->cmdsp[0]);
-			exit_status (127, 1);
 		}
-		p = a_split(path, ':');
-		comand = cmd_access(p, list->cmdsp[0]);
+		comand = cmd_access(a_split(path, ':'), list->cmdsp[0]);
 		if (!comand)
 		{
 			error(" : command not found", list->cmdsp[0]);
