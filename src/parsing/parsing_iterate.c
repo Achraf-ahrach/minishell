@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/02 15:19:24 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/03 13:57:45 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	iterate_cmds(t_list *t, int i)
 	while (t)
 	{
 		i = 0;
-		while (t->cmd[i])
+		while (t->cmd[i] && t->stat)
 		{
 			if (!ft_strcmp(t->cmd[i], "<") && op(t->cmd[i + 1]))
 				t->i_f = infd(t->cmd[++i], &t->stat);

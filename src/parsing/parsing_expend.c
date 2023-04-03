@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/02 15:30:27 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/03 13:35:38 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	nb(char **dup, char *s, int *fd)
 	}
 	if (result > 1 && *fd)
 		return (*fd = -1, 0);
-	printf("hello \n");
 	add_chars(dup, s, 0);
 	return (1);
 }
@@ -40,14 +39,14 @@ void	search_replace(int *fd, char *s, char **dup, int *i)
 	t_env	*env;
 
 	env = g_v->env;
-	d = ft_substr(s, 0, len_name(s, i));
-	if (!ft_strcmp("?", d + 1))
+	d = ft_substr(s + 1, 0, len_name(s + 1, i));
+	if (!ft_strcmp("?", d))
 		add_chars(dup, ft_itoa(g_v->var->exit_status), 1);
 	else
 	{
 		while (env)
 		{
-			if (!ft_strcmp(env->key, d + 1) && nb(dup, env->value, fd))
+			if (!ft_strcmp(env->key, d) && nb(dup, env->value, fd))
 				break ;
 			env = env->next;
 		}
@@ -84,7 +83,6 @@ void	no_expend(char *s, char **dup, char c, int *i)
 	*dup = ft_strjoin(*dup, expend(t, 0, 1, &j));
 	add_char(dup, c);
 	*i += ft_index(s + *i + 1, c) + 2;
-	//printf("i no expend =%d\n", *i);
 }
 
 void	squiplim(char **dup, char *s, int *i)
