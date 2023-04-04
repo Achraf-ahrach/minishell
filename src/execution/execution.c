@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/04 15:29:38 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/04 17:44:35 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,43 +36,30 @@ int	builtins(t_list *list, int is_child)
 	return (1);
 }
 
-void	dup_pipe(t_list *list, int *pp)
+void	last_exit_status(pid_t pid)
 {
-	if (list->i_f != -2)
-	{
-		dup2(list->i_f, 0);
-		close(pp[0]);
-	}
-	if (list->o_f != -2)
-	{
-		dup2(list->o_f, 1);
-		close(pp[1]);
-	}
-	else
-	{
-		dup2(pp[1], 1);
-		close(pp[0]);
-		close(pp[1]);
-	}
-}
+	int		pid_wait;
+	int		exit_status;
+	int		i;
 
-void	dup_file(t_list *list)
-{
-	if (list->i_f != -2)
-		dup2(list->i_f, 0);
-	if (list->o_f != -2)
-		dup2(list->o_f, 1);
+	i = -1;
+	while (++i < ft_lstsize(g_v))
+	{
+		pid_wait = wait(&exit_status);
+		if (pid_wait == pid)
+			g_v->var->exit_status = WEXITSTATUS(exit_status);
+	}
 }
 
 void	execution(void)
 {
 	t_list	*list;
-	int		exit_status;
-	int		pid;
-	int		pp[2];
-	int		k = 0;
-	int		h = 0;
+	pid_t	pid;
+	int		k;
+	int		h;
 
+	k = 0;
+	h = 0;
 	list = g_v;
 	k = dup(1);
 	h = dup(0);
@@ -80,42 +67,10 @@ void	execution(void)
 		return ;
 	while (list)
 	{
-		if (list->next && list->stat)
-		{
-			pipe(pp);
-			if (fork() == 0)
-			{
-				signal(SIGQUIT, sig_handler_crl_);
-				//signal(SIGINT, sig_handler_crl__);
-				dup_pipe(list, pp);
-				ft_child(list, NULL, NULL);
-			}
-			dup2(pp[0], 0);
-			close(pp[1]);
-			close(pp[0]);
-		}
-		else if (list->stat)
-		{
-			pid = fork();
-			if (pid == 0)
-			{
-				signal(SIGQUIT, sig_handler_crl_);
-				//signal(SIGINT, sig_handler_crl__);
-				dup_file(list);
-				ft_child(list, NULL, NULL);
-			}
-		}
+		childe(list, &pid);
 		list = list->next;
 	}
 	dup2(k, 1);
 	dup2(h, 0);
-
-	int		pid_wait;
-	int i = -1;
-	while (++i < ft_lstsize(g_v))
-	{
-		pid_wait = wait(&exit_status);
-		if (pid_wait == pid)
-			g_v->var->exit_status = WEXITSTATUS(exit_status);
-	}
+	last_exit_status(pid);
 }
