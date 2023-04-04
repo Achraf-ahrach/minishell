@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/02 15:22:47 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/03 13:55:25 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	infd(char *name, int *stat)
 	if (fd == -1)
 		return (fd);
 	if (access(name, F_OK) == -1)
-		return (error("no such file or directory", name), *stat = 0, -1);
+		return (error("No such file or directory", name), *stat = 0, -1);
 	if (access(name, R_OK) == -1)
-		return (error("bermission denied", name), *stat = 0, -1);
+		return (error("Permission denied", name), *stat = 0, -1);
 	fd = open(name, O_RDONLY, 777);
 	return (fd);
 }
@@ -49,11 +49,13 @@ int	outfd(char *name, int trunc, int *stat)
 	if (fd == -1)
 		return (*stat = 0, fd);
 	if (!access(name, F_OK) && access(name, W_OK) == -1)
-		return (error("permission denied", name), *stat = 0, -1);
+		return (error("Permission denied", name), *stat = 0, -1);
 	if (trunc)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
 		fd = open(name, O_CREAT | O_APPEND | O_WRONLY, 0777);
+	if (fd == -1)
+		return (error("No such file or directory", name), *stat = 0, -1);
 	return (fd);
 }
 
@@ -62,8 +64,13 @@ int	len_name(char *s, int *j)
 	int	i;
 
 	i = 0;
-	while (s[i] && (!ft_isspace(s[i])))
+	if (s[i] == '?')
+	{
+		*j += i + 2;
+		return (1);
+	}
+	while (s[i] && (ft_isalnum(s[i]) || s[i] == '_'))
 		i++;
-	*j += i;
+	*j += i + 1;
 	return (i);
 }
