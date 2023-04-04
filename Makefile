@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 SRCP = src/parsing
 SRCE = src/execution
 OBJ = obj
@@ -13,17 +13,17 @@ OBJS = $(OBJP) $(OBJE)
 
 all: $(NAME)
 
-$(NAME):  $(LIBFT) $(OBJS) 
-	$(CC)  $(CFLAGS) $(LIB)  $(OBJS) $(LIBFT)  -o $@ 
+$(NAME):  $(LIBFT) $(OBJS)
+	$(CC)  $(CFLAGS) $(LIB)  $(OBJS) $(LIBFT)  -o $@
 
 $(OBJ)/%.o: $(SRCP)/%.c $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ)/%.o: $(SRCE)/%.c $(OBJ)
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ):
-	mkdir $@ 
+	mkdir $@
 	@stty -echoctl
 
 $(LIBFT):

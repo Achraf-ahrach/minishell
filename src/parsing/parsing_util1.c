@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:08:41 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/02 19:41:04 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/04 19:46:47 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_one(t_list *list, int i)
 	free(list);
 }
 
-void	lstfree(t_list *list)
+void	lstfree(t_list *list, t_env *env, t_var *var)
 {
 	t_list	*tmp;
 
@@ -38,6 +38,7 @@ void	lstfree(t_list *list)
 		free_one(list, 0);
 		list = tmp;
 	}
+	g_v = ft_lstnew(0, env, var);
 }
 
 void	add_char(char **s, char c)

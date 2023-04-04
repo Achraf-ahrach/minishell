@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/03 13:35:38 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/04 16:07:20 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,9 @@ void	squiplim(char **dup, char *s, int *i)
 
 char	*expend(char *s, int i, int exp, int *fd)
 {
-	int		j;
 	char	*dup;
 
 	dup = NULL;
-	j = 0;
 	if (!exp)
 		return (s);
 	while (s[i])
@@ -127,10 +125,6 @@ char	*expend(char *s, int i, int exp, int *fd)
 			search_replace(fd, &s[i], &dup, &i);
 		else
 			add_char(&dup, s[i++]);
-		j++;
-		//if (j == 6)
-		//	exit(0);
-		//printf("i = :%d:\n", i);
 	}
 	return (free(s), dup);
 }

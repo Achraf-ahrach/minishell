@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/04 19:54:14 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/04/04 19:46:28 by ajari            ###   ########.fr       */
+>>>>>>> f40732616b53919d3a3437b05b2462ad33b51984
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +65,7 @@ typedef struct s_list
 
 t_list				*g_v;
 
-void	rl_replace_line(const char *text, int clear_undo);
+void				rl_replace_line(const char *text, int clear_undo);
 
 /////////////// execution //////////////////
 
@@ -74,11 +78,15 @@ int					builtins(t_list *list, int is_child);
 void				pwd(int is_child);
 void				echo(char **cmd);
 void				export(t_list *list, int is_childe);
+<<<<<<< HEAD
 void				export_add(t_list *list, char *key, char *value);
 void				check_identifier(char *str, int is_childe, int i);
 void				sort_export(t_env *env, int j, int size);
 int					ft_lstsize_env(t_env *env);
 void				execution();
+=======
+void				execution(void);
+>>>>>>> f40732616b53919d3a3437b05b2462ad33b51984
 void				cd(t_list *list, int is_childe);
 void				cd_oldpwd(t_env *env, int *eror);
 void				cd_home(t_env *env, int *eror);
@@ -114,7 +122,7 @@ char				*rm_quote(char *s);
 int					check_in(char *s);
 int					infd(char *name, int *stat);
 int					outfd(char *name, int trunc, int *stat);
-void				lstfree(t_list *list);
+void				lstfree(t_list *list, t_env *env, t_var *var);
 int					add_chars(char **dup, char *s, int fre);
 void				sig_handler_crl_(int sig);
 void				sig_handler_crl(int sig);
