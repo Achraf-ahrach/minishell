@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/02 13:40:57 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/04 15:01:20 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,40 @@ void	init_variables(t_env **ev, t_var **var, char **av, char **env)
 	(*var)->exit_status = 0;
 }
 
+void	sig_handler_crl_c(int sig)
+{
+	(void)sig;
+	// g_v->var->exit_status = 1;
+	write(1, "\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+}
+
+void	sig_handler_crl_(int sig)
+{
+	(void)sig;
+	exit_status(131, 1);
+}
+
+void	sig_handler_crl(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	exit_status(1, 1);
+}
+
+void	sig_handler_crl__(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	exit_status(130, 1);
+}
+
 int	main(int ac, char **av, char **ev)
 {
 	char	*s;
@@ -77,16 +111,19 @@ int	main(int ac, char **av, char **ev)
 	t_var	*var;
 
 	(void)ac;
+	signal(SIGQUIT, SIG_IGN);
 	init_variables(&env, &var, av, ev);
 	while (1)
 	{
-		//signal(SIGINT, &crl_c);
+		signal(SIGINT, sig_handler_crl_c);
 		s = readline("MINISHELL#(*_*)|❯❯❯❯ ");
-		add_history(s); //choufni a moul lparsing
-		if (!s || !check_in(s))
-			continue ;
+		if (!s)
+			exit(var->exit_status);
+		add_history(s);
+		if (!check_in(s))
+			continue;
 		fill_cmds(s, env, var);
-		printf_list(g_v);
+		//printf_list(g_v);
 		execution(&env);
 		env = g_v->env;
 		lstfree(g_v);

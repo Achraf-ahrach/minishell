@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:44:38 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/01 14:40:16 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/04 13:26:05 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	unset(t_list *list)
 	t_env	*env;
 	
 	i = 0;
+	if (!list->env)
+		return ;
 	while (list->cmdsp[i])
 	{
 		env = list->env;

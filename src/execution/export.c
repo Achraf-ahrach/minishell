@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/03 11:47:56 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/04 14:13:20 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ char	*cat_equals(char *str, int *x)
 	return (NULL);
 }
 
-void	export_add(char *key, char *value)
+void	export_add(t_list *list, char *key, char *value)
 {
 	t_env	*new;
 
 	new = env_new(key, value);
-	envadd_back(&g_v->env, new);
+	envadd_back(&list->env, new);
 }
 
 char	*come_max(t_env *env)
@@ -208,7 +208,7 @@ void	export_(t_list *list, int is_childe)
 			}
 			else
 			{
-				export_add(key, value);
+				export_add(list, key, value);
 				break ;
 			}
 			free(key);

@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/02 00:51:24 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/04 14:59:11 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,13 @@ typedef struct s_list
 
 t_list				*g_v;
 
+void	rl_replace_line(const char *text, int clear_undo);
+
 /////////////// execution //////////////////
 
 void				sort_env(t_env **env);
 int					len_equal(char *s);
+char				*get_env(t_env *env);
 void				envadd_back(t_env **lst, t_env *new);
 t_env				*env_new(char *s1, char *s2);
 int					builtins(t_list *list, int is_child);
@@ -105,5 +108,8 @@ int					infd(char *name, int *stat);
 int					outfd(char *name, int trunc, int *stat);
 void				lstfree(t_list *list);
 int					add_chars(char **dup, char *s, int fre);
+void				sig_handler_crl_(int sig);
+void	sig_handler_crl(int sig);
+void	sig_handler_crl__(int sig);
 /////////////////////////////////////////////
 #endif
