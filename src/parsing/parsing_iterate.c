@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/04 14:55:09 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/04/03 13:57:45 by ajari            ###   ########.fr       */
->>>>>>> eaf0c4ec2dea294d004c773e84bf7fb2722259a2
+/*   Updated: 2023/04/04 15:29:52 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +75,18 @@ void	utilhere_doc(int *p, char *lim, int exp)
 
 int	here_doc(char *lim, int exp)
 {
+	int	i;
 	int	id;
 	int	p[2];
 
 	pipe(p);
-	if (lim && (lim[0] == '\'' || lim[0] == '\"'))
-		exp = 0;
+	i = 0;
+	while (lim[i])
+	{
+		if ((lim[i] == '\'' || lim[1] == '\"'))
+			exp = 0;
+		i++;
+	}
 	id = fork();
 	if (id == 0)
 		utilhere_doc(p, lim, exp);

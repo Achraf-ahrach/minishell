@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/04 15:23:30 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/04 15:29:24 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	init_variables(t_env **ev, t_var **var, char **av, char **env)
 	if (!*var)
 		exit(error("Error of allocation", "struct var"));
 	(*var)->exit_status = 0;
+	g_v = ft_lstnew(0, *ev, *var);
 }
 
 void	sig_handler_crl_c(int sig)
@@ -112,7 +113,6 @@ int	main(int ac, char **av, char **ev)
 	(void)ac;
 	signal(SIGQUIT, SIG_IGN);
 	init_variables(&env, &var, av, ev);
-	g_v = ft_lstnew(0, env, var);
 	while (1)
 	{
 		signal(SIGINT, sig_handler_crl_c);

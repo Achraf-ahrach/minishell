@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/04 14:59:11 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:30:48 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_list
 
 t_list				*g_v;
 
-void	rl_replace_line(const char *text, int clear_undo);
+void				rl_replace_line(const char *text, int clear_undo);
 
 /////////////// execution //////////////////
 
@@ -74,7 +74,7 @@ int					builtins(t_list *list, int is_child);
 void				pwd(int is_child);
 void				echo(char **cmd);
 void				export(t_list *list, int is_childe);
-void				execution();
+void				execution(void);
 void				cd(t_list *list, int is_childe);
 void				unset(t_list *list);
 void				env(t_env *env);
@@ -109,7 +109,7 @@ int					outfd(char *name, int trunc, int *stat);
 void				lstfree(t_list *list);
 int					add_chars(char **dup, char *s, int fre);
 void				sig_handler_crl_(int sig);
-void	sig_handler_crl(int sig);
-void	sig_handler_crl__(int sig);
+void				sig_handler_crl(int sig);
+void				sig_handler_crl__(int sig);
 /////////////////////////////////////////////
 #endif
