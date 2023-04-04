@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/04 15:29:24 by ajari            ###   ########.fr       */
-=======
-/*   Updated: 2023/04/04 15:31:10 by aahrach          ###   ########.fr       */
->>>>>>> 6a8d4b8e3ea4e1db2df42b1c9c73b44e9b1fbeda
+/*   Updated: 2023/04/04 15:33:07 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +128,7 @@ int	main(int ac, char **av, char **ev)
 			continue ;
 		fill_cmds(s, env, var);
 		//printf_list(g_v);
-		execution(&env);
+		execution();
 		env = g_v->env;
 		lstfree(g_v);
 		//free(s);
