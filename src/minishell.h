@@ -6,7 +6,11 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2023/04/04 19:54:14 by aahrach          ###   ########.fr       */
+=======
 /*   Updated: 2023/04/04 19:46:28 by ajari            ###   ########.fr       */
+>>>>>>> f40732616b53919d3a3437b05b2462ad33b51984
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +78,26 @@ int					builtins(t_list *list, int is_child);
 void				pwd(int is_child);
 void				echo(char **cmd);
 void				export(t_list *list, int is_childe);
+<<<<<<< HEAD
+void				export_add(t_list *list, char *key, char *value);
+void				check_identifier(char *str, int is_childe, int i);
+void				sort_export(t_env *env, int j, int size);
+int					ft_lstsize_env(t_env *env);
+void				execution();
+=======
 void				execution(void);
+>>>>>>> f40732616b53919d3a3437b05b2462ad33b51984
 void				cd(t_list *list, int is_childe);
+void				cd_oldpwd(t_env *env, int *eror);
+void				cd_home(t_env *env, int *eror);
+void				chang_pwd_oldpwd(char *oldpwd);
 void				unset(t_list *list);
 void				env(t_env *env);
 void				printf_list(t_list *t);
 void				ft_exit(t_list *list);
 void				exit_status(int exit_status, int x);
 void				ft_child(t_list *list, char *comand, char *path);
+void				childe(t_list *list, pid_t *pid);
 char				**ft_env(t_env *env);
 char				*join_cmd(char *s1, char *s2);
 char				**a_split(char const *s, char c);

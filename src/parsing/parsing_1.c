@@ -6,7 +6,15 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/04 22:38:43 by ajari            ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2023/04/04 15:47:03 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/04/04 19:46:37 by ajari            ###   ########.fr       */
+>>>>>>> f40732616b53919d3a3437b05b2462ad33b51984
+>>>>>>> ab8a46be672ff9c03425a985da4a5a62f410f4a5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +129,7 @@ int	main(int ac, char **av, char **ev)
 		if (!check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
+		//init_variables(&env, &var, av, ev);
 		//printf_list(g_v);
 		execution();
 		env = g_v->env;

@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/02 00:03:47 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/04 16:15:50 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,57 +67,15 @@ int	ft_error(char *one, char *two, char *thre, int new_line)
 	return (0);
 }
 
-void	cd(t_list *list, int is_childe)
+void	cd_(t_list *list, int is_childe, int eror)
 {
-	t_env	*env;
 	char	buffer[PATH_MAX];
-	int		eror;
 
-	eror = 0;
-	env = list->env;
-	if (!list->cmdsp[1] || !ft_strcmp(list->cmdsp[1], "~"))
-	{
-		while (env)
-		{
-			if (!ft_strcmp(env->key, "HOME"))
-			{
-				getcwd(buffer, sizeof(buffer));
-				if (!chdir(env->value))
-				{
-					chang_pwd_oldpwd(ft_strdup(buffer));
-					return ;
-				}
-			}
-			env = env->next;
-		}
-		eror = 2;
-	}
-	else if (!ft_strcmp(list->cmdsp[1], "-"))
-	{
-		while (env)
-		{
-			if (!ft_strcmp(env->key, "OLDPWD"))
-			{
-				getcwd(buffer, sizeof(buffer));
-				if (!chdir(env->value))
-				{
-					chang_pwd_oldpwd(ft_strdup(buffer));
-					printf("%s\n", env->value);
-					return ;
-				}
-			}
-			env = env->next;
-		}
-		eror = 2;
-	}
+	getcwd(buffer, sizeof(buffer));
+	if (!chdir(list->cmdsp[1]))
+		chang_pwd_oldpwd(ft_strdup(buffer));
 	else
-	{
-		getcwd(buffer, sizeof(buffer));
-		if (!chdir(list->cmdsp[1]))
-			chang_pwd_oldpwd(ft_strdup(buffer));
-		else
-			eror = 1;
-	}
+		eror = 1;
 	if (eror == 1)
 	{
 		ft_error("minishell: ", list->cmdsp[0], ": ", 0);
@@ -129,4 +87,19 @@ void	cd(t_list *list, int is_childe)
 		error(list->cmdsp[1], " OLDPWD not set");
 		exit_status(1, is_childe);
 	}
+}
+
+void	cd(t_list *list, int is_childe)
+{
+	t_env	*env;
+	int		eror;
+
+	eror = 0;
+	env = list->env;
+	if (!list->cmdsp[1] || !ft_strcmp(list->cmdsp[1], "~"))
+		cd_home(env, &eror);
+	else if (!ft_strcmp(list->cmdsp[1], "-"))
+		cd_oldpwd(env, &eror);
+	else
+		cd_(list, is_childe, eror);
 }
