@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/04 15:01:20 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/04/03 13:49:28 by ajari            ###   ########.fr       */
->>>>>>> eaf0c4ec2dea294d004c773e84bf7fb2722259a2
+/*   Updated: 2023/04/04 15:23:30 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +19,6 @@ void	fill_cmds(char *s, t_env *env, t_var *var)
 	int		i;
 
 	i = 0;
-	g_v = ft_lstnew(0, env, var);
 	c = ft_split(expend(add_spc(s, 0), 0, 1, &i), '|', 1);
 	free(g_v);
 	g_v = 0;
@@ -117,6 +112,7 @@ int	main(int ac, char **av, char **ev)
 	(void)ac;
 	signal(SIGQUIT, SIG_IGN);
 	init_variables(&env, &var, av, ev);
+	g_v = ft_lstnew(0, env, var);
 	while (1)
 	{
 		signal(SIGINT, sig_handler_crl_c);
@@ -125,7 +121,7 @@ int	main(int ac, char **av, char **ev)
 			exit(var->exit_status);
 		add_history(s);
 		if (!check_in(s))
-			continue;
+			continue ;
 		fill_cmds(s, env, var);
 		//printf_list(g_v);
 		execution(&env);
