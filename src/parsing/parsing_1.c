@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/04 19:46:37 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/04 22:38:43 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,6 @@ void	printf_list(t_list *tem)
 		printf("outfile:%d\n", tem->o_f);
 		tem = tem->next;
 	}
-}
-
-void	crl_c(int k)
-{
-	(void)k;
-	printf("exit hello\n");
-	exit(0);
 }
 
 void	init_variables(t_env **ev, t_var **var, char **av, char **env)
