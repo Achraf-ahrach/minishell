@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/04 15:29:24 by ajari            ###   ########.fr       */
+=======
+/*   Updated: 2023/04/04 15:31:10 by aahrach          ###   ########.fr       */
+>>>>>>> 6a8d4b8e3ea4e1db2df42b1c9c73b44e9b1fbeda
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +76,9 @@ void	init_variables(t_env **ev, t_var **var, char **av, char **env)
 
 void	sig_handler_crl_c(int sig)
 {
+	printf("ja 0\n");
 	(void)sig;
-	// g_v->var->exit_status = 1;
+	g_v->var->exit_status = 1;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
@@ -82,12 +87,14 @@ void	sig_handler_crl_c(int sig)
 
 void	sig_handler_crl_(int sig)
 {
+	printf("ja 1\n");
 	(void)sig;
 	exit_status(131, 1);
 }
 
 void	sig_handler_crl(int sig)
 {
+	printf("ja 3\n");
 	(void)sig;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
@@ -97,6 +104,7 @@ void	sig_handler_crl(int sig)
 
 void	sig_handler_crl__(int sig)
 {
+	printf("ja 4\n");
 	(void)sig;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);

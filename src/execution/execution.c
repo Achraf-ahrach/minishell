@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/04 14:59:54 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:29:38 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	execution(void)
 			if (fork() == 0)
 			{
 				signal(SIGQUIT, sig_handler_crl_);
-				signal(SIGINT, sig_handler_crl__);
+				//signal(SIGINT, sig_handler_crl__);
 				dup_pipe(list, pp);
 				ft_child(list, NULL, NULL);
 			}
@@ -100,7 +100,7 @@ void	execution(void)
 			if (pid == 0)
 			{
 				signal(SIGQUIT, sig_handler_crl_);
-				signal(SIGINT, sig_handler_crl__);
+				//signal(SIGINT, sig_handler_crl__);
 				dup_file(list);
 				ft_child(list, NULL, NULL);
 			}
