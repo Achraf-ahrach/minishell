@@ -1,29 +1,29 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 SRCP = src/parsing
 SRCE = src/execution
 OBJ = obj
 LIBFT = src/libft/libft.a
 #CONTROL = @stty -echoctl
-LIB = -lreadline -L /Users/aahrach/goinfre/.brew/Cellar/readline/8.2.1/lib -I /Users/aahrach/goinfre/.brew/Cellar/readline/8.2.1/include
+LIB = -lreadline -L ~/goinfre/.brew/Cellar/readline/8.2.1/lib -I ~/goinfre/.brew/Cellar/readline/8.2.1/include
 OBJP = $(patsubst $(SRCP)/%.c, $(OBJ)/%.o, $(wildcard $(SRCP)/*.c))
 OBJE = $(patsubst $(SRCE)/%.c, $(OBJ)/%.o, $(wildcard $(SRCE)/*.c))
 OBJS = $(OBJP) $(OBJE)
 
 all: $(NAME)
 
-$(NAME):  $(LIBFT) $(OBJS) 
-	$(CC)  $(CFLAGS) $(LIB)  $(OBJS) $(LIBFT)  -o $@ 
+$(NAME):  $(LIBFT) $(OBJS)
+	$(CC)  $(CFLAGS) $(LIB)  $(OBJS) $(LIBFT)  -o $@
 
 $(OBJ)/%.o: $(SRCP)/%.c $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ)/%.o: $(SRCE)/%.c $(OBJ)
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ):
-	mkdir $@ 
+	mkdir $@
 	@stty -echoctl
 
 $(LIBFT):

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/04 15:33:07 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/04 19:46:37 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	fill_cmds(char *s, t_env *env, t_var *var)
 
 	i = 0;
 	c = ft_split(expend(add_spc(s, 0), 0, 1, &i), '|', 1);
-	free(g_v);
+	if (g_v)
+		free(g_v);
 	g_v = 0;
 	while (c && c[i])
 		ft_lstadd_back(&g_v, ft_lstnew(ft_split(c[i++], ' ', 1), env, var));
@@ -130,7 +131,7 @@ int	main(int ac, char **av, char **ev)
 		//printf_list(g_v);
 		execution();
 		env = g_v->env;
-		lstfree(g_v);
+		lstfree(g_v, env, var);
 		//free(s);
 		//system("leaks minishell");
 	}
