@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/04 14:59:11 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:20:58 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int					outfd(char *name, int trunc, int *stat);
 void				lstfree(t_list *list);
 int					add_chars(char **dup, char *s, int fre);
 void				sig_handler_crl_(int sig);
-void	sig_handler_crl(int sig);
-void	sig_handler_crl__(int sig);
+void				sig_handler_crl(int sig);
+void				sig_handler_crl__(int sig);
 /////////////////////////////////////////////
 #endif
