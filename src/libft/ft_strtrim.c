@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:26:26 by ajari             #+#    #+#             */
-/*   Updated: 2023/03/16 08:04:47 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/05 12:46:15 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!p)
 		return (NULL);
 	i = 0;
-	while (i  + start < end && s1[start + i])
+	while (i + start < end && s1[start + i])
 	{
 		p[i] = s1[start + i];
 		i++;
 	}
-	if(s1)
-		free((void*)s1);
+	if (s1)
+		free((void *)s1);
 	p[i] = 0;
 	return (p);
 }
