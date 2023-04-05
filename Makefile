@@ -13,7 +13,7 @@ OBJS = $(OBJP) $(OBJE)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(LIB) $^ -o $@
+	$(CC) $(CFLAGS) $(LIB) $? -o $@
 
 $(OBJ)/%.o: $(SRCP)/%.c $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
