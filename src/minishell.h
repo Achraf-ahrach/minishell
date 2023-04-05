@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 12:11:04 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/05 12:46:56 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void				sort_export(t_env *env, int j, int size);
 int					wach_kayn(t_list *list, char *str);
 char				*cat_equals(char *str, int *x, int i);
 int					ft_lstsize_env(t_env *env);
-void				execution();
+void				execution(void);
 void				cd(t_list *list, int is_childe);
 void				cd_oldpwd(t_env *env, int *eror);
 void				cd_home(t_env *env, int *eror);
@@ -124,5 +124,6 @@ void				sigint(int sig);
 void				sigint_childe(int sig);
 void				sigint_herdoc(int sig);
 void				sigquit_childe(int sig);
+void				count_heredoc(t_list *t);
 /////////////////////////////////////////////
 #endif

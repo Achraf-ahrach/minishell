@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/03 13:55:25 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/05 12:48:27 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	infd(char *name, int *stat)
 	fd = 1;
 	name = rm_quote(expend(ft_strdup(name), 0, 1, &fd));
 	if (fd == -1)
-		return (fd);
+		return (*stat = -1, fd);
 	if (access(name, F_OK) == -1)
 		return (error("No such file or directory", name), *stat = 0, -1);
 	if (access(name, R_OK) == -1)
@@ -73,4 +73,25 @@ int	len_name(char *s, int *j)
 		i++;
 	*j += i + 1;
 	return (i);
+}
+
+void	count_heredoc(t_list *t)
+{
+	int count;
+	int i;
+
+	count = 0;
+	i = 0;
+	while (t)
+	{
+		while (t->cmd[i])
+		{
+			if (!ft_strcmp(t->cmd[i], "<<"))
+				count++;
+			i++;
+		}
+		t = t->next;
+	}
+	if (count > 16)
+		exit(error("maximum here-document count exceeded", "") + 2);
 }
