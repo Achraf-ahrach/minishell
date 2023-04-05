@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 12:49:11 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/05 15:10:14 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void				fill_cmds(char *s, t_env *ev, t_var *var);
 char				*expend(char *s, int i, int exp, int *fd);
 void				no_expend(char *s, char **dup, char c, int *i);
 void				search_replace(int *fd, char *s, char **dup, int *i);
+void				add_arg(char *s, int *i, char ***cmd);
 t_env				*getlstenv(char **ev);
 int					len_name(char *s, int *j);
 char				*add_spc(char *s, int i);
