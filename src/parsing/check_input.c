@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/05 12:51:12 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:21:53 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static int	check_file(char *s, char c)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '<' || s[i] == '>')
+		if (s[i] == '<' || s[i] == '>' || s[i] == '|')
 		{
 			c = s[i++];
 			(s[i] == c) && (i++);
 			while (ft_isspace(s[i]))
 				i++;
-			if (s[i] == '<' || s[i] == '>')
+			if (s[i] == '<' || s[i] == '>' || s[i] == '|')
 				return (error("syntax error near unexpected token `<<'", ""));
 		}
 		else
@@ -78,25 +78,24 @@ static int	check_pipe(char *s)
 
 int	check_in(char *s)
 {
-	int		len;
-	int		i;
-	char	c;
+	int	len;
+	int	i;
 
 	i = 0;
 	if (!s || !s[0])
 		return (0);
+	while (s[i])
+	{
+		if (s[i] == '\t')
+			s[i] = ' ';
+		i++;
+	}
 	len = ft_strlen(s) - 1;
-	while (ft_isspace(s[len]))
+	while (len && ft_isspace(s[len]))
 		len--;
 	while (ft_isspace(s[i]))
 		i++;
 	if (s[i] == '|' || s[len] == '|' || s[len] == '>' || s[len] == '<')
-	{
-		(s[i] == '|') && (c = '|');
-		(s[len] == '|') && (c = '|');
-		(s[len] == '<') && (c = '<');
-		(s[len] == '>') && (c = '>');
 		return (error("syntax error near unexpected token", ""));
-	}
 	return (check_quote(s) * check_file(s, 0) * check_pipe(s));
 }
