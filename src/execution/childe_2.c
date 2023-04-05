@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:21:31 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 12:06:15 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/05 12:15:59 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	childe_(t_list *list, pid_t *pid)
 	if (*pid == 0)
 	{
 		signal(SIGINT, sigint_childe);
-		signal(SIGQUIT, sigqoit_childe);
+		signal(SIGQUIT, sigquit_childe);
 		dup_file(list);
 		ft_child(list, NULL, NULL);
 	}
@@ -70,7 +70,7 @@ void	childe(t_list *list, pid_t *pid)
 		if (fork() == 0)
 		{
 			signal(SIGINT, sigint_childe);
-			signal(SIGQUIT, sigqoit_childe);
+			signal(SIGQUIT, sigquit_childe);
 			dup_pipe(list, pp);
 			ft_child(list, NULL, NULL);
 		}
