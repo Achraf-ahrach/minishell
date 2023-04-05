@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 15:38:49 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/05 15:55:11 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	main(int ac, char **av, char **ev)
 		add_history(s);
 		if (!check_in(s))
 			continue ;
+		printf("hello\n");
 		fill_cmds(s, env, var);
 		execution();
 		env = g_v->env;
