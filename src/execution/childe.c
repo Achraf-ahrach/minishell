@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/03 12:28:06 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/05 00:44:28 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,10 @@ void	ft_child(t_list *list, char *comand, char *path)
 {
 	if (!builtins(list, 1))
 	{
+		if (list->cmdsp && list->cmdsp[0][0] == '/')
+			execve(list->cmdsp[0], list->cmdsp, ft_env(g_v->env));
 		path = srch_path();
-		if (!path || (g_v->cmdsp && g_v->cmdsp[0] && !g_v->cmdsp[0][0]))
+		if ((list->cmdsp && list->cmdsp[0] && !list->cmdsp[0][0]) || !path)
 		{
 			error(" : command not found", list->cmdsp[0]);
 			exit_status(127, 1);
@@ -120,14 +122,8 @@ void	ft_child(t_list *list, char *comand, char *path)
 			exit_status(127, 1);
 		}
 		if (access(comand, X_OK))
-		{
-			perror("Error");
-			write(2, "\n", 1);
-			exit_status(126, 1);
-		}
+			prror_cmd(126);
 		execve(comand, list->cmdsp, ft_env(g_v->env));
-		perror("Error: ");
-		write(2, "\n", 1);
-		exit_status(127, 1);
+		prror_cmd(127);
 	}
 }

@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/04 19:54:14 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/04/04 19:46:28 by ajari            ###   ########.fr       */
->>>>>>> f40732616b53919d3a3437b05b2462ad33b51984
+/*   Updated: 2023/04/05 12:11:04 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +74,14 @@ int					builtins(t_list *list, int is_child);
 void				pwd(int is_child);
 void				echo(char **cmd);
 void				export(t_list *list, int is_childe);
-<<<<<<< HEAD
 void				export_add(t_list *list, char *key, char *value);
-void				check_identifier(char *str, int is_childe, int i);
+char				*come_max(t_env *env);
+int					check_identifier(char *str, int is_childe, int i);
 void				sort_export(t_env *env, int j, int size);
+int					wach_kayn(t_list *list, char *str);
+char				*cat_equals(char *str, int *x, int i);
 int					ft_lstsize_env(t_env *env);
 void				execution();
-=======
-void				execution(void);
->>>>>>> f40732616b53919d3a3437b05b2462ad33b51984
 void				cd(t_list *list, int is_childe);
 void				cd_oldpwd(t_env *env, int *eror);
 void				cd_home(t_env *env, int *eror);
@@ -98,6 +93,7 @@ void				ft_exit(t_list *list);
 void				exit_status(int exit_status, int x);
 void				ft_child(t_list *list, char *comand, char *path);
 void				childe(t_list *list, pid_t *pid);
+void				prror_cmd(int exit);
 char				**ft_env(t_env *env);
 char				*join_cmd(char *s1, char *s2);
 char				**a_split(char const *s, char c);
@@ -124,8 +120,9 @@ int					infd(char *name, int *stat);
 int					outfd(char *name, int trunc, int *stat);
 void				lstfree(t_list *list, t_env *env, t_var *var);
 int					add_chars(char **dup, char *s, int fre);
-void				sig_handler_crl_(int sig);
-void				sig_handler_crl(int sig);
-void				sig_handler_crl__(int sig);
+void				sigint(int sig);
+void				sigint_childe(int sig);
+void				sigint_herdoc(int sig);
+void				sigquit_childe(int sig);
 /////////////////////////////////////////////
 #endif
