@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/04 17:44:35 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/05 14:19:40 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,21 @@ int	builtins(t_list *list, int is_child)
 void	last_exit_status(pid_t pid)
 {
 	int		pid_wait;
-	int		exit_status;
+	int		status;
 	int		i;
 
 	i = -1;
 	while (++i < ft_lstsize(g_v))
 	{
-		pid_wait = wait(&exit_status);
+		pid_wait = wait(&status);
 		if (pid_wait == pid)
-			g_v->var->exit_status = WEXITSTATUS(exit_status);
+		{
+			g_v->var->exit_status = WEXITSTATUS(status);
+			if (status == 2)
+				exit_status(130, 0);
+			else if (status == 3)
+				exit_status(131, 0);
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 12:36:58 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/05 15:38:49 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ int	main(int ac, char **av, char **ev)
 	t_var	*var;
 
 	(void)ac;
-	signal(SIGQUIT, SIG_IGN);
 	init_variables(&env, &var, av, ev);
 	while (1)
 	{
+		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, sigint);
 		s = readline("MINISHELL#(*_*)|❯❯❯❯ ");
 		if (!s)
@@ -86,12 +86,8 @@ int	main(int ac, char **av, char **ev)
 		if (!check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
-		//init_variables(&env, &var, av, ev);
-		//printf_list(g_v);
 		execution();
 		env = g_v->env;
 		lstfree(g_v, env, var);
-		//free(s);
-		//system("leaks minishell");
 	}
 }

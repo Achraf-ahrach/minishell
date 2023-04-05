@@ -6,18 +6,18 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 22:19:42 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/01 23:58:17 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/05 12:47:15 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_tolower(char *s)
+char	*ft_tolower(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(s[i])
+	while (s[i])
 	{
 		if (s[i] >= 65 && s[i] <= 90)
 		s[i] += 32;
