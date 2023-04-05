@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/04 15:47:03 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/04/04 19:46:37 by ajari            ###   ########.fr       */
->>>>>>> f40732616b53919d3a3437b05b2462ad33b51984
+/*   Updated: 2023/04/05 12:10:28 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,41 +71,43 @@ void	init_variables(t_env **ev, t_var **var, char **av, char **env)
 	g_v = ft_lstnew(0, *ev, *var);
 }
 
-void	sig_handler_crl_c(int sig)
+void	sigint(int sig)
 {
-	printf("ja 0\n");
 	(void)sig;
+	printf("ja lhna 2\n");
+	//dprintf(2, "hna\n");
 	g_v->var->exit_status = 1;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
+	//rl_redisplay();
 	rl_redisplay();
 }
 
-void	sig_handler_crl_(int sig)
+void	sigqoit_childe(int sig)
 {
-	printf("ja 1\n");
 	(void)sig;
+	dprintf(2, "ja \n");
 	exit_status(131, 1);
 }
 
-void	sig_handler_crl(int sig)
+void	sigint_herdoc(int sig)
 {
-	printf("ja 3\n");
 	(void)sig;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
+	rl_redisplay();
 	exit_status(1, 1);
 }
 
-void	sig_handler_crl__(int sig)
+void	sigint_childe(int sig)
 {
-	printf("ja 4\n");
 	(void)sig;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
-	rl_on_new_line();
+	//rl_on_new_line();
+	rl_redisplay();
 	exit_status(130, 1);
 }
 
@@ -124,10 +122,13 @@ int	main(int ac, char **av, char **ev)
 	init_variables(&env, &var, av, ev);
 	while (1)
 	{
-		signal(SIGINT, sig_handler_crl_c);
+		signal(SIGINT, sigint);
 		s = readline("MINISHELL#(*_*)|❯❯❯❯ ");
 		if (!s)
+		{
+			printf("exit\n");
 			exit(var->exit_status);
+		}
 		add_history(s);
 		if (!check_in(s))
 			continue ;

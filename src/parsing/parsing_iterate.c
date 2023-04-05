@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/04 15:33:17 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/05 12:10:14 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ void	utilhere_doc(int *p, char *lim, int exp)
 	close(p[0]);
 	while (1)
 	{
-		signal(SIGINT, sig_handler_crl);
+		signal(SIGINT, sigint_herdoc);
 		s = readline("\033[36;01mhere_doc>\033[0m");
+		if (!s)
+			exit_status(0, 1);
 		if (!ft_strcmp(s, rm_quote(lim)))
 		{
 			free(s);
