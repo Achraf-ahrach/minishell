@@ -5,8 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2023/04/05 12:20:15 by ajari             #+#    #+#             */
 /*   Updated: 2023/04/05 12:20:31 by ajari            ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Created: 2023/04/05 12:17:52 by aahrach           #+#    #+#             */
+/*   Updated: 2023/04/05 12:26:56 by aahrach          ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Created: 2023/04/05 12:16:13 by ajari             #+#    #+#             */
+/*   Updated: 2023/04/05 12:16:33 by ajari            ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Created: 2023/04/05 12:15:20 by aahrach           #+#    #+#             */
+/*   Updated: 2023/04/05 12:16:44 by aahrach          ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Created: 2023/04/04 22:39:26 by ajari             #+#    #+#             */
+/*   Updated: 2023/04/04 22:54:51 by ajari            ###   ########.fr       */
+=======
+/*   Created: 2023/03/03 15:18:42 by ajari             #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2023/04/05 12:10:28 by aahrach          ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2023/04/04 22:38:43 by ajari            ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2023/04/04 15:47:03 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/04/04 19:46:37 by ajari            ###   ########.fr       */
+>>>>>>> f40732616b53919d3a3437b05b2462ad33b51984
+>>>>>>> ab8a46be672ff9c03425a985da4a5a62f410f4a5
+>>>>>>> 31dac5fd3fadc1b831b9fc3d7523abd3f4104769
+>>>>>>> cd0dd955ff0f427166ee57142834c19aade56cba
+>>>>>>> 076f1b0a6c990f72612a8a16acafcc04114ee824
+>>>>>>> 4a34cb105fcde5e83f091682297f4c2eb65ee9b6
+>>>>>>> 03835a3857c36be1dc6f75a50bf2113860cac058
+>>>>>>> e37c0844e4f10d76ee15325de5188a96af2a79aa
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,46 +99,6 @@ void	init_variables(t_env **ev, t_var **var, char **av, char **env)
 		exit(error("Error of allocation", "struct var"));
 	(*var)->exit_status = 0;
 	g_v = ft_lstnew(0, *ev, *var);
-}
-
-void	sigint(int sig)
-{
-	(void)sig;
-	printf("ja lhna 2\n");
-	//dprintf(2, "hna\n");
-	g_v->var->exit_status = 1;
-	write(1, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	//rl_redisplay();
-	rl_redisplay();
-}
-
-void	sigquit_childe(int sig)
-{
-	(void)sig;
-	dprintf(2, "ja \n");
-	exit_status(131, 1);
-}
-
-void	sigint_herdoc(int sig)
-{
-	(void)sig;
-	write(1, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
-	exit_status(1, 1);
-}
-
-void	sigint_childe(int sig)
-{
-	(void)sig;
-	write(1, "\n", 1);
-	rl_replace_line("", 0);
-	//rl_on_new_line();
-	rl_redisplay();
-	exit_status(130, 1);
 }
 
 int	main(int ac, char **av, char **ev)
