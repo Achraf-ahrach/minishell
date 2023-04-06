@@ -1,8 +1,14 @@
 NAME = minishell
 CC = gcc
+<<<<<<< HEAD
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 SRCP = src/parsing
 SRCE = src/execution
+=======
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+SRCP = ./src/parsing
+SRCE = ./src/execution
+>>>>>>> fdd0fb926ae034f06dd522cd68120b9a7bb7908c
 OBJ = obj
 LIBFT = src/libft/libft.a
 LIB = -lreadline -L ~/.brew/Cellar/readline/8.2.1/lib -I ~/.brew/Cellar/readline/8.2.1/include

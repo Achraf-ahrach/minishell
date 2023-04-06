@@ -6,7 +6,11 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:08:41 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/06 15:25:43 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/04/06 15:15:11 by ajari            ###   ########.fr       */
+>>>>>>> fdd0fb926ae034f06dd522cd68120b9a7bb7908c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +43,17 @@ void	lstfree(t_list *list, t_env *env, t_var *var)
 		list = tmp;
 	}
 	g_v = malloc(sizeof(t_list));
+<<<<<<< HEAD
     if (!g_v)
         exit(error("error of allocation", ""));
     g_v->env = env;
     g_v->var = var;
+=======
+	if (!g_v)
+		exit(error("error of allocation", ""));
+	g_v->env = env;
+	g_v->var = var;
+>>>>>>> fdd0fb926ae034f06dd522cd68120b9a7bb7908c
 }
 
 void	add_char(char **s, char c)

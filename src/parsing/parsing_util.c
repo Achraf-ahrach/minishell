@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/06 09:57:37 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/06 10:32:02 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,38 @@ int	error(char *str_er, char *name)
 	return (0);
 }
 
-int	infd(char *name, int *stat)
+int	infd(char **name, int *stat)
 {
 	int	fd;
 
 	fd = 1;
-	name = rm_quote(expend(ft_strdup(name), 0, 1, &fd));
+	*name = rm_quote(expend(*name, 0, 1, &fd));
 	if (fd == -1)
 		return (*stat = -1, fd);
-	if (access(name, F_OK) == -1)
-		return (error("No such file or directory", name), *stat = 0, -1);
-	if (access(name, R_OK) == -1)
-		return (error("Permission denied", name), *stat = 0, -1);
-	fd = open(name, O_RDONLY, 777);
+	if (access(*name, F_OK) == -1)
+		return (error("No such file or directory", *name), *stat = 0, -1);
+	if (access(*name, R_OK) == -1)
+		return (error("Permission denied", *name), *stat = 0, -1);
+	fd = open(*name, O_RDONLY, 777);
 	return (fd);
 }
 
-int	outfd(char *name, int trunc, int *stat)
+int	outfd(char **name, int trunc, int *stat)
 {
 	int	fd;
 
 	fd = 1;
-	name = rm_quote(expend(ft_strdup(name), 0, 1, &fd));
+	*name = rm_quote(expend(*name, 0, 1, &fd));
 	if (fd == -1)
 		return (*stat = 0, fd);
-	if (!access(name, F_OK) && access(name, W_OK) == -1)
-		return (error("Permission denied", name), *stat = 0, -1);
+	if (!access(*name, F_OK) && access(*name, W_OK) == -1)
+		return (error("Permission denied", *name), *stat = 0, -1);
 	if (trunc)
-		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+		fd = open(*name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
-		fd = open(name, O_CREAT | O_APPEND | O_WRONLY, 0777);
+		fd = open(*name, O_CREAT | O_APPEND | O_WRONLY, 0777);
 	if (fd == -1)
-		return (error("No such file or directory", name), *stat = 0, -1);
+		return (error("No such file or directory", *name), *stat = 0, -1);
 	return (fd);
 }
 
