@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/06 01:06:49 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/06 11:39:11 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,12 @@ void	search_replace(int *fd, char *s, char **dup, int *i)
 
 void	no_expend(char *s, char **dup, char c, int *i)
 {
-	char	*t;
-	int		j;
+	static int	m;
+	char		*t;
+	int			j;
 
 	j = 0;
-	add_char(dup, s[*i]);
+	add_char(dup, c);
 	if (s[*i] == '\'')
 	{
 		while (1)
@@ -81,24 +82,36 @@ void	no_expend(char *s, char **dup, char c, int *i)
 		*i += 1;
 		return ;
 	}
-	t = ft_substr(s + *i + 1, 0, ft_index(s + *i + 1, c));
+	t = ft_substr((s + *i + 1), 0, ft_index((s + *i + 1), c));
+	*i += ft_index(s + *i + 1, c) + 2;
 	*dup = ft_strjoin(*dup, expend(t, 0, 1, &j));
 	add_char(dup, c);
-	*i += ft_index(s + *i + 1, c) + 2;
+	m++;
 }
 
-void	squiplim(char **dup, char *s, int *i)
+void	squiplim(char **dup, char *s, int *i, char c)
 {
-	char	c;
-
-	c = s[*i];
-	while (ft_isspace(s[*i]) || s[*i] == c)
+	if (s[*i + 1] == c)
+	{
+		add_char(dup, c);
+		*i += 1;
+	}
+	while (ft_isspace(s[*i]))
 	{
 		add_char(dup, s[*i]);
 		*i += 1;
 	}
 	while (!ft_isspace(s[*i]) && s[*i])
 	{
+		c = s[*i];
+		if (s[*i] == '\'' || s[*i] == '\"')
+		{
+			while (s[*i] != c)
+			{
+				add_char(dup, s[*i]);
+				*i += 1;
+			}
+		}
 		add_char(dup, s[*i]);
 		*i += 1;
 	}
@@ -116,7 +129,7 @@ char	*expend(char *s, int i, int exp, int *fd)
 		if (s[i] == '\'' || s[i] == '\"')
 			no_expend(s, &dup, s[i], &i);
 		else if (!ft_strncmp(&s[i], ">", 1) || !ft_strncmp(&s[i], "<", 1))
-			squiplim(&dup, s, &i);
+			squiplim(&dup, s, &i, s[i]);
 		else if (s[i] == '$' && ft_isdigit(s[i + 1]))
 			i += 2;
 		else if (s[i] == '$' && s[i + 1] == '$' && add_chars(&dup, "\"\"", 0))
