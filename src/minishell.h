@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/06 15:27:06 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/06 16:04:58 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void				sigint(int sig);
 void				sigint_childe(int sig);
 void				sigint_herdoc(int sig);
 void				sigquit_childe(int sig);
+void				expend_util(char **dup, char *s, char c, int *i);
 void				count_heredoc(t_list *t);
 /////////////////////////////////////////////
 #endif

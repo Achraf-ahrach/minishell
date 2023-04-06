@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/06 10:50:19 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/04/06 15:18:47 by ajari            ###   ########.fr       */
->>>>>>> fdd0fb926ae034f06dd522cd68120b9a7bb7908c
+/*   Updated: 2023/04/06 16:06:06 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +89,6 @@ void	open_heredocs(t_list *t)
 	int	i;
 
 	count_heredoc(t);
-
 	while (t)
 	{
 		i = 0;
@@ -110,7 +105,6 @@ void	open_heredocs(t_list *t)
 void	iterate_cmds(t_list *t, int i)
 {
 	open_heredocs(t);
-
 	while (t)
 	{
 		i = 0;
