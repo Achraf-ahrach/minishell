@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/06 16:19:57 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:07:55 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int	len_name(char *s, int *j)
 
 void	count_heredoc(t_list *t)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	count = 0;
 	while (t)
