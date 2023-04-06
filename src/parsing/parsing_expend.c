@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/06 16:23:06 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/06 18:17:34 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	search_replace(int *fd, char *s, char **dup, int *i)
 			env = env->next;
 		}
 	}
-	//(!env && !*fd) && (add_chars(dup, "\"\"", 0));
 	if (!env && *fd)
 	{
 		*fd = -1;
