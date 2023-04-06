@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:57:37 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/06 14:09:02 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/06 15:56:45 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*rm_quote(char *s)
 	int		i;
 
 	i = 0;
-	printf("ss:%s\n", s);
 	while (s && s[i])
 	{
 		if (s[i] == '\'' || s[i] == '\"')
@@ -46,6 +45,5 @@ char	*rm_quote(char *s)
 		else
 			i++;
 	}
-	printf("ss:%s\n", s);
 	return (s);
 }

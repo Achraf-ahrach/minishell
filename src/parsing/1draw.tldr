@@ -66,8 +66,8 @@
             "parentId": "page",
             "childIndex": 3,
             "point": [
-              653.64,
-              199.29
+              673.59,
+              200.37
             ],
             "rotation": 0,
             "text": "-open close quote.                      \n-is there file after redirections\n  -is there dilemiters after herdoc\n -check for give name of file in env\n-expend $lll111 is ok                      \n-16 heredoc                                    \n-stop en error in a pipe.               \n-$\"US'ER\"                                        \n-echo walid > $skjf.                        \n-<< \"\"                                               \n                        ",
@@ -4075,24 +4075,19 @@
             ],
             "isComplete": true
           },
-          "be2f760c-a222-469e-359d-7bd56a0aaa77": {
-            "id": "be2f760c-a222-469e-359d-7bd56a0aaa77",
+          "a7a47f86-a8c5-4b10-2eff-b15fc2a3b73b": {
+            "id": "a7a47f86-a8c5-4b10-2eff-b15fc2a3b73b",
             "type": "rectangle",
             "name": "Rectangle",
             "parentId": "page",
             "childIndex": 33,
             "point": [
-<<<<<<< HEAD
-              185.72,
-              611.29
-=======
               814.71,
               635.99
->>>>>>> fdd0fb926ae034f06dd522cd68120b9a7bb7908c
             ],
             "size": [
-              518.86,
-              335.54
+              426.06,
+              306.55
             ],
             "rotation": 0,
             "style": {
@@ -4108,308 +4103,24 @@
               0.5
             ]
           },
-          "82bcddb8-9814-47fd-0739-93758af02460": {
-            "id": "82bcddb8-9814-47fd-0739-93758af02460",
+          "3d1923b1-fe99-4375-050a-2769e23ea7e1": {
+            "id": "3d1923b1-fe99-4375-050a-2769e23ea7e1",
             "type": "text",
             "name": "Text",
             "parentId": "page",
             "childIndex": 34,
             "point": [
-              499.45000000000005,
-              1052.82
+              828.96,
+              654.09
             ],
             "rotation": 0,
-            "text": " ",
+            "text": "cat -e Makefile  > M | cat M ",
             "style": {
               "color": "black",
               "size": "small",
               "isFilled": false,
               "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "de831b1a-35c5-4b91-1ec7-bbfabdd77af9": {
-            "id": "de831b1a-35c5-4b91-1ec7-bbfabdd77af9",
-            "type": "draw",
-            "name": "Draw",
-            "parentId": "page",
-            "childIndex": 35,
-            "point": [
-              203.43,
-              640.95
-            ],
-            "rotation": 0,
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1
-            },
-            "points": [
-              [
-                0,
-                0,
-                0.5
-              ],
-              [
-                0,
-                0,
-                0.5
-              ]
-            ],
-            "isComplete": true
-          },
-          "e24d7009-1f06-490a-2b0f-ac11e9f4d483": {
-            "id": "e24d7009-1f06-490a-2b0f-ac11e9f4d483",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 36,
-            "point": [
-              209.8,
-              620.32
-            ],
-            "rotation": 0,
-            "text": "spaces or tabs only ",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "b677f34d-e65a-431e-2bfa-1bf8cffd5004": {
-            "id": "b677f34d-e65a-431e-2bfa-1bf8cffd5004",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 37,
-            "point": [
-              207.86,
-              654.47
-            ],
-            "rotation": 0,
-            "text": "d >| s",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "c50437e6-57b7-42a9-1ab1-920cdb721ea6": {
-            "id": "c50437e6-57b7-42a9-1ab1-920cdb721ea6",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 38,
-            "point": [
-              203.4,
-              692.68
-            ],
-            "rotation": 0,
-            "text": "/ls",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "f37659d4-ec04-41f6-21f0-a408e6545f10": {
-            "id": "f37659d4-ec04-41f6-21f0-a408e6545f10",
-            "type": "arrow",
-            "name": "Arrow",
-            "parentId": "page",
-            "childIndex": 39,
-            "point": [
-              441.3,
-              630.92
-            ],
-            "rotation": 0,
-            "bend": 0,
-            "handles": {
-              "start": {
-                "id": "start",
-                "index": 0,
-                "point": [
-                  2.77,
-                  0
-                ],
-                "canBind": true
-              },
-              "end": {
-                "id": "end",
-                "index": 1,
-                "point": [
-                  0,
-                  295.4
-                ],
-                "canBind": true
-              },
-              "bend": {
-                "id": "bend",
-                "index": 2,
-                "point": [
-                  1.39,
-                  147.7
-                ]
-              }
-            },
-            "decorations": {},
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1
-            },
-            "label": "",
-            "labelPoint": [
-              0.5,
-              0.5
-            ]
-          },
-          "89df52aa-3e6f-4f54-39f2-db48503ff79e": {
-            "id": "89df52aa-3e6f-4f54-39f2-db48503ff79e",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 40,
-            "point": [
-              193.82,
-              731.01
-            ],
-            "rotation": 0,
-            "text": "<< | ls",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "450d6332-45a6-415f-2c9e-553abdcd8f84": {
-            "id": "450d6332-45a6-415f-2c9e-553abdcd8f84",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 41,
-            "point": [
-              195.31,
-              770.35
-            ],
-            "rotation": 0,
-            "text": "export PATH",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "05c1b063-bf8e-4175-2fdc-93fcb35484f1": {
-            "id": "05c1b063-bf8e-4175-2fdc-93fcb35484f1",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 42,
-            "point": [
-              195.23,
-              811.18
-            ],
-            "rotation": 0,
-            "text": "_ in export ",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "bb8e256e-eb0a-4b0b-048d-6cfc5da4c66b": {
-            "id": "bb8e256e-eb0a-4b0b-048d-6cfc5da4c66b",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 43,
-            "point": [
-              199.4,
-              854.64
-            ],
-            "rotation": 0,
-            "text": "leak in cd",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "074a790f-8d7f-4e99-2e48-442781cdac36": {
-            "id": "074a790f-8d7f-4e99-2e48-442781cdac36",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 44,
-            "point": [
-              193.42,
-              893.98
-            ],
-            "rotation": 0,
-            "text": "add PWD if there isnt ",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
-              "font": "script",
-              "textAlign": "middle"
-            }
-          },
-          "cc136587-9987-4a86-2acd-51ee97f0a868": {
-            "id": "cc136587-9987-4a86-2acd-51ee97f0a868",
-            "type": "text",
-            "name": "Text",
-            "parentId": "page",
-            "childIndex": 45,
-            "point": [
-              467.70000000000005,
-              622.69
-            ],
-            "rotation": 0,
-            "text": "leaks in open quotes",
-            "style": {
-              "color": "black",
-              "size": "small",
-              "isFilled": false,
-              "dash": "draw",
-              "scale": 1,
+              "scale": 1.3185207569485504,
               "font": "script",
               "textAlign": "middle"
             }
@@ -6164,8 +5875,8 @@
             "parentId": "page",
             "childIndex": 54,
             "point": [
-              965.48,
-              734.85
+              980.7,
+              709.66
             ],
             "rotation": 0,
             "text": "exit 1 1 1",
@@ -6208,14 +5919,18 @@
     "pageStates": {
       "page": {
         "id": "page",
-        "selectedIds": [],
+        "selectedIds": [
+          "e47da110-7a4a-4afd-267a-de0a6516f403"
+        ],
         "camera": {
           "point": [
             0,
-            0
+            -300.72
           ],
           "zoom": 1
-        }
+        },
+        "editingId": null,
+        "hoveredId": "e47da110-7a4a-4afd-267a-de0a6516f403"
       }
     },
     "assets": {}
