@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expend.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/05 13:21:45 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/06 01:06:49 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 
 int	nb(char **dup, char *s, int *fd)
 {
-	int	i;
 	int	result;
+	int	i;
+	int	j;
 
 	i = 0;
 	result = 0;
 	while (s && s[i])
 	{
-		if ((!i && !ft_isspace(s[i])) || (ft_isspace(s[i])
-				&& !ft_isspace(s[i + 1]) && s[i + 1]))
-			result++;
+		j = 0;
+		((!i && !ft_isspace(s[i]))) && (j = 1);
+		(ft_isspace(s[i]) && !ft_isspace(s[i + 1]) && s[i + 1]) && (j = 1);
+		(j == 1) && (result++);
 		i++;
 	}
 	if (result > 1 && *fd)
