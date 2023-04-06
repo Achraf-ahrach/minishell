@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/06 15:20:20 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/06 16:23:06 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,29 +81,13 @@ void	no_expend(char *s, char **dup, char c, int *i)
 		return ;
 	}
 	*i += 1;
-	while (s[*i] != c)
-	{
-		if (s[*i] == '$' && ft_isdigit(s[*i + 1]))
-			*i += 2;
-		else if (s[*i] == '$' && s[*i + 1] == '$' && add_chars(dup, "\"\"", 0))
-			*i += 2;
-		else if (s[*i] == '$' && (s[*i + 1] == '\'' || s[*i + 1] == '\"'))
-			i++;
-		else if (s[*i] == '$' && !ft_isspace(s[*i + 1]) && s[*i + 1])
-			search_replace(&d, &s[*i], dup, i);
-		else
-		{
-			add_char(dup, s[*i]);
-			*i += 1;
-		}
-	}
-	add_char(dup, s[*i]);
+	expend_util(dup, s, c, i);
 	*i += 1;
 }
 
 void	squiplim(char **dup, char *s, int *i, char c)
 {
-	if (s[*i + 1] == c)
+	while (s[*i] == c)
 	{
 		add_char(dup, c);
 		*i += 1;

@@ -1,49 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_rm_quote.c                                 :+:      :+:    :+:   */
+/*   parsing_util2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 12:57:37 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/06 15:56:45 by ajari            ###   ########.fr       */
+/*   Created: 2023/04/06 15:59:40 by ajari             #+#    #+#             */
+/*   Updated: 2023/04/06 16:28:07 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-static void	rm_quote_uti(char *s, int i)
+void	expend_util(char **dup, char *s, char c, int *i)
 {
-	while (1)
-	{
-		s[i] = s[i + 2];
-		if (!s[i])
-			break ;
-		i++;
-	}
-}
+	int	m;
 
-char	*rm_quote(char *s)
-{
-	char	c;
-	int		i;
-
-	i = 0;
-	while (s && s[i])
+	m = 0;
+	while (s[*i] != c)
 	{
-		if (s[i] == '\'' || s[i] == '\"')
-		{
-			c = s[i];
-			while (s[i + 1] != c)
-			{
-				s[i] = s[i + 1];
-				i++;
-			}
-			rm_quote_uti(s, i);
-		}
-		else
+		if (s[*i] == '$' && ft_isdigit(s[*i + 1]))
+			*i += 2;
+		else if (s[*i] == '$' && s[*i + 1] == '$' && add_chars(dup, "\"\"", 0))
+			*i += 2;
+		else if (s[*i] == '$' && (s[*i + 1] == '\'' || s[*i + 1] == '\"'))
 			i++;
+		else if (s[*i] == '$' && !ft_isspace(s[*i + 1]) && s[*i + 1])
+			search_replace(&m, &s[*i], dup, i);
+		else
+		{
+			add_char(dup, s[*i]);
+			*i += 1;
+		}
 	}
-	return (s);
+	add_char(dup, s[*i]);
 }
