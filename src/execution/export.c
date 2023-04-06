@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 16:17:44 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/06 15:26:28 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	print_export(t_list *list, t_env *tmp, int size)
 {
 	char	e;
 
+	if (g_v->env)
+			printf("1 key = %s | eqoual = %d | value = %s\n", g_v->env->key, g_v->env->equals, g_v->env->value);
 	size = ft_lstsize_env(list->env);
 	while (size > 0)
 	{

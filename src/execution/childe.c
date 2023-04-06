@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 16:12:23 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/06 10:50:50 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	access_slash(t_list *list)
 {
 	if (list->cmdsp && list->cmdsp[0][0] == '/')
 	{
-		if (access(list->cmdsp[0], F_OK, X_OK) != -1)
+		if (access(list->cmdsp[0], F_OK) != -1)
 			execve(list->cmdsp[0], list->cmdsp, ft_env(g_v->env));
 		error(" : No such file or directory", list->cmdsp[0]);
 		exit_status(127, 1);

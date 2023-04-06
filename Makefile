@@ -8,17 +8,16 @@ LIBFT = src/libft/libft.a
 LIB = -lreadline -L ~/.brew/Cellar/readline/8.2.1/lib -I ~/.brew/Cellar/readline/8.2.1/include
 OBJP = $(patsubst $(SRCP)/%.c, $(OBJ)/%.o, $(wildcard $(SRCP)/*.c))
 OBJE = $(patsubst $(SRCE)/%.c, $(OBJ)/%.o, $(wildcard $(SRCE)/*.c))
-OBJS = $(OBJP) $(OBJE)
 
 all: $(NAME)
 
-$(NAME):  $(LIBFT) $(OBJS)
-	$(CC)  $(CFLAGS) $(LIB)  $(OBJS) $(LIBFT)  -o $@
+$(NAME):$(OBJ) $(OBJP) $(OBJE) $(LIBFT)
+	$(CC) $(CFLAGS) $(LIB) $(OBJP) $(OBJE) $(LIBFT) -o $@
 
-$(OBJ)/%.o: $(SRCP)/%.c $(OBJ)
+$(OBJ)/%.o: $(SRCP)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ)/%.o: $(SRCE)/%.c $(OBJ)
+$(OBJ)/%.o: $(SRCE)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ):
@@ -39,5 +38,5 @@ fclean: clean
 
 re: fclean fcleanlib all
 
-run: re
+run: all
 	@./minishell

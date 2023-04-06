@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 15:52:42 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/06 13:57:57 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	execution(void)
 	{
 		childe(list, &pid);
 		list = list->next;
+		signal(SIGINT, SIG_IGN);
 	}
 	dup2(k, 1);
 	dup2(h, 0);
