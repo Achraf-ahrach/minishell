@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 11:26:54 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:17:44 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	export_help(t_list *list, char *value, int i, int is_childe)
 	int		x;
 
 	tmp = list->env;
-	if (check_identifier(list->cmdsp[i], is_childe, 1)
+	if (check_identifier(list->cmdsp[i], is_childe, 0)
 		&& !wach_kayn(list, list->cmdsp[i]))
 	{
 		key = cat_equals(list->cmdsp[i], &x, 0);

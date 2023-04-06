@@ -6,12 +6,41 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:43:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/02 00:02:39 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:12:27 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
+
+char	**ft_env(t_env *env)
+{
+	t_env	*v;
+	char	**p;
+	int		i;
+
+	i = 0;
+	v = env;
+	while (v)
+	{
+		if (v->equals == 1)
+			i++;
+		v = v->next;
+	}
+	p = malloc((i + 1) * sizeof(char *));
+	i = 0;
+	while (env)
+	{
+		if (env->equals == 1)
+		{
+			p[i] = get_env(env);
+			i++;
+		}
+		env = env->next;
+	}
+	p[i] = NULL;
+	return (p);
+}
 
 static int	ft_check(char const *s, char c)
 {

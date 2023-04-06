@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 15:39:28 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/05 16:13:13 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void				printf_list(t_list *t);
 void				ft_exit(t_list *list);
 void				exit_status(int exit_status, int x);
 void				ft_child(t_list *list, char *comand, char *path);
+char				**ft_env(t_env *env);
 void				childe(t_list *list, pid_t *pid);
 void				prror_cmd(int exit);
 char				**ft_env(t_env *env);

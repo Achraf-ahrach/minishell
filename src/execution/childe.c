@@ -6,41 +6,12 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 00:44:28 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:12:23 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
-
-char	**ft_env(t_env *env)
-{
-	t_env	*v;
-	char	**p;
-	int		i;
-
-	i = 0;
-	v = env;
-	while (v)
-	{
-		if (v->equals == 1)
-			i++;
-		v = v->next;
-	}
-	p = malloc((i + 1) * sizeof(char *));
-	i = 0;
-	while (env)
-	{
-		if (env->equals == 1)
-		{
-			p[i] = get_env(env);
-			i++;
-		}
-		env = env->next;
-	}
-	p[i] = NULL;
-	return (p);
-}
 
 char	*join_cmd(char *s1, char *s2)
 {
@@ -103,12 +74,22 @@ char	*srch_path(void)
 	return (NULL);
 }
 
+void	access_slash(t_list *list)
+{
+	if (list->cmdsp && list->cmdsp[0][0] == '/')
+	{
+		if (access(list->cmdsp[0], F_OK, X_OK) != -1)
+			execve(list->cmdsp[0], list->cmdsp, ft_env(g_v->env));
+		error(" : No such file or directory", list->cmdsp[0]);
+		exit_status(127, 1);
+	}
+}
+
 void	ft_child(t_list *list, char *comand, char *path)
 {
 	if (!builtins(list, 1))
 	{
-		if (list->cmdsp && list->cmdsp[0][0] == '/')
-			execve(list->cmdsp[0], list->cmdsp, ft_env(g_v->env));
+		access_slash(list);
 		path = srch_path();
 		if ((list->cmdsp && list->cmdsp[0] && !list->cmdsp[0][0]) || !path)
 		{
