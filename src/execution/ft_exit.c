@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:46:02 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/05 11:41:37 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/06 17:11:37 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_exit(t_list *list)
 	i = 0;
 	j = 0;
 	if (!list->cmdsp[1])
-		exit_status(0, 1);
+		exit_status(list->var->exit_status, 1);
 	else if (!str_isdigit(list->cmdsp[1]))
 		ft_exit_exit(list);
 	else if (str_isdigit(list->cmdsp[1]) && list->cmdsp[2])

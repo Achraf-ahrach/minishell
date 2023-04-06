@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/06 15:27:30 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/06 16:56:40 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,30 @@ void	add_oldped_pwd(t_env **env)
 	(*env)->next->next = new;
 }
 
+void	shlvl(t_env	**env)
+{
+	t_env	*tmp;
+	int		nb;
+
+	tmp = *env;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->key, "SHLVL"))
+		{
+			if (tmp->value)
+			{
+				nb = ft_atoi(tmp->value);
+				nb += 1;
+				free(tmp->value);
+				tmp->value = ft_strdup(ft_itoa(nb));
+			}
+			else
+				tmp->value = ft_strdup("1");
+		}
+		tmp = tmp->next;
+	}
+}
+
 int	main(int ac, char **av, char **ev)
 {
 	char	*s;
@@ -88,6 +112,8 @@ int	main(int ac, char **av, char **ev)
 	init_variables(&env, &var, av, ev);
 	if (!env)
 		add_oldped_pwd(&env);
+	else
+		shlvl(&env);
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -102,7 +128,7 @@ int	main(int ac, char **av, char **ev)
 		if (!check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
-		printf_list(g_v);
+		//printf_list(g_v);
 		execution();
 		env = g_v->env;
 		lstfree(g_v, env, var);
