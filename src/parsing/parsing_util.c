@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/05 12:48:27 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/06 09:57:37 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void	count_heredoc(t_list *t)
 	int i;
 
 	count = 0;
-	i = 0;
 	while (t)
 	{
-		while (t->cmd[i])
+		i = 0;
+		while (t->cmd && t->cmd[i])
 		{
 			if (!ft_strcmp(t->cmd[i], "<<"))
 				count++;

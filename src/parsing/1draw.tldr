@@ -4074,6 +4074,56 @@
               ]
             ],
             "isComplete": true
+          },
+          "a7a47f86-a8c5-4b10-2eff-b15fc2a3b73b": {
+            "id": "a7a47f86-a8c5-4b10-2eff-b15fc2a3b73b",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 33,
+            "point": [
+              835.89,
+              643.95
+            ],
+            "size": [
+              426.06,
+              306.55
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": " ",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "3d1923b1-fe99-4375-050a-2769e23ea7e1": {
+            "id": "3d1923b1-fe99-4375-050a-2769e23ea7e1",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 34,
+            "point": [
+              828.96,
+              654.09
+            ],
+            "rotation": 0,
+            "text": "cat -e Makefile  > M | cat M ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1.3185207569485504,
+              "font": "script",
+              "textAlign": "middle"
+            }
           }
         },
         "bindings": {}
