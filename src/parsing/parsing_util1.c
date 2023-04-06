@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:08:41 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/04 19:46:47 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/06 15:15:11 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ void	lstfree(t_list *list, t_env *env, t_var *var)
 		free_one(list, 0);
 		list = tmp;
 	}
-	g_v = ft_lstnew(0, env, var);
+	g_v = malloc(sizeof(t_list));
+	if (!g_v)
+		exit(error("error of allocation", ""));
+	g_v->env = env;
+	g_v->var = var;
 }
 
 void	add_char(char **s, char c)

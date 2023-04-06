@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/06 11:39:11 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/06 15:20:20 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	search_replace(int *fd, char *s, char **dup, int *i)
 			env = env->next;
 		}
 	}
-	(!env && !*fd) && (add_chars(dup, "\"\"", 0));
+	//(!env && !*fd) && (add_chars(dup, "\"\"", 0));
 	if (!env && *fd)
 	{
 		*fd = -1;
@@ -64,11 +64,9 @@ void	search_replace(int *fd, char *s, char **dup, int *i)
 
 void	no_expend(char *s, char **dup, char c, int *i)
 {
-	static int	m;
-	char		*t;
-	int			j;
+	int	d;
 
-	j = 0;
+	d = 0;
 	add_char(dup, c);
 	if (s[*i] == '\'')
 	{
@@ -82,11 +80,25 @@ void	no_expend(char *s, char **dup, char c, int *i)
 		*i += 1;
 		return ;
 	}
-	t = ft_substr((s + *i + 1), 0, ft_index((s + *i + 1), c));
-	*i += ft_index(s + *i + 1, c) + 2;
-	*dup = ft_strjoin(*dup, expend(t, 0, 1, &j));
-	add_char(dup, c);
-	m++;
+	*i += 1;
+	while (s[*i] != c)
+	{
+		if (s[*i] == '$' && ft_isdigit(s[*i + 1]))
+			*i += 2;
+		else if (s[*i] == '$' && s[*i + 1] == '$' && add_chars(dup, "\"\"", 0))
+			*i += 2;
+		else if (s[*i] == '$' && (s[*i + 1] == '\'' || s[*i + 1] == '\"'))
+			i++;
+		else if (s[*i] == '$' && !ft_isspace(s[*i + 1]) && s[*i + 1])
+			search_replace(&d, &s[*i], dup, i);
+		else
+		{
+			add_char(dup, s[*i]);
+			*i += 1;
+		}
+	}
+	add_char(dup, s[*i]);
+	*i += 1;
 }
 
 void	squiplim(char **dup, char *s, int *i, char c)
