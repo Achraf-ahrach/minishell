@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 00:36:51 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 11:21:33 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ char	*cmd_access(char **p, char *comand)
 
 	j = 0;
 	i = -1;
+	if (!comand)
+		return (NULL);
 	if (comand[0] == '/' && access(comand, F_OK) == 0)
 		return (comand);
 	if (comand[0] == '.')
@@ -87,7 +89,7 @@ void	access_slash(t_list *list)
 
 void	ft_child(t_list *list, char *comand, char *path)
 {
-	if (!builtins(list, 1))
+	if (list->cmdsp && !builtins(list, 1))
 	{
 		access_slash(list);
 		path = srch_path();
@@ -107,4 +109,5 @@ void	ft_child(t_list *list, char *comand, char *path)
 		execve(comand, list->cmdsp, ft_env(g_v->env));
 		prror_cmd(127);
 	}
+	exit (1);
 }
