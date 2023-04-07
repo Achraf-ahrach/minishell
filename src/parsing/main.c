@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/07 10:26:15 by ajari            ###   ########.fr       */
+=======
+/*   Updated: 2023/04/07 10:26:38 by aahrach          ###   ########.fr       */
+>>>>>>> d56044ada5bf0a1c6867aab78fd8bff43f9a038d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +79,30 @@ void	shlvl(t_env **env)
 				tmp->value = ft_strdup("1");
 		}
 		tmp = tmp->next;
+	}
+}
+
+void	printf_list(t_list *tem)
+{
+	char	ss[1000];
+
+	while (tem)
+	{
+		printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
+		for (int i = 0; tem->cmdsp && tem->cmdsp[i]; i++)
+		{
+			if (!i)
+				printf("cmd:");
+			printf("#%s# ", tem->cmdsp[i]);
+		}
+		printf("\nstat:%d\ninfile:%d\n", tem->stat, tem->i_f);
+		if (0 && tem->i_f != -1 && tem->i_f != -2)
+		{
+			read(tem->i_f, ss, 100);
+			printf("%s\n", ss);
+		}
+		printf("outfile:%d\n", tem->o_f);
+		tem = tem->next;
 	}
 }
 
