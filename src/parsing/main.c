@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/07 10:02:36 by aahrach          ###   ########.fr       */
-=======
-/*   Updated: 2023/04/07 01:32:25 by ajari            ###   ########.fr       */
->>>>>>> 946bd4a5a5154c4bad891eb2a73af4d642aeb70b
+/*   Updated: 2023/04/07 10:06:21 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +30,6 @@ void	fill_cmds(char *s, t_env *env, t_var *var)
 	iterate_cmds(g_v, 0);
 }
 
-<<<<<<< HEAD
-=======
-void	printf_list(t_list *tem)
-{
-	char	ss[1000];
-
-	while (tem)
-	{
-		printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
-		for (int i = 0; tem->cmdsp && tem->cmdsp[i]; i++)
-		{
-			if (!i)
-				printf("cmd:");
-			printf("#%s# ", tem->cmdsp[i]);
-		}
-		printf("\nstat:%d\ninfile:%d\n", tem->stat, tem->i_f);
-		if (0 && tem->i_f != -1 && tem->i_f != -2)
-		{
-			read(tem->i_f, ss, 100);
-			printf("%s\n", ss);
-		}
-		printf("outfile:%d\n", tem->o_f);
-		printf("---------------------------------------------\n");
-		tem = tem->next;
-	}
-}
-
->>>>>>> 946bd4a5a5154c4bad891eb2a73af4d642aeb70b
 void	init_variables(t_env **ev, t_var **var, char **av, char **env)
 {
 	(void)av;
@@ -133,10 +101,6 @@ int	main(int ac, char **av, char **ev)
 		if (!check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
-<<<<<<< HEAD
-=======
-		printf_list(g_v);
->>>>>>> 946bd4a5a5154c4bad891eb2a73af4d642aeb70b
 		execution();
 		env = g_v->env;
 		lstfree(g_v, env, var);
