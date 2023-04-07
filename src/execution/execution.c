@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 10:32:29 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 10:49:36 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 
 int	builtins(t_list *list, int is_child)
 {
-	if (!ft_strcmp(ft_tolower(list->cmdsp[0]), "echo"))
+	if (list->cmdsp && !ft_strcmp(ft_tolower(list->cmdsp[0]), "echo"))
 		echo(list->cmdsp);
-	else if (!ft_strcmp(list->cmdsp[0], "pwd"))
+	else if (list->cmdsp && !ft_strcmp(list->cmdsp[0], "pwd"))
 		pwd(is_child);
-	else if (!ft_strcmp(list->cmdsp[0], "cd"))
+	else if (list->cmdsp && !ft_strcmp(list->cmdsp[0], "cd"))
 		cd(list, is_child);
-	else if (!ft_strcmp(list->cmdsp[0], "export"))
+	else if (list->cmdsp && !ft_strcmp(list->cmdsp[0], "export"))
 		export(list, is_child);
-	else if (!ft_strcmp(list->cmdsp[0], "unset"))
+	else if (list->cmdsp && !ft_strcmp(list->cmdsp[0], "unset"))
 		unset(list);
-	else if (!ft_strcmp(list->cmdsp[0], "env"))
+	else if (list->cmdsp && !ft_strcmp(list->cmdsp[0], "env"))
 		env(list->env);
-	else if (!ft_strcmp(list->cmdsp[0], "exit"))
+	else if (list->cmdsp && !ft_strcmp(list->cmdsp[0], "exit"))
 		ft_exit(list);
 	else
 		return (0);
