@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/07 14:22:45 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/07 15:36:58 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	op(char *dir)
 	DIR	*t;
 
 	dir = ft_strdup(dir);
-	if (!ft_strncmp(dir, "./", 2))
+	if (!ft_strncmp(dir, "./", 2) || !ft_strncmp(dir, "/", 1))
 	{
 		t = opendir(dir);
 		free(dir);
