@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_expend.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:54:50 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/07 10:17:42 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:19:52 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,30 +86,30 @@ void	no_expend(char *s, char **dup, char c, int *i)
 
 void	squiplim(char **dup, char *s, int *i, char c)
 {
-	while (s[*i] == c)
+	int	j;
+
+	j = *i;
+	while (s[j] == c)
+		add_char(dup, s[j++]);
+	while (ft_isspace(s[j]))
+		add_char(dup, s[j++]);
+	while (!ft_isspace(s[j]) && s[j])
 	{
-		add_char(dup, c);
-		*i += 1;
-	}
-	while (ft_isspace(s[*i]))
-	{
-		add_char(dup, s[*i]);
-		*i += 1;
-	}
-	while (!ft_isspace(s[*i]) && s[*i])
-	{
-		c = s[*i];
-		if (s[*i] == '\'' || s[*i] == '\"')
+		c = s[j];
+		if (s[j] == '\'' || s[j] == '\"')
 		{
-			while (s[*i] != c)
+			while (1)
 			{
-				add_char(dup, s[*i]);
-				*i += 1;
+				add_char(dup, s[j++]);
+				if (s[j] == c)
+					break ;
 			}
+			add_char(dup, s[j++]);
 		}
-		add_char(dup, s[*i]);
-		*i += 1;
+		else
+			add_char(dup, s[j++]);
 	}
+	*i = j;
 }
 
 char	*expend(char *s, int i, int exp, int *fd)
