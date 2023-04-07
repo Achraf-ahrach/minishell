@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/07 09:52:33 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 10:14:21 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,11 @@ void	utilhere_doc(int *p, char *lim, int exp)
 	exit(0);
 }
 
-int	here_doc(char *lim, int exp)
+int	here_doc(char *lim, int exp, int *st)
 {
 	int		i;
 	pid_t	id;
 	int		p[2];
-	int		st;
 
 	pipe(p);
 	i = 0;
@@ -78,9 +77,9 @@ int	here_doc(char *lim, int exp)
 	id = fork();
 	if (id == 0)
 		utilhere_doc(p, rm_quote(lim), exp);
-	waitpid(id, &st, 0);
-	st = WEXITSTATUS(st);
-	if (st == 1)
+	waitpid(id, st, 0);
+	*st = WEXITSTATUS(st);
+	if (*st == 1)
 		exit_status(1, 0);
 	close(p[1]);
 	return (p[0]);
@@ -89,15 +88,17 @@ int	here_doc(char *lim, int exp)
 void	open_heredocs(t_list *t)
 {
 	int	i;
+	int	st;
 
+	st = 0;
 	count_heredoc(t);
 	while (t)
 	{
 		i = 0;
-		while (t->cmd[i])
+		while (t->cmd[i] && !st)
 		{
-			if (!ft_strcmp(t->cmd[i], "<<"))
-				t->h_d = here_doc(t->cmd[i + 1], 1);
+			if (!ft_strcmp(t->cmd[i], "<<") && !st)
+				t->h_d = here_doc(t->cmd[i + 1], 1, &st);
 			i++;
 		}
 		t = t->next;
