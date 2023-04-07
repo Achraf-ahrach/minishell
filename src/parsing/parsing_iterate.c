@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/07 00:47:07 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 09:52:33 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	here_doc(char *lim, int exp)
 	int		i;
 	pid_t	id;
 	int		p[2];
+	int		st;
 
-	//int		st;
 	pipe(p);
 	i = 0;
 	while (lim[i])
@@ -78,11 +78,10 @@ int	here_doc(char *lim, int exp)
 	id = fork();
 	if (id == 0)
 		utilhere_doc(p, rm_quote(lim), exp);
-	//waitpid(id, &st, 0);
-	wait(0);
-	//st = WEXITSTATUS(st);
-	// if (st == 1)
-	// 	exit_status(1, 0);
+	waitpid(id, &st, 0);
+	st = WEXITSTATUS(st);
+	if (st == 1)
+		exit_status(1, 0);
 	close(p[1]);
 	return (p[0]);
 }

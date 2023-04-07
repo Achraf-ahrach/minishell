@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check_input.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/06 18:33:41 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/07 10:01:47 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	check_file(char *s, char c)
 			(s[i] == c) && (i++);
 			while (ft_isspace(s[i]))
 				i++;
-			if (s[i] == '<' || s[i] == '>' || s[i] == '|')
+			if (((c == '<' || c == '>') && (s[i] == '<' || s[i] == '>'
+						|| s[i] == '|')) || (c == '|' && s[i] == '>'))
 				return (exit_status(258, 0),
 					error("syntax error near unexpected token `<<'", ""));
 		}

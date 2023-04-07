@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/06 17:34:39 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 10:02:36 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,6 @@ void	fill_cmds(char *s, t_env *env, t_var *var)
 		free(c);
 	iterate_cmds(g_v, 0);
 }
-
-// void	printf_list(t_list *tem)
-// {
-// 	char	ss[1000];
-
-// 	while (tem)
-// 	{
-// 		printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
-// 		for (int i = 0; tem->cmdsp && tem->cmdsp[i]; i++)
-// 		{
-// 			if (!i)
-// 				printf("cmd:");
-// 			printf("#%s# ", tem->cmdsp[i]);
-// 		}
-// 		printf("\nstat:%d\ninfile:%d\n", tem->stat, tem->i_f);
-// 		if (0 && tem->i_f != -1 && tem->i_f != -2)
-// 		{
-// 			read(tem->i_f, ss, 100);
-// 			printf("%s\n", ss);
-// 		}
-// 		printf("outfile:%d\n", tem->o_f);
-// 		tem = tem->next;
-// 	}
-// }
 
 void	init_variables(t_env **ev, t_var **var, char **av, char **env)
 {
@@ -125,7 +101,6 @@ int	main(int ac, char **av, char **ev)
 		if (!check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
-		//printf_list(g_v);
 		execution();
 		env = g_v->env;
 		lstfree(g_v, env, var);
