@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:08:41 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/07 10:33:08 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/07 10:39:13 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	lstfree(t_list *list, t_env *env, t_var *var)
 {
 	t_list	*tmp;
 
-	printf("hello\n");
 	while (list)
 	{
 		tmp = list->next;
