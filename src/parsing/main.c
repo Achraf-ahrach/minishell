@@ -6,7 +6,11 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/07 11:45:15 by ajari            ###   ########.fr       */
+=======
+/*   Updated: 2023/04/07 14:02:51 by aahrach          ###   ########.fr       */
+>>>>>>> 4af889b4d64527e3b2901fb5eee4bf683a358261
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +62,7 @@ void	shlvl(t_env **env)
 {
 	t_env	*tmp;
 	int		nb;
+	char	*nbr;
 
 	tmp = *env;
 	while (tmp)
@@ -69,7 +74,9 @@ void	shlvl(t_env **env)
 				nb = ft_atoi(tmp->value);
 				nb += 1;
 				free(tmp->value);
-				tmp->value = ft_strdup(ft_itoa(nb));
+				nbr = ft_itoa(nb);
+				tmp->value = ft_strdup(nbr);
+				free(nbr);
 			}
 			else
 				tmp->value = ft_strdup("1");
