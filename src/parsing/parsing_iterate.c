@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/07 13:51:13 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/07 14:22:45 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	utilhere_doc(int *p, char *lim, int exp)
 		s = readline("\033[36;01mhere_doc>\033[0m");
 		if (!s)
 			break ;
-		if (!s && !ft_strcmp(s, lim))
+		if (!ft_strcmp(s, lim))
 		{
 			free(s);
 			break ;
@@ -92,12 +92,12 @@ void	open_heredocs(t_list *t)
 
 	st = 0;
 	count_heredoc(t);
-	while (t)
+	while (t && !st)
 	{
 		i = 0;
 		while (t->cmd[i])
 		{
-			if (!ft_strcmp(t->cmd[i], "<<"))
+			if (!ft_strcmp(t->cmd[i], "<<") && !st)
 				t->h_d = here_doc(t->cmd[i + 1], 1, &st);
 			i++;
 		}
