@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/06 17:07:55 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/07 01:07:04 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ int	infd(char **name, int *stat)
 	*name = rm_quote(expend(*name, 0, 1, &fd));
 	if (fd == -1)
 		return (*stat = -1, fd);
+	if (ft_strcmp(*name, "/dev/stdin"))
+		return (0);
+	if (ft_strcmp(*name, "/dev/stdout"))
+		return (1);
+	if (ft_strcmp(*name, "/dev/stderr"))
+		return (2);
 	if (access(*name, F_OK) == -1)
 		return (error("No such file or directory", *name), *stat = 0, -1);
 	if (access(*name, R_OK) == -1)
@@ -48,6 +54,12 @@ int	outfd(char **name, int trunc, int *stat)
 	*name = rm_quote(expend(*name, 0, 1, &fd));
 	if (fd == -1)
 		return (*stat = 0, fd);
+	if (ft_strcmp(*name, "/dev/stdin"))
+		return (0);
+	if (ft_strcmp(*name, "/dev/stdout"))
+		return (1);
+	if (ft_strcmp(*name, "/dev/stderr"))
+		return (2);
 	if (!access(*name, F_OK) && access(*name, W_OK) == -1)
 		return (error("Permission denied", *name), *stat = 0, -1);
 	if (trunc)
