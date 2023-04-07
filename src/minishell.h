@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/06 16:04:58 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/07 00:33:30 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,14 @@ char				*cat_equals(char *str, int *x, int i);
 int					ft_lstsize_env(t_env *env);
 void				execution(void);
 void				cd(t_list *list, int is_childe);
-void				cd_oldpwd(t_env *env, int *eror);
-void				cd_home(t_env *env, int *eror);
+void				cd_oldpwd(t_list *list, t_env *env, int is_childe);
+void				cd_home(t_list *list, t_env *env, int is_childe);
 void				chang_pwd_oldpwd(char *oldpwd);
 void				unset(t_list *list);
 void				env(t_env *env);
 void				printf_list(t_list *t);
 void				ft_exit(t_list *list);
+void				check_max_long(char *str, int x, long nb, long nbr);
 void				exit_status(int exit_status, int x);
 void				ft_child(t_list *list, char *comand, char *path);
 char				**ft_env(t_env *env);

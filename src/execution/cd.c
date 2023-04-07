@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:08:09 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/04 16:15:50 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 00:27:28 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_error(char *one, char *two, char *thre, int new_line)
 	return (0);
 }
 
-void	cd_(t_list *list, int is_childe, int eror)
+void	cd_(t_list *list, int is_childe)
 {
 	char	buffer[PATH_MAX];
 
@@ -75,16 +75,9 @@ void	cd_(t_list *list, int is_childe, int eror)
 	if (!chdir(list->cmdsp[1]))
 		chang_pwd_oldpwd(ft_strdup(buffer));
 	else
-		eror = 1;
-	if (eror == 1)
 	{
 		ft_error("minishell: ", list->cmdsp[0], ": ", 0);
 		ft_error(list->cmdsp[1], ": ", "No such file or directory", 1);
-		exit_status(1, is_childe);
-	}
-	else if (eror == 2)
-	{
-		error(list->cmdsp[1], " OLDPWD not set");
 		exit_status(1, is_childe);
 	}
 }
@@ -92,14 +85,12 @@ void	cd_(t_list *list, int is_childe, int eror)
 void	cd(t_list *list, int is_childe)
 {
 	t_env	*env;
-	int		eror;
 
-	eror = 0;
 	env = list->env;
 	if (!list->cmdsp[1] || !ft_strcmp(list->cmdsp[1], "~"))
-		cd_home(env, &eror);
+		cd_home(list, env, is_childe);
 	else if (!ft_strcmp(list->cmdsp[1], "-"))
-		cd_oldpwd(env, &eror);
+		cd_oldpwd(list, env, is_childe);
 	else
-		cd_(list, is_childe, eror);
+		cd_(list, is_childe);
 }

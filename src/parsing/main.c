@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/07 01:13:13 by ajari            ###   ########.fr       */
+=======
+/*   Updated: 2023/04/06 17:34:39 by aahrach          ###   ########.fr       */
+>>>>>>> f0be60aeba451a5b573ddaf85cdbb86f0b964d56
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +82,30 @@ void	add_oldped_pwd(t_env **env)
 	(*env)->next->next = new;
 }
 
+void	shlvl(t_env	**env)
+{
+	t_env	*tmp;
+	int		nb;
+
+	tmp = *env;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->key, "SHLVL"))
+		{
+			if (tmp->value)
+			{
+				nb = ft_atoi(tmp->value);
+				nb += 1;
+				free(tmp->value);
+				tmp->value = ft_strdup(ft_itoa(nb));
+			}
+			else
+				tmp->value = ft_strdup("1");
+		}
+		tmp = tmp->next;
+	}
+}
+
 int	main(int ac, char **av, char **ev)
 {
 	char	*s;
@@ -88,6 +116,8 @@ int	main(int ac, char **av, char **ev)
 	init_variables(&env, &var, av, ev);
 	if (!env)
 		add_oldped_pwd(&env);
+	else
+		shlvl(&env);
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -99,7 +129,11 @@ int	main(int ac, char **av, char **ev)
 		if (!check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
+<<<<<<< HEAD
 		printf_list(g_v);
+=======
+		//printf_list(g_v);
+>>>>>>> f0be60aeba451a5b573ddaf85cdbb86f0b964d56
 		execution();
 		env = g_v->env;
 		lstfree(g_v, env, var);
