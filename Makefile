@@ -37,3 +37,4 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean fcleanlib all
+ojkld
