@@ -6,7 +6,11 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/06 17:19:42 by aahrach          ###   ########.fr       */
+=======
+/*   Updated: 2023/04/06 18:16:58 by ajari            ###   ########.fr       */
+>>>>>>> 0c36f53802b756a096d210d40ddd9387625f9dd0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +39,10 @@ int	op(char *dir)
 
 void	utilhere_doc(int *p, char *lim, int exp)
 {
+	int		k;
 	char	*s;
 
+	k = 0;
 	close(p[0]);
 	while (1)
 	{
@@ -44,12 +50,12 @@ void	utilhere_doc(int *p, char *lim, int exp)
 		s = readline("\033[36;01mhere_doc>\033[0m");
 		if (!s)
 			exit_status(0, 1);
-		if (!ft_strcmp(s, rm_quote(lim)))
+		if (!ft_strcmp(s, lim))
 		{
 			free(s);
 			break ;
 		}
-		s = expend(s, 0, exp, 0);
+		s = expend(s, 0, exp, &k);
 		ft_putendl_fd(s, p[1]);
 		free(s);
 	}
@@ -59,11 +65,11 @@ void	utilhere_doc(int *p, char *lim, int exp)
 
 int	here_doc(char *lim, int exp)
 {
-	int	i;
-	int	id;
-	int	p[2];
-	int	st;
+	int		i;
+	pid_t	id;
+	int		p[2];
 
+	//int		st;
 	pipe(p);
 	i = 0;
 	while (lim[i])
@@ -75,11 +81,12 @@ int	here_doc(char *lim, int exp)
 	signal(SIGINT, SIG_IGN);
 	id = fork();
 	if (id == 0)
-		utilhere_doc(p, lim, exp);
-	waitpid(id, &st, 0);
-	st = WEXITSTATUS(st);
-	if (st == 1)
-		exit_status(1, 0);
+		utilhere_doc(p, rm_quote(lim), exp);
+	//waitpid(id, &st, 0);
+	wait(0);
+	//st = WEXITSTATUS(st);
+	// if (st == 1)
+	// 	exit_status(1, 0);
 	close(p[1]);
 	return (p[0]);
 }
