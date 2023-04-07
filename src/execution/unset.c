@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:44:38 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/06 14:35:30 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/06 23:39:32 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ void	ft_delete_key(t_env *env, char *key)
 	}
 	while (env->next)
 	{
-		printf("key = %s  key = %s\n", env->next->key, key);
 		if (!ft_strcmp(env->next->key, key))
 		{
-			printf("key = %s  key = %s\n", env->next->key, key);
 			delete = env->next;
 			env->next = env->next->next;
 			free(delete->key);

@@ -6,12 +6,39 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:46:02 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/06 17:11:37 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 00:32:45 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
+
+int	ft_atoi_exet(char *str)
+{
+	int		x;
+	int		i;
+	long	nbr;
+	long	nb;
+
+	i = 0;
+	nbr = 0;
+	x = 1;
+	if (str[i] == '-')
+	{
+		x = x - 2;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = nbr;
+		nbr = (nbr * 10) + (str[i] - 48);
+		i++;
+	}
+	check_max_long(str, x, nb, nbr);
+	return (nbr * x);
+}
 
 void	exit_status(int exit_status, int x)
 {
@@ -25,6 +52,8 @@ int	str_isdigit(char *str)
 	int	i;
 
 	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
@@ -59,11 +88,11 @@ void	ft_exit(t_list *list)
 		ft_putstr_fd("exit\n", 2);
 		ft_putstr_fd("minishell: exit: ", 2);
 		ft_putstr_fd("too many arguments\n", 2);
-		exit_status(1, 1);
+		exit_status(1, 0);
 	}
 	else
 	{
 		ft_putstr_fd("exit\n", 2);
-		exit_status(ft_atoi(list->cmdsp[1]), 1);
+		exit_status(ft_atoi_exet(list->cmdsp[1]), 1);
 	}
 }

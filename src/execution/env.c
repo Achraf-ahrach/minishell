@@ -6,12 +6,26 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:14:08 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/02 00:52:40 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 00:37:27 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
+
+void	check_max_long(char *str, int x, long nb, long nbr)
+{
+	if (x == 1 && nb > nbr)
+	{
+		ft_error("minishell: exit: ", str, ": numeric argument required", 1);
+		exit_status(255, 1);
+	}
+	else if (x == -1 && nb > nbr && ft_strncmp(str, "-9223372036854775808", 20))
+	{
+		ft_error("minishell: exit: ", str, ": numeric argument required", 1);
+		exit_status(255, 1);
+	}	
+}
 
 char	*get_env(t_env *env)
 {
