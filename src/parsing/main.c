@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 11:23:45 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 14:02:51 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	shlvl(t_env **env)
 {
 	t_env	*tmp;
 	int		nb;
+	char	*nbr;
 
 	tmp = *env;
 	while (tmp)
@@ -69,7 +70,9 @@ void	shlvl(t_env **env)
 				nb = ft_atoi(tmp->value);
 				nb += 1;
 				free(tmp->value);
-				tmp->value = ft_strdup(ft_itoa(nb));
+				nbr = ft_itoa(nb);
+				tmp->value = ft_strdup(nbr);
+				free(nbr);
 			}
 			else
 				tmp->value = ft_strdup("1");
