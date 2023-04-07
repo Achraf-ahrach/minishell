@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check_input.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:24:13 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/07 10:01:47 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:18:36 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	check_file(char *s, char c)
 			if (((c == '<' || c == '>') && (s[i] == '<' || s[i] == '>'
 						|| s[i] == '|')) || (c == '|' && s[i] == '>'))
 				return (exit_status(258, 0),
-					error("syntax error near unexpected token `<<'", ""));
+						error("syntax error near unexpected token `<<'", ""));
 		}
 		else
 			i++;
@@ -72,12 +72,32 @@ static int	check_pipe(char *s)
 				;
 			if (s[i] == '|')
 				return (exit_status(258, 0),
-					error("Minishell: Error sequance of pipe", ""));
+						error("Minishell: Error sequance of pipe", ""));
 		}
 		else
 			i++;
 	}
 	return (1);
+}
+
+void	sp_to_tabe(char *s)
+{
+	char	c;
+	int		i;
+
+	i = 0;
+	while (s[i])
+	{
+		c = s[i];
+		if (s[i] == '\'' || s[i] == '\"')
+		{
+			while (s[++i] != c)
+				;
+		}
+		else if (s[i] == '\t')
+			s[i] = ' ';
+		i++;
+	}
 }
 
 int	check_in(char *s)
@@ -88,12 +108,7 @@ int	check_in(char *s)
 	i = 0;
 	if (!s || !s[0])
 		return (0);
-	while (s[i])
-	{
-		if (s[i] == '\t')
-			s[i] = ' ';
-		i++;
-	}
+	sp_to_tabe(s);
 	len = ft_strlen(s) - 1;
 	while (len && ft_isspace(s[len]))
 		len--;
