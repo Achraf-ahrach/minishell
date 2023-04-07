@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 10:26:38 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/07 10:34:53 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ int	main(int ac, char **av, char **ev)
 		fill_cmds(s, env, var);
 		printf_list(g_v);
 		execution();
-		env = g_v->env;
 		lstfree(g_v, env, var);
 	}
 }
