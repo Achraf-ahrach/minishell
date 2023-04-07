@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/07 10:38:40 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/07 13:51:13 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	utilhere_doc(int *p, char *lim, int exp)
 		signal(SIGINT, sigint_herdoc);
 		s = readline("\033[36;01mhere_doc>\033[0m");
 		if (!s)
-			exit_status(0, 1);
-		if (!ft_strcmp(s, lim))
+			break ;
+		if (!s && !ft_strcmp(s, lim))
 		{
 			free(s);
 			break ;
@@ -56,7 +56,7 @@ void	utilhere_doc(int *p, char *lim, int exp)
 		free(s);
 	}
 	close(p[1]);
-	exit(0);
+	exit_status(0, 1);
 }
 
 int	here_doc(char *lim, int exp, int *st)
@@ -95,9 +95,9 @@ void	open_heredocs(t_list *t)
 	while (t)
 	{
 		i = 0;
-		while (t->cmd[i] && !st)
+		while (t->cmd[i])
 		{
-			if (!ft_strcmp(t->cmd[i], "<<") && !st)
+			if (!ft_strcmp(t->cmd[i], "<<"))
 				t->h_d = here_doc(t->cmd[i + 1], 1, &st);
 			i++;
 		}
