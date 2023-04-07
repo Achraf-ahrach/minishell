@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/07 01:13:13 by ajari            ###   ########.fr       */
-=======
-/*   Updated: 2023/04/06 17:34:39 by aahrach          ###   ########.fr       */
->>>>>>> f0be60aeba451a5b573ddaf85cdbb86f0b964d56
+/*   Updated: 2023/04/07 01:32:25 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +50,7 @@ void	printf_list(t_list *tem)
 			printf("%s\n", ss);
 		}
 		printf("outfile:%d\n", tem->o_f);
+		printf("---------------------------------------------\n");
 		tem = tem->next;
 	}
 }
@@ -82,7 +79,7 @@ void	add_oldped_pwd(t_env **env)
 	(*env)->next->next = new;
 }
 
-void	shlvl(t_env	**env)
+void	shlvl(t_env **env)
 {
 	t_env	*tmp;
 	int		nb;
@@ -129,11 +126,7 @@ int	main(int ac, char **av, char **ev)
 		if (!check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
-<<<<<<< HEAD
 		printf_list(g_v);
-=======
-		//printf_list(g_v);
->>>>>>> f0be60aeba451a5b573ddaf85cdbb86f0b964d56
 		execution();
 		env = g_v->env;
 		lstfree(g_v, env, var);
