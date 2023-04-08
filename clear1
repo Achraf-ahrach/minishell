@@ -1,0 +1,34 @@
+minishell 14004 ajari  cwd       DIR               1,11       408     4937119 /Users/ajari/Desktop/minishell
+minishell 14004 ajari  txt       REG               1,11     44196     4967601 /Users/ajari/Desktop/minishell/minishell
+minishell 14004 ajari  txt       REG               1,11    251028     4858466 /Users/ajari/.brew/Cellar/readline/8.2.1/lib/libreadline.8.2.dylib
+minishell 14004 ajari  txt       REG                1,7    973824 12885608523 /usr/lib/dyld
+minishell 14004 ajari    0u      CHR               16,1   0t39694         741 /dev/ttys001
+minishell 14004 ajari    1u      CHR               16,1   0t39694         741 /dev/ttys001
+minishell 14004 ajari    2u      CHR               16,1   0t39694         741 /dev/ttys001
+minishell 14004 ajari    3u      CHR               16,1   0t39694         741 /dev/ttys001
+minishell 14004 ajari    4u      CHR               16,1   0t39694         741 /dev/ttys001
+minishell 14004 ajari    5r      REG               1,11         0     4967100 /Users/ajari/Desktop/minishell/ls
+minishell 14004 ajari    6u      CHR               16,1   0t39694         741 /dev/ttys001
+minishell 14004 ajari    7u      CHR               16,1   0t39694         741 /dev/ttys001
+minishell 14004 ajari    8r      REG               1,11       806     4927178 /Users/ajari/Desktop/minishell/Makefile
+minishell 14004 ajari    9u      CHR               16,1   0t39694         741 /dev/ttys001
+minishell 14004 ajari   10u      CHR               16,1   0t39694         741 /dev/ttys001
+minishell 14004 ajari   12r      REG                1,7    730800 12909601910 /Applications/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/v8_context_snapshot.x86_64.bin
+minishell 14004 ajari   25w      REG               1,11         0     4966209 /Users/ajari/Library/Application Support/Code/logs/20230408T162521/ptyhost.log
+minishell 14004 ajari   26u      CHR               15,1   0t68441         586 /dev/ptmx
+minishell 14004 ajari   27r      REG                1,7  17591409 12909602999 /Applications/Visual Studio Code.app/Contents/Resources/app/node_modules.asar
+minishell 14004 ajari   28                                                    (revoked)
+minishell 14004 ajari   29                                                    (revoked)
+minishell 14004 ajari   30u      CHR               16,1   0t39694         741 /dev/ttys001
+minishell 14004 ajari   31      PIPE 0x2bd4d4fe3c9a3a5f     16384             
+leaks     14636 ajari  cwd       DIR               1,11       408     4937119 /Users/ajari/Desktop/minishell
+lsof      14637 ajari  cwd       DIR               1,11       408     4937119 /Users/ajari/Desktop/minishell
+grep      14638 ajari  cwd       DIR               1,11       408     4937119 /Users/ajari/Desktop/minishell
+grep      14638 ajari    1w      REG               1,11         0     4967676 /Users/ajari/Desktop/minishell/clear1
+Code\x20H 86560 ajari   30r      REG               1,11        41     4937599 /Users/ajari/Desktop/minishell/.git/refs/remotes/origin/master
+cpptools  86755 ajari  cwd       DIR               1,11       408     4937119 /Users/ajari/Desktop/minishell
+zsh       86873 ajari  cwd       DIR               1,11       408     4937119 /Users/ajari/Desktop/minishell
+zsh       94137 ajari  cwd       DIR               1,11       408     4937119 /Users/ajari/Desktop/minishell
+bash      97380 ajari  cwd       DIR               1,11       408     4937119 /Users/ajari/Desktop/minishell
+zsh       97954 ajari  cwd       DIR               1,11       408     4937119 /Users/ajari/Desktop/minishell
+bash      98032 ajari  cwd       DIR               1,11       408     4937119 /Users/ajari/Desktop/minishell

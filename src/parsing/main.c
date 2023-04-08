@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/08 17:52:28 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 18:13:57 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,10 @@ int	main(int ac, char **av, char **ev)
 			exit(var->exit_status);
 		add_history(s);
 		if (!check_in(s))
+		{
+			free(s);
 			continue ;
+		}
 		fill_cmds(s, env, var);
 		printf_list(g_v);
 		execution();

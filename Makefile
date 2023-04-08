@@ -13,6 +13,7 @@ all: $(NAME)
 
 $(NAME):$(OBJ) $(OBJP) $(OBJE) $(LIBFT)
 	$(CC) $(CFLAGS) $(LIB) $(OBJP) $(OBJE) $(LIBFT) -o $@
+	@stty -echoctl
 
 $(OBJ)/%.o: $(SRCP)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -22,7 +23,7 @@ $(OBJ)/%.o: $(SRCE)/%.c
 
 $(OBJ):
 	mkdir $@
-	@stty -echoctl
+
 
 $(LIBFT):
 	make all clean -C ./src/libft

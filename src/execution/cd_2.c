@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cd_2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:14:38 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 00:30:31 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 15:37:35 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
 void	cd_oldpwd(t_list *list, t_env *env, int is_childe)
 {

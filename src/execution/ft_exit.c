@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:46:02 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 00:32:45 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 15:39:08 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
 int	ft_atoi_exet(char *str)
 {
@@ -44,7 +44,7 @@ void	exit_status(int exit_status, int x)
 {
 	g_v->var->exit_status = exit_status;
 	if (x)
-		exit (exit_status);
+		exit(exit_status);
 }
 
 int	str_isdigit(char *str)

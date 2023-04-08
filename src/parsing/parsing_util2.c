@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:59:40 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/07 15:20:08 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/08 17:20:13 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,11 @@ void	expend_util(char **dup, char *s, char c, int *i)
 		}
 	}
 	add_char(dup, s[*i]);
+}
+
+int	close_fd(int fd)
+{
+	if (fd > 2)
+		close(fd);
+	return (1);
 }

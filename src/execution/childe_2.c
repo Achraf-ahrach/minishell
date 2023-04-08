@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   childe_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:21:31 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 11:21:57 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 15:37:53 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	childe_(t_list *list, pid_t *pid)
 
 void	childe(t_list *list, pid_t *pid)
 {
-	int		pp[2];
+	int	pp[2];
 
 	signal(SIGINT, sigint_childe);
 	signal(SIGQUIT, sigquit_childe);

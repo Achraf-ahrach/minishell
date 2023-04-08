@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/08 17:57:21 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 18:13:52 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,7 @@ void				sigint_herdoc(int sig);
 void				sigquit_childe(int sig);
 void				expend_util(char **dup, char *s, char c, int *i);
 void				count_heredoc(t_list *t);
+int					close_fd(int fd);
+int					op(char *dir, int *stat);
 /////////////////////////////////////////////
 #endif
