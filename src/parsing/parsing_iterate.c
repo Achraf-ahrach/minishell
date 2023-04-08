@@ -6,18 +6,17 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/07 15:36:58 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/08 17:43:27 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	op(char *dir)
+int	op(char *dir, int *stat)
 {
 	DIR	*t;
 
-	dir = ft_strdup(dir);
 	if (!ft_strncmp(dir, "./", 2) || !ft_strncmp(dir, "/", 1))
 	{
 		t = opendir(dir);
@@ -25,7 +24,8 @@ int	op(char *dir)
 		if (t)
 		{
 			closedir(t);
-			return (error("Is a directory", dir));
+			g_v->var->exit_status = 126;
+			return (error("Is a directory", dir), *stat = 0, 0);
 		}
 		return (1);
 	}
@@ -69,7 +69,7 @@ int	here_doc(char *lim, int exp, int *st)
 	i = 0;
 	while (lim[i])
 	{
-		if ((lim[i] == '\'' || lim[1] == '\"'))
+		if ((lim[i] == '\'' || lim[i] == '\"'))
 			exp = 0;
 		i++;
 	}
@@ -78,8 +78,7 @@ int	here_doc(char *lim, int exp, int *st)
 	if (id == 0)
 		utilhere_doc(p, rm_quote(lim), exp);
 	waitpid(id, st, 0);
-	*st = WEXITSTATUS(st);
-	if (*st == 1)
+	if (*st == 256)
 		exit_status(1, 0);
 	close(p[1]);
 	return (p[0]);
@@ -95,10 +94,14 @@ void	open_heredocs(t_list *t)
 	while (t && !st)
 	{
 		i = 0;
-		while (t->cmd[i])
+		while (t->cmd[i] && !st)
 		{
-			if (!ft_strcmp(t->cmd[i], "<<") && !st)
+			if (!ft_strcmp(t->cmd[i], "<<"))
+			{
+				if (t->h_d > 2)
+					close(t->h_d);
 				t->h_d = here_doc(t->cmd[i + 1], 1, &st);
+			}
 			i++;
 		}
 		t = t->next;
@@ -113,16 +116,16 @@ void	iterate_cmds(t_list *t, int i)
 		i = 0;
 		while (t->cmd[i] && t->stat)
 		{
-			if (!ft_strcmp(t->cmd[i], "<") && op(t->cmd[i + 1]))
+			if (!ft_strcmp(t->cmd[i], "<") && close_fd(t->i_f))
 				t->i_f = infd(&t->cmd[++i], &t->stat);
-			else if (!ft_strcmp(t->cmd[i], "<<") && ++i)
+			else if (!ft_strcmp(t->cmd[i], "<<") && ++i && close_fd(t->i_f))
 				t->i_f = t->h_d;
-			else if (!ft_strcmp(t->cmd[i], ">") && op(t->cmd[i + 1]))
+			else if (!ft_strcmp(t->cmd[i], ">") && close_fd(t->o_f))
 				t->o_f = outfd(&t->cmd[++i], 1, &t->stat);
-			else if (!ft_strcmp(t->cmd[i], ">>") && op(t->cmd[i + 1]))
+			else if (!ft_strcmp(t->cmd[i], ">>") && close_fd(t->o_f))
 				t->o_f = outfd(&t->cmd[++i], 0, &t->stat);
-			else if (op(rm_quote(t->cmd[i])))
-				add_str(&t->cmdsp, t->cmd[i]);
+			else if (t->cmdsp || op(rm_quote(ft_strdup(t->cmd[i])), &t->stat))
+				add_str(&t->cmdsp, rm_quote(t->cmd[i]));
 			i++;
 		}
 		t = t->next;

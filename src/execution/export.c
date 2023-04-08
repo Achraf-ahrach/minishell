@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:12:07 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/06 15:34:45 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 15:38:57 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
 void	help(t_env *tmp, char *key, char *value, int x)
 {
@@ -43,8 +43,8 @@ int	export_help(t_list *list, char *value, int i, int is_childe)
 	int		x;
 
 	tmp = list->env;
-	if (check_identifier(list->cmdsp[i], is_childe, 0)
-		&& !wach_kayn(list, list->cmdsp[i]))
+	if (check_identifier(list->cmdsp[i], is_childe, 0) && !wach_kayn(list,
+			list->cmdsp[i]))
 	{
 		key = cat_equals(list->cmdsp[i], &x, 0);
 		if (key)
@@ -66,7 +66,7 @@ int	export_help(t_list *list, char *value, int i, int is_childe)
 
 void	export_(t_list *list, int is_childe)
 {
-	int		i;
+	int	i;
 
 	i = 1;
 	while (list->cmdsp[i])
@@ -107,7 +107,7 @@ void	print_export(t_list *list, t_env *tmp, int size)
 
 void	export(t_list *list, int is_childe)
 {
-	int		size;
+	int	size;
 
 	size = 0;
 	if (!list->cmdsp[1])

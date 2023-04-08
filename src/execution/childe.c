@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   childe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 14:10:17 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 15:38:02 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,5 @@ void	ft_child(t_list *list, char *comand, char *path)
 		execve(comand, list->cmdsp, ft_env(g_v->env));
 		prror_cmd(127);
 	}
-	exit (1);
+	exit(1);
 }

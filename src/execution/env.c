@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:14:08 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 00:37:27 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 15:38:28 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
 void	check_max_long(char *str, int x, long nb, long nbr)
 {
@@ -24,7 +24,7 @@ void	check_max_long(char *str, int x, long nb, long nbr)
 	{
 		ft_error("minishell: exit: ", str, ": numeric argument required", 1);
 		exit_status(255, 1);
-	}	
+	}
 }
 
 char	*get_env(t_env *env)

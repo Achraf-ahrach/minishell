@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 10:49:36 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 15:38:34 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	builtins(t_list *list, int is_child)
 
 void	last_exit_status(pid_t pid)
 {
-	int		pid_wait;
-	int		status;
-	int		i;
+	int	pid_wait;
+	int	status;
+	int	i;
 
 	i = -1;
 	while (++i < ft_lstsize(g_v))
