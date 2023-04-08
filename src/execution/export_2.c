@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:53:20 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/06 18:19:10 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:09:49 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int	check_identifier(char *str, int is_childe, int i)
 	int	error;
 
 	error = 0;
-	if (!ft_isalpha(str[0]) && str[0] != '_')
+	if (!ft_isalpha(str[i]) && str[i] != '_')
 		error = 1;
+	i++;
 	while (str[i])
 	{
-		if (ft_isalpha(str[i]) || ft_isdigit(str[i]) || str[i] == '_')
+		if (ft_isalpha(str[i]) || ft_isdigit(str[i]))
 			i++;
 		else if (str[i] == '=' || (str[i] == '+' && str[i + 1] == '='))
 			return (1);

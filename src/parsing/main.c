@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 15:26:14 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/08 17:52:28 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,30 @@ void	shlvl(t_env **env)
 	}
 }
 
+void	printf_list(t_list *tem)
+{
+	char	ss[1000];
+
+	while (tem)
+	{
+		printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
+		for (int i = 0; tem->cmdsp && tem->cmdsp[i]; i++)
+		{
+			if (!i)
+				printf("cmd:");
+			printf("#%s# ", tem->cmdsp[i]);
+		}
+		printf("\nstat:%d\ninfile:%d\n", tem->stat, tem->i_f);
+		if (0 && tem->i_f != -1 && tem->i_f != -2)
+		{
+			read(tem->i_f, ss, 100);
+			printf("%s\n", ss);
+		}
+		printf("outfile:%d\n", tem->o_f);
+		tem = tem->next;
+	}
+}
+
 int	main(int ac, char **av, char **ev)
 {
 	char	*s;
@@ -104,6 +128,7 @@ int	main(int ac, char **av, char **ev)
 		if (!check_in(s))
 			continue ;
 		fill_cmds(s, env, var);
+		printf_list(g_v);
 		execution();
 		lstfree(g_v, env, var);
 	}

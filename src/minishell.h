@@ -6,7 +6,7 @@
 /*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/07 00:33:30 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:57:21 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int					wach_kayn(t_list *list, char *str);
 char				*cat_equals(char *str, int *x, int i);
 int					ft_lstsize_env(t_env *env);
 void				execution(void);
+void				dup_file(t_list *list);
 void				cd(t_list *list, int is_childe);
 void				cd_oldpwd(t_list *list, t_env *env, int is_childe);
 void				cd_home(t_list *list, t_env *env, int is_childe);
