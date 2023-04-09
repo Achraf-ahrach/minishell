@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/08 17:42:13 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/09 02:54:06 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	error(char *str_er, char *name)
 	return (0);
 }
 
-int	infd(char **name, int *stat)
+int	infd(char **name, int *stat, int *exit_s)
 {
 	int	fd;
 
 	fd = 1;
 	*name = rm_quote(expend(*name, 0, 1, &fd));
 	if (fd == -1)
-		return (*stat = 0, fd);
+		return (g_v->var->exit_status = 1, *stat = 0, fd);
 	if (!ft_strcmp(*name, "/dev/stdin"))
 		return (0);
 	if (!ft_strcmp(*name, "/dev/stdout"))
@@ -46,14 +46,14 @@ int	infd(char **name, int *stat)
 	return (fd);
 }
 
-int	outfd(char **name, int trunc, int *stat)
+int	outfd(char **name, int trunc, int *stat, int *e)
 {
 	int	fd;
 
 	fd = 1;
 	*name = rm_quote(expend(*name, 0, 1, &fd));
 	if (fd == -1)
-		return (*stat = 0, fd);
+		return (*e = 1, *stat = 0, fd);
 	if (!ft_strcmp(*name, "/dev/stdin"))
 		return (0);
 	if (!ft_strcmp(*name, "/dev/stdout"))
@@ -61,13 +61,14 @@ int	outfd(char **name, int trunc, int *stat)
 	if (!ft_strcmp(*name, "/dev/stderr"))
 		return (2);
 	if (!access(*name, F_OK) && access(*name, W_OK) == -1)
-		return (error("Permission denied", *name), *stat = 0, -1);
+		return (error("Permission denied", *name), *e = 1, *stat = 0, -1);
 	if (trunc)
 		fd = open(*name, O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	else
 		fd = open(*name, O_CREAT | O_APPEND | O_WRONLY, 0777);
 	if (fd == -1 && op(ft_strdup(*name), stat))
-		return (error("No such file or directory", *name), *stat = 0, -1);
+		return (error("No such file or directory", *name), *e = 1, *stat = 0,
+			-1);
 	return (fd);
 }
 
