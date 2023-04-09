@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:06:29 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/08 15:38:34 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/08 18:13:31 by aahrach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 int	builtins(t_list *list, int is_child)
 {
+	if (!is_child)
+		dup_file(list);
 	if (list->cmdsp && !ft_strcmp(ft_tolower(list->cmdsp[0]), "echo"))
 		echo(list->cmdsp);
 	else if (list->cmdsp && !ft_strcmp(list->cmdsp[0], "pwd"))
@@ -70,7 +72,11 @@ void	execution(void)
 	k = dup(1);
 	h = dup(0);
 	if (ft_lstsize(list) == 1 && list->cmdsp && builtins(list, 0))
+	{
+		dup2(k, 1);
+		dup2(h, 0);
 		return ;
+	}
 	while (list)
 	{
 		childe(list, &pid);
