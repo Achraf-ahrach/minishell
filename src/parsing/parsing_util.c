@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:14:25 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/09 02:54:06 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/09 22:04:02 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	error(char *str_er, char *name)
 	return (0);
 }
 
-int	infd(char **name, int *stat, int *exit_s)
+int	infd(char **name, int *stat, int *e)
 {
 	int	fd;
 
 	fd = 1;
 	*name = rm_quote(expend(*name, 0, 1, &fd));
 	if (fd == -1)
-		return (g_v->var->exit_status = 1, *stat = 0, fd);
+		return (*e = 1, *stat = 0, fd);
 	if (!ft_strcmp(*name, "/dev/stdin"))
 		return (0);
 	if (!ft_strcmp(*name, "/dev/stdout"))
@@ -39,9 +39,10 @@ int	infd(char **name, int *stat, int *exit_s)
 	if (!ft_strcmp(*name, "/dev/stderr"))
 		return (2);
 	if (access(*name, F_OK) == -1)
-		return (error("No such file or directory", *name), *stat = 0, -1);
+		return (error("No such file or directory", *name), *stat = 0, *e = 1,
+			-1);
 	if (access(*name, R_OK) == -1)
-		return (error("Permission denied", *name), *stat = 0, -1);
+		return (error("Permission denied", *name), *stat = 0, *e = 1, -1);
 	fd = open(*name, O_RDONLY, 777);
 	return (fd);
 }

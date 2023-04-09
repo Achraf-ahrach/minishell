@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:11:04 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/08 17:43:27 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/09 22:13:02 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,13 @@ void	iterate_cmds(t_list *t, int i)
 		while (t->cmd[i] && t->stat)
 		{
 			if (!ft_strcmp(t->cmd[i], "<") && close_fd(t->i_f))
-				t->i_f = infd(&t->cmd[++i], &t->stat);
+				t->i_f = infd(&t->cmd[++i], &t->stat, &t->var->exit_status);
 			else if (!ft_strcmp(t->cmd[i], "<<") && ++i && close_fd(t->i_f))
 				t->i_f = t->h_d;
 			else if (!ft_strcmp(t->cmd[i], ">") && close_fd(t->o_f))
-				t->o_f = outfd(&t->cmd[++i], 1, &t->stat);
+				t->o_f = outfd(&t->cmd[++i], 1, &t->stat, &t->var->exit_status);
 			else if (!ft_strcmp(t->cmd[i], ">>") && close_fd(t->o_f))
-				t->o_f = outfd(&t->cmd[++i], 0, &t->stat);
+				t->o_f = outfd(&t->cmd[++i], 0, &t->stat, &t->var->exit_status);
 			else if (t->cmdsp || op(rm_quote(ft_strdup(t->cmd[i])), &t->stat))
 				add_str(&t->cmdsp, rm_quote(t->cmd[i]));
 			i++;

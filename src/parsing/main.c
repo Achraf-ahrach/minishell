@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/08 18:13:57 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/09 22:11:39 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	printf_list(t_list *tem)
 {
 	char	ss[1000];
 
+	printf("------------------------------------->\n");
 	while (tem)
 	{
 		printf("<<<<<<<<<<<<<<<<pipe>>>>>>>>>>>>>>>>>>>>>\n");
@@ -103,6 +104,7 @@ void	printf_list(t_list *tem)
 		printf("outfile:%d\n", tem->o_f);
 		tem = tem->next;
 	}
+	printf("------------------------------------->\n");
 }
 
 int	main(int ac, char **av, char **ev)
