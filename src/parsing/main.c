@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/10 15:55:59 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/10 15:58:58 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	main(int ac, char **av, char **ev)
 		if (!s)
 			exit(var->exit_status);
 		add_history(s);
-		if (!check_in(s) || freee(s))
+		if (!check_in(s) && freee(s))
 			continue ;
 		fill_cmds(s, env, var);
 		execution();
