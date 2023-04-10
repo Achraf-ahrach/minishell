@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:31:44 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/09 21:59:49 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/10 15:57:11 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,6 @@ void				expend_util(char **dup, char *s, char c, int *i);
 void				count_heredoc(t_list *t);
 int					close_fd(int fd);
 int					op(char *dir, int *stat);
+int					freee(char *s);
 /////////////////////////////////////////////
 #endif

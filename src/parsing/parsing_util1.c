@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:08:41 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/08 17:56:00 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/10 15:51:15 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	free_one(t_list *list, int i)
 		free(list->cmdsp);
 	if (list->cmd)
 		free(list->cmd);
-	// if (list->i_f > 2)
-	// 	close(list->i_f);
-	// if (list->o_f > 2)
-	// 	close(list->o_f);
+	if (list->i_f > 2)
+		close(list->i_f);
+	if (list->o_f > 2)
+		close(list->o_f);
 	free(list);
 }
 

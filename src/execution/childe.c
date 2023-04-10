@@ -6,7 +6,7 @@
 /*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:44:19 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/08 15:38:02 by ajari            ###   ########.fr       */
+/*   Updated: 2023/04/10 15:40:11 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,12 @@ void	access_slash(t_list *list)
 	{
 		if (access(list->cmdsp[0], F_OK) != -1)
 			execve(list->cmdsp[0], list->cmdsp, ft_env(g_v->env));
-		error(" : No such file or directory", list->cmdsp[0]);
+		if (access(list->cmdsp[0], X_OK))
+		{
+			error("Permission denied", list->cmdsp[0]);
+			exit_status(126, 1);
+		}
+		error("No such file or directory", list->cmdsp[0]);
 		exit_status(127, 1);
 	}
 }

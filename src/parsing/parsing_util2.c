@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_util2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:59:40 by ajari             #+#    #+#             */
-/*   Updated: 2023/04/10 10:31:21 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/10 15:56:28 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,11 @@ int	close_fd(int fd)
 {
 	if (fd > 2)
 		close(fd);
+	return (1);
+}
+
+int	freee(char *s)
+{
+	free(s);
 	return (1);
 }

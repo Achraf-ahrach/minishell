@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aahrach <aahrach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:27:58 by aahrach           #+#    #+#             */
-/*   Updated: 2023/04/10 10:29:25 by aahrach          ###   ########.fr       */
+/*   Updated: 2023/04/10 15:55:59 by ajari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,8 @@ int	main(int ac, char **av, char **ev)
 		if (!s)
 			exit(var->exit_status);
 		add_history(s);
-		if (!check_in(s))
-		{
-			free(s);
+		if (!check_in(s) || freee(s))
 			continue ;
-		}
 		fill_cmds(s, env, var);
 		execution();
 		lstfree(g_v, env, var);
